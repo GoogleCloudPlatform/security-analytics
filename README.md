@@ -5,7 +5,7 @@ List of security analytics queries for threat detection and access audit for you
 
 ## Security Analytics Use Cases
 
-| # | Cloud Security Threat | Log Source | Audit | Detect | Remediate |
+| # | Cloud Security Threat | Log Source | Audit | Detect | Respond |
 |---|---|---|:-:|:-:|:-:|
 | 1 | **Login & Access Patterns**
 | 1.01 | [Login occured from a highly-priviledged account](./sql/1_01_login_highly_priviledged_account.sql)<br>(e.g. Super Admin, Organization Admin) | Cloud Identity Logs (Google Workspace Login) | | :white_check_mark: | |
