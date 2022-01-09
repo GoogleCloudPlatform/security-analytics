@@ -1,7 +1,7 @@
 # Threat Detection As Code
 List of security analytics queries for threat detection and access audit for your data &amp; workloads in Google Cloud
 
-![Security Monitoring](security_mon.png)
+![Security Monitoring](./img/gcp_security_mon.png)
 
 ## Security Analytics Use Cases
 
