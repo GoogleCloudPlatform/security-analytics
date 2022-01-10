@@ -1,7 +1,18 @@
 # Threat Detection As Code
-List of security analytics queries for threat detection and access audit for your data &amp; workloads in Google Cloud
+List of security analytics queries for **threat detection** and **access audit** for your data &amp; workloads in Google Cloud. This non-comprehensive set of SQL queries ([BigQuery](https://cloud.google.com/bigquery/)) is designed to provide organizations with a rich starting point of threat detections that they can readily use and extend to help their Security Operations on Google Cloud. The security analytics use cases below are grouped by activity type and underlying log sources:
+
+1. :passport_control: Login & Access Patterns
+2. :left_luggage: IAM, Keys & Secretes Admin Activity
+3. :baggage_claim: Cloud Provisoning Activity
+4. :cloud: Cloud Workload Usage
+5. :droplet: Data Usage
+6. :zap: Network Activity
+
+To learn more about Google Cloud logs and how to export from Cloud Logging to destinations like [BigQuery](https://cloud.google.com/bigquery/docs) or [Chronicle](https://cloud.google.com/chronicle/docs) for in-depth security analytics, refer to Google Cloud [Security and access analytics solution guide](https://cloud.google.com/architecture/exporting-stackdriver-logging-for-security-and-access-analytics). 
 
 ![Security Monitoring](./img/gcp_security_mon.png)
+
+This repository is provided as is, without warranty. See [Copyright & License](#copyright-&-license) below.
 
 ## Security Analytics Use Cases
 
@@ -59,3 +70,9 @@ List of security analytics queries for threat detection and access audit for you
 | 6.30 | [Virus or malware detected by Cloud IDS](./sql/6_30_virus_or_malware_detected_by_cloud_IDS.sql) | Cloud IDS Logs | | :white_check_mark: | |
 | 6.31 | [Traffic sessions correlated to high severity threats detected by Cloud IDS](./sql/6_31_traffic_sessions_of_high_severity_threats_detected_by_cloud_IDS.sql) | Cloud IDS Logs | | :white_check_mark: | |
 | 6.40 | [Top 10 DNS queried domains](./sql/6_40_DNS_top_queried_domains.sql) | Cloud DNS Logs | :white_check_mark: | :white_check_mark: | |
+
+## Copyright & License
+
+Copyright 2022 Google LLC
+
+Threat detection queries & rules under Threat Detections As Code are licensed under the Apache license, v2.0. Details can be found in [LICENSE](./LICENSE) file.
