@@ -22,7 +22,7 @@ List of security analytics queries for threat detection and access audit for you
 | 2.22 | [Permissions granted to create or manage Service Account keys](./sql/2_22_permissions_granted_to_create_SA_keys.sql) | Audit Logs - Admin Activity | :white_check_mark: | :white_check_mark: | |
 | 2.30 | [Service accounts or keys created by non-approved identity](./sql/2_10_service_accounts_or_keys_created_by_non_approved_identity.sql) | Audit Logs - Admin Activity | :white_check_mark: | :white_check_mark: | |
 | 2.40 | [User access added (or removed) from IAP-protected HTTPS services](./sql/2_40_user_access_modified_in_IAP.sql) | Audit Logs - Admin Activity | :white_check_mark: | :white_check_mark: | |
-| 3 | :cloud: **Cloud Provisioning Activity**
+| 3 | :baggage_claim: **Cloud Provisioning Activity**
 | 3.01 | [Changes made to logging settings](./sql/3_01_logging_settings_modified.sql) | Audit Logs - Admin Activity | :white_check_mark: | :white_check_mark: | |
 | 3.10 | [Unusual admin activity by user & country in the last 7 days](./sql/3_10_unusual_admin_activity_by_user_country.sql) | Audit Logs - Admin Activity | | :white_check_mark: | |
 | 3.11 | [Unusual number of firewall rules modified in the last 7 days](./sql/3_11_unusual_number_of_firewall_rules_modified.sql) | Audit Logs - Admin Activity | | :white_check_mark: | |
@@ -32,7 +32,7 @@ List of security analytics queries for threat detection and access audit for you
 | 3.15 | Storage buckets modified or deleted by unfamiliar user identities | Audit Logs - Admin Activity | :white_check_mark: | :white_check_mark: | |
 | 3.20 | [VMs deleted in the last 7 days](./sql/3_20_virtual_machines_deleted.sql) | Audit Logs - Admin Activity | :white_check_mark: | | |
 | 3.21 | SQL databases created, modified or deleted in the last 7 days | Audit Log - Admin Activity | :white_check_mark: | | |
-| 4 | :baggage_claim: **Cloud Workload Usage**
+| 4 | :cloud: **Cloud Workload Usage**
 | 4.01 | [Unusually high API usage by any user identity](./sql/4_01_unusually_high_api_usage_by_user_identity.sql) | Audit Logs | :white_check_mark: | :white_check_mark: | |
 | 4.10 | [Autoscaling usage in the past month ](./sql/4_10_autoscaling_usage_frequency.sql) | Audit Log - Admin Activity | :white_check_mark: | | |
 | 4.11 | [Autoscaling usage in the past month broken by day](./sql/4_11_autoscaling_usage_frequency_by_day.sql) | Audit Log - Admin Activity | :white_check_mark: | | |
@@ -40,13 +40,22 @@ List of security analytics queries for threat detection and access audit for you
 | 5.01 | [Which users **most frequently** accessed data in the past week?](./sql/5_01_users_who_most_frequently_accessed_data.sql) | Audit Log - Data Access | :white_check_mark: | | |
 | 5.02 | [Which users accessed **most amount** of data in the past week?](./sql/5_02_users_who_accessed_most_amount_of_data.sql) | Audit Log - Data Access | :white_check_mark: | | |
 | 5.03 | [How much data was accessed by each user per day in the past week?](./sql/5_03_data_amount_accessed_by_user_per_day.sql) | Audit Log - Data Access | :white_check_mark: | | |
-| 5.04 | [Which users accessed data in the "accounts" table in the past month?](./sql/5_04_users_who_accessed_data_in_table.sql) | Audit Log - Data Access | :white_check_mark: | | |
+| 5.04 | [Which users accessed data in the "accounts" table in the past month?](./sql/5_04_users_who_accessed_data_in_table.sql) | Audit Log - Data Access | :white_check_mark: | | :white_check_mark: |
 | 5.05 | [What tables are most frequently accessed and by whom?](./sql/5_05_tables_most_frequently_accessed.sql) | Audit Log - Data Access | :white_check_mark: | | |
 | 5.06 | [Top 10 queries against BigQuery in the past week](./sql/5_06_BQ_queries_top.sql) | Audit Log - Data Access | :white_check_mark: | | |
 | 5.07 | [Any queries doing very large scans?](./sql/5_07_BQ_queries_with_large_scans.sql) | Audit Log - Data Access | :white_check_mark: | :white_check_mark: | |
-| 5.08 | [Any destructive queries or jobs (i.e. update or delete)?](./sql/5_08_BQ_queries_destructive.sql) | Audit Log - Data Access | :white_check_mark: | :white_check_mark: | |
+| 5.08 | [Any destructive queries or jobs (i.e. update or delete)?](./sql/5_08_BQ_queries_destructive.sql) | Audit Log - Data Access & Admin Activity | :white_check_mark: | :white_check_mark: | |
 | 5.09 | [Any exfiltration queries or jobs (i.e. copy or extract)?](./sql/5_09_BQ_queries_exfiltration.sql) | Audit Log - Data Access | :white_check_mark: | :white_check_mark: | |
 | 5.20 | [Most common data (and metadata) access actions in the past month](./sql/5_20_top_data_access_actions.sql) | Audit Log - Data Access | :white_check_mark: | :white_check_mark: | |
 | 5.30 | Cloud Storage buckets enumerated by unfamiliar users | Audit Log - Data Access | :white_check_mark: | :white_check_mark: | |
 | 5.31 | [Cloud Storage objects accessed from a new IP](./sql/5_31_cloud_storage_object_accessed_from_new_IP.sql) (60-day lookback) | Audit Log - Data Access | :white_check_mark: | :white_check_mark: | |
 | 6 | :zap: **Network Activity**
+| 6.01 | [Hosts reaching out to many other hosts or ports per hour](./sql/6_01_hosts_reaching_to_many_other_hosts_or_ports.sql) (indicating potential scanning activity) | VPC Flow Logs | :white_check_mark: | :white_check_mark: | |
+| 6.10 | [Connections from a new IP to an in-scope network](./sql/6_10_connection_from_new_IP.sql) (GDPR, PCI, etc.) | VPC Flow Logs | | :white_check_mark: | :white_check_mark: |
+| 6.11 | [Connections to a malicious IP](./sql/6_11_connections_to_malicious_IP.sql) | VPC Flow Logs | | :white_check_mark: | :white_check_mark: |
+| 6.20 | [Connections blocked by Cloud Armor](./sql/6_20_connections_blocked_by_cloud_armor.sql) | HTTP(S) LB Logs | :white_check_mark: | :white_check_mark: | |
+| 6.21 | [Log4j 2 vulnerability exploit attempts](./sql/6_21_log4j_exploit_attempts.sql) | HTTP(S) LB Logs | | :white_check_mark: | |
+| 6.22 | [List remote IP addresses attemting to exploit Log4j 2 vulnerability](./sql/6_22_log4j_exploit_attempts_remote_IP_address_list.sql) | HTTP(S) LB Logs | | :white_check_mark: | |
+| 6.30 | [Virus or malware detected by Cloud IDS](./sql/6_30_virus_or_malware_detected_by_cloud_IDS.sql) | Cloud IDS Logs | | :white_check_mark: | |
+| 6.31 | [Traffic sessions correlated to high severity threats detected by Cloud IDS](./sql/6_31_traffic_sessions_of_high_severity_threats_detected_by_cloud_IDS.sql) | Cloud IDS Logs | | :white_check_mark: | |
+| 6.40 | [Top 10 DNS queried domains](./sql/6_40_DNS_top_queried_domains.sql) | Cloud DNS Logs | :white_check_mark: | :white_check_mark: | |
