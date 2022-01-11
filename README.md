@@ -5,7 +5,7 @@
 List of security analytics queries for **threat detection** and **access audit** for your data &amp; workloads in Google Cloud. This non-comprehensive set of SQL queries ([BigQuery](https://cloud.google.com/bigquery/)) is designed to provide organizations with a rich starting point of threat detections that they can readily use and extend to help their Security Operations on Google Cloud. The security analytics use cases below are grouped in 6 categories depending on underlying activity type and log sources:
 
 1. :vertical_traffic_light: Login & Access Patterns
-2. :key: IAM, Keys & Secretes Admin Activity
+2. :key: IAM, Keys & Secrets Admin Activity
 3. :building_construction: Cloud Provisoning Activity
 4. :cloud: Cloud Workload Usage
 5. :droplet: Data Usage
