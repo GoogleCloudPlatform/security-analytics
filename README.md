@@ -1,8 +1,16 @@
-# Threat Detection As Code
+# Threat Detection As Code (TDaC)
+
+As organizations go through the Autonomic Security modernization journey, this repository serves as a community-driven list of sample security analytics for **detecting potential threats** to your data &amp; workloads in Google Cloud. These may assist **detection engineers**, **threat hunters** and **data governance analysts**.
 
 ![Security Monitoring](./img/gcp_security_mon.png)
 
-List of security analytics queries for **threat detection** and **access audit** for your data &amp; workloads in Google Cloud. This non-comprehensive set of SQL queries ([BigQuery](https://cloud.google.com/bigquery/)) is designed to provide organizations with a rich starting point of threat detections that they can readily use and extend to help their Security Operations on Google Cloud. The security analytics use cases below are grouped in 6 categories depending on underlying activity type and log sources:
+TDaC is a set of fundamental security analytics designed to provide organizations with a rich starting point of pre-built queries and rules that they can readily use to start analyzing their Google Cloud logs including Cloud Audit logs, VPC Flow logs, DNS logs, and more using cloud-native or third-party analytics tools. The source code is provided as is, without warranty. See [Copyright & License](#copyright-&-license) below.
+
+Current release include:
+- SQL queries for [BigQuery](https://cloud.google.com/bigquery/)
+- (YARA-L and more formats to follow)
+
+The security use cases below are grouped in 6 categories depending on underlying activity type and log sources:
 
 1. :vertical_traffic_light: Login & Access Patterns
 2. :key: IAM, Keys & Secrets Admin Activity
@@ -11,9 +19,10 @@ List of security analytics queries for **threat detection** and **access audit**
 5. :droplet: Data Usage
 6. :zap: Network Activity
 
-To learn more about Google Cloud logs and how to export from Cloud Logging to destinations like [BigQuery](https://cloud.google.com/bigquery/docs) or [Chronicle](https://cloud.google.com/chronicle/docs) for in-depth security analytics, refer to Google Cloud [Security and access analytics solution guide](https://cloud.google.com/architecture/exporting-stackdriver-logging-for-security-and-access-analytics). 
+To learn more about the variety of Google Cloud logs, how to enable and natively export these logs to destinations like [Chronicle](https://cloud.google.com/chronicle/docs) or [BigQuery](https://cloud.google.com/bigquery/docs) for in-depth security analytics, refer to the Google Cloud [Security and access analytics solution guide](https://cloud.google.com/architecture/exporting-stackdriver-logging-for-security-and-access-analytics).
 
-This repository is provided as is, without warranty. See [Copyright & License](#copyright-&-license) below.
+**Caution:** TDaC is not meant to be a comprehensive set of threat detections, but a collection of community-contributed samples to get you started with detective controls. Use TDaC in your threat detection and response capabilities (e.g. Chronicle, BigQuery, Siemplify, or third-party SIEM) in conjunction with threat prevention capabilities (e.g. [Security Command Center](https://cloud.google.com/security-command-center), [Cloud Armor](https://cloud.google.com/armor), [BeyondCorp](https://cloud.google.com/beyondcorp)). To learn more about Google’s approach to modern Security Operations, read the [Autonomic Security Operations whitepaper](https://services.google.com/fh/files/misc/googlecloud_autonomicsecurityoperations_soc10x.pdf).
+
 
 ## Security Analytics Use Cases
 
