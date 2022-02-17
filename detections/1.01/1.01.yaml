@@ -1,0 +1,33 @@
+id: 1.01
+name: login_highly_priviledged_account
+display_name: 'Login from a highly-priviledged account'
+authors:
+  - rarsan@google.com
+
+category: login & access patterns
+description: |
+  A login occured from a highly priviledged account (e.g. Super Admin, Org Admin) to Google Cloud,
+  be it from Cloud Console, Workspace Admin Console or gcloud CLI. 
+
+sources:
+  - Cloud Identity Logs (Google Workspace Login)
+
+use_cases:
+  - Detect
+
+test:
+  description: Login as admin user
+  arguments:
+    account:
+      description: user account of test admin to be used for authentication
+      type: String
+      default: gcp-demo-admin
+  command: |
+    gcloud auth login #{account} --no-browser --force
+  prerequisites:
+    - title: 'Install gcloud'
+      link: 'https://cloud.google.com/sdk/docs/install'
+    - title: 'Enable Workspace Audit Logs forwarding to Cloud Audit Logs'
+      link: 'https://cloud.google.com/logging/docs/audit/configure-gsuite-audit-logs'
+
+sample_log:
