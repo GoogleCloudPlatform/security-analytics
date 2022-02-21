@@ -1,0 +1,24 @@
+---
+id: 1.02
+name: suspicious_login_attempt
+# Refer to corresponding queries: 1_02_suspicious_login_attempt.{sql|yaral|...}
+display_name: Suspicious login attempt flagged by Google Workspace
+category: Login & Access Patterns
+severity: Medium
+description: |
+  A suspicious login attempt flagged by Google Workspace, be it from Cloud Console, Admin Console or gcloud CLI.
+authors:
+  - rarsan@google.com
+
+sources:
+  - Cloud Identity Logs (Google Workspace Login)
+
+use_cases:
+  - Detect
+
+test:
+
+samples:
+  - 'google.login.LoginService.loginSuccess-isSuspicious'
+
+references:

@@ -1,7 +1,7 @@
 ---
 id: 1.01
 name: login_highly_priviledged_account
-# Refer to corresponding queries: {#id}_{#name}.{sql|yaral|...}
+# Refer to corresponding queries: 1_01_login_highly_priviledged_account.{sql|yaral|...}
 display_name: Login from a highly-priviledged account
 category: Login & Access Patterns
 severity: Low
