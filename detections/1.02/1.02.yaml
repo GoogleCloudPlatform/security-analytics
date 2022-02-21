@@ -1,5 +1,5 @@
 ---
-id: 1.02
+id: '1.02'
 name: suspicious_login_attempt
 # Refer to corresponding queries: 1_02_suspicious_login_attempt.{sql|yaral|...}
 display_name: Suspicious login attempt flagged by Google Workspace

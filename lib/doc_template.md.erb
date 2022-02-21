@@ -30,7 +30,7 @@ end%>
 <% if detection['test']['prerequisites'].to_a.count > 0 %>
 ### Test Prerequisites
 <% detection['test']['prerequisites'].each_with_index do |prereq, index| -%>
-1. [<%= prereq['title'] %>](<%= prereq['link'] %>)
+1. <%= prereq['link'] != nil ? "[#{prereq['title']}](#{prereq['link']})" : "#{prereq['title']}" %>
 <% end -%>
 <% end -%>
 
@@ -73,4 +73,11 @@ No event generation steps provided. [Contribute emulation test](../../CONTRIBUTI
 
 <% else -%>
 No sample logs provided. [Contribute samples](../../CONTRIBUTING.md)  to this use case.
+<% end -%>
+
+<% if detection['references'] != nil and detection['references'].count > 0 %>
+### References
+<% detection['references'].each do |reference| -%>
+- <%= reference %>
+<% end -%>    
 <% end -%>

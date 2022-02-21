@@ -51,6 +51,7 @@ class TdacDocs
 
     queryPaths = {}
     if (File.file?("#{TDAC_DIR}/sql/#{detection['id'].to_s.gsub(/\./,'_')}_#{detection['name']}.sql"))
+      puts "\nFound #{TDAC_DIR}/sql/#{detection['id'].to_s.gsub(/\./,'_')}_#{detection['name']}.sql"
       queryPaths['sql'] = "../../sql/#{detection['id'].to_s.gsub(/\./,'_')}_#{detection['name']}.sql"
     end
 

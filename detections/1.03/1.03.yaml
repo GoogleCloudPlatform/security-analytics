@@ -1,13 +1,12 @@
 ---
-id: '1.01'
-name: login_highly_priviledged_account
-# Refer to corresponding queries: 1_01_login_highly_priviledged_account.{sql|yaral|...}
-display_name: Login from a highly-priviledged account
+id: '1.03'
+name: excessive_login_failures
+# Refer to corresponding queries: 1_03_excessive_login_failures.{sql|yaral|...}
+display_name: Excessive login failures from any user identity
 category: Login & Access Patterns
 severity: Low
 description: |
-  A login occured from a highly priviledged account (e.g. Super Admin, Org Admin) to Google Cloud,
-  be it from Cloud Console, Admin Console or gcloud CLI. 
+  Multiple login failures (>= 3) detected from any particular user identity in the last 24 hours.
 authors:
   - rarsan@google.com
 
@@ -19,13 +18,13 @@ use_cases:
 
 test:
   description: |
-    Login as admin user via gcloud CLI.
+    Login as test user via gcloud CLI, using wrong password multiple times in a row.
     Note lag time of Workspace Audit Login Logs can be [up to a few hours](https://support.google.com/a/answer/7061566?hl=en).
   arguments:
     account:
-      description: user account of test admin to be used for authentication
+      description: user account of test user to be used for authentication
       type: String
-      default: test-admin
+      default: test-user
   command: |
     gcloud auth login #{account} --no-browser --force
   prerequisites:
@@ -35,6 +34,6 @@ test:
       link: 'https://cloud.google.com/logging/docs/audit/configure-gsuite-audit-logs'
 
 samples:
-  - google.login.LoginService.loginSuccess
+  - google.login.LoginService.loginFailure
 
 references:
