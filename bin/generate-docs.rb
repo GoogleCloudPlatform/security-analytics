@@ -1,5 +1,7 @@
 #! /usr/bin/env ruby
-TDAC_LIB_DIR = "#{File.dirname(File.dirname(__FILE__))}/lib"
+TDAC_DIR = "#{File.dirname(File.dirname(__FILE__))}"
+TDAC_LIB_DIR = "#{TDAC_DIR}/lib"
+TDAC_FIXTURES_DIR = "#{TDAC_DIR}/test/fixtures"
 
 $LOAD_PATH << "#{TDAC_LIB_DIR}" unless $LOAD_PATH.include? "#{TDAC_LIB_DIR}"
 require 'erb'
@@ -32,14 +34,26 @@ class TdacDocs
     end
     puts
     puts "Generated docs for #{oks.count} detections, #{fails.count} failures"
-
     return oks, fails
   end
 
   #
-  # Generates Markdown documentation for a specific technique from its YAML source
+  # Generates Markdown documentation for a specific detection from its YAML source
   #
   def generate_detection_docs!(detection, output_doc_path)
+    samples = []
+    detection.fetch('samples', []).each do |sample|
+      samples.push({
+        'title' => sample,
+        'payload' => JSON.parse(File.read("#{TDAC_FIXTURES_DIR}/#{sample}.json"))
+      })
+    end
+
+    queryPaths = {}
+    if (File.file?("#{TDAC_DIR}/sql/#{detection['id'].to_s.gsub(/\./,'_')}_#{detection['name']}.sql"))
+      queryPaths['sql'] = "../../sql/#{detection['id'].to_s.gsub(/\./,'_')}_#{detection['name']}.sql"
+    end
+
     template = ERB.new File.read("#{TDAC_LIB_DIR}/doc_template.md.erb"), nil, "-"
     generated_doc = template.result(binding)
 
