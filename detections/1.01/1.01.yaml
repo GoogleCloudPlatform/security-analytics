@@ -8,8 +8,6 @@ severity: Low
 description: |
   A login occured from a highly priviledged account (e.g. Super Admin, Org Admin) to Google Cloud,
   be it from Cloud Console, Admin Console or gcloud CLI. 
-authors:
-  - rarsan@google.com
 
 sources:
   - Cloud Identity Logs (Google Workspace Login)

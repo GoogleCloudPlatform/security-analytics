@@ -7,8 +7,6 @@ category: Login & Access Patterns
 severity: Low
 description: |
   Multiple login failures (>= 3) detected from any particular user identity in the last 24 hours.
-authors:
-  - rarsan@google.com
 
 sources:
   - Cloud Identity Logs (Google Workspace Login)

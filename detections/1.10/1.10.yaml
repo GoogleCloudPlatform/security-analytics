@@ -7,8 +7,6 @@ category: Login & Access Patterns
 severity: Low
 description: |
   Access attempt blocked by VPC Service Controls, indicating an initial access or data exfiltration attempt
-authors:
-  - rarsan@google.com
 
 sources:
   - Audit Logs - Policy

@@ -7,8 +7,6 @@ category: Login & Access Patterns
 severity: Medium
 description: |
   A suspicious login attempt flagged by Google Workspace, be it from Cloud Console, Admin Console or gcloud CLI.
-authors:
-  - rarsan@google.com
 
 sources:
   - Cloud Identity Logs (Google Workspace Login)
