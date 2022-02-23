@@ -6,7 +6,9 @@
 </br>
 **Use Cases:** <%= detection['use_cases'].join(', ') %>
 </br>
+<%- if detection['authors'] != nil -%>
 **Authors:** <%= detection['authors'].join(', ') %>
+<%- end -%>
 
 ## Data Source
 <% detection['sources'].each do |source| -%>
