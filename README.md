@@ -41,7 +41,7 @@ To learn more about the variety of Google Cloud logs, how to enable and natively
 | 2.20 | [Permissions granted over a Service Account](./sql/2_20_permissions_granted_over_SA.sql) | Audit Logs - Admin Activity | :white_check_mark: | :white_check_mark: | |
 | 2.21 | [Permissions granted to impersonate Service Account](./sql/2_21_permissions_granted_to_impersonate_SA.sql) | Audit Logs - Admin Activity | :white_check_mark: | :white_check_mark: | |
 | 2.22 | [Permissions granted to create or manage Service Account keys](./sql/2_22_permissions_granted_to_create_SA_keys.sql) | Audit Logs - Admin Activity | :white_check_mark: | :white_check_mark: | |
-| 2.30 | [Service accounts or keys created by non-approved identity](./sql/2_10_service_accounts_or_keys_created_by_non_approved_identity.sql) | Audit Logs - Admin Activity | :white_check_mark: | :white_check_mark: | |
+| 2.30 | [Service accounts or keys created by non-approved identity](./sql/2_30_service_accounts_or_keys_created_by_non_approved_identity.sql) | Audit Logs - Admin Activity | :white_check_mark: | :white_check_mark: | |
 | 2.40 | [User access added (or removed) from IAP-protected HTTPS services](./sql/2_40_user_access_modified_in_IAP.sql) | Audit Logs - Admin Activity | :white_check_mark: | :white_check_mark: | |
 | 3 | :building_construction: **Cloud Provisioning Activity**
 | 3.01 | [Changes made to logging settings](./sql/3_01_logging_settings_modified.sql) | Audit Logs - Admin Activity | :white_check_mark: | :white_check_mark: | |
