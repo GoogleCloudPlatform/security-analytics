@@ -6,7 +6,7 @@ display_name: Access attempts violating IAP (i.e. BeyondCorp) access controls
 category: Login & Access Patterns
 severity: Low
 description: |
-  Access attempt blocked by Identity-Aware Proxy (IAP), indicating an initial access or vulnerability exploit attempt
+  Access attempt blocked by Identity-Aware Proxy (IAP), indicating an initial access or vulnerability exploit attempt.
 
 sources:
   - HTTP(S) Load Balancer Logs

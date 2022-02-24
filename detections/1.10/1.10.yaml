@@ -6,7 +6,7 @@ display_name: Access attempts violating VPC service controls
 category: Login & Access Patterns
 severity: Low
 description: |
-  Access attempt blocked by VPC Service Controls, indicating an initial access or data exfiltration attempt
+  Access attempt blocked by VPC Service Controls, indicating an initial access or data exfiltration attempt.
 
 sources:
   - Audit Logs - Policy

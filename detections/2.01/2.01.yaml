@@ -1,0 +1,23 @@
+---
+id: '2.01'
+name: super_admin_or_admin_permissions_granted
+# Refer to corresponding queries: 2_01_super_admin_or_admin_permissions_granted.{sql|yaral|...}
+display_name: Super admin or Admin permissions granted
+category: IAM, Keys & Secrets Admin Activity
+severity: High
+description: |
+  A role priviledge added to an admin role, or an admin role granted to a delegated administrator by a super admin.
+
+sources:
+  - Audit Logs - Admin Activity (Google Workspace Admin)
+
+use_cases:
+  - Detect
+  - Audit
+
+test:
+
+samples:
+
+references:
+  - https://developers.google.com/admin-sdk/reports/v1/appendix/activity/admin-delegated-admin-settings

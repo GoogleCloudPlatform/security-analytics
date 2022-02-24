@@ -42,10 +42,11 @@ class TdacDocs
   #
   def generate_detection_docs!(detection, output_doc_path)
     samples = []
-    detection.fetch('samples', []).each do |sample|
+    sampleFilenames = detection.fetch('samples') || []
+    sampleFilenames.each do |filename|
       samples.push({
-        'title' => sample,
-        'payload' => JSON.parse(File.read("#{TDAC_FIXTURES_DIR}/#{sample}.json"))
+        'title' => filename,
+        'payload' => JSON.parse(File.read("#{TDAC_FIXTURES_DIR}/#{filename}.json"))
       })
     end
 
