@@ -3,7 +3,7 @@ id: '2.10'
 name: org_admin_permissions_granted
 # Refer to corresponding queries: 2_10_org_admin_permissions_granted.{sql|yaral|...}
 display_name: Organization admin permissions granted
-category: IAM, Keys & Secrets Admin Activity
+category: IAM, Keys & Secrets Changes
 severity: Medium
 description: |
   Organization admin role granted to some user identity

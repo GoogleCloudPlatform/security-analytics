@@ -3,7 +3,7 @@ id: '2.01'
 name: super_admin_or_admin_permissions_granted
 # Refer to corresponding queries: 2_01_super_admin_or_admin_permissions_granted.{sql|yaral|...}
 display_name: Super admin or Admin permissions granted
-category: IAM, Keys & Secrets Admin Activity
+category: IAM, Keys & Secrets Changes
 severity: High
 description: |
   A role priviledge added to an admin role, or an admin role granted to a delegated administrator by a super admin.

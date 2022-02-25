@@ -1,0 +1,22 @@
+---
+id: '2.11'
+name: permissions_granted_to_non_allowed_user
+# Refer to corresponding queries: 2_11_permissions_granted_to_non_allowed_user.{sql|yaral|...}
+display_name: Permissions granted to a user from a non-allowed domain
+category: IAM, Keys & Secrets Changes
+severity: Medium
+description: |
+  Permissions granted to a user from a non-allowed domain
+
+sources:
+  - Audit Logs - Admin Activity
+
+use_cases:
+  - Detect
+  - Audit
+
+test:
+
+samples:
+
+references:
