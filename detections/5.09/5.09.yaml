@@ -1,0 +1,22 @@
+---
+id: '5.09'
+name: BQ_queries_exfiltration
+# Refer to corresponding queries: 5_09_BQ_queries_exfiltration.{sql|yaral|...}
+display_name: Any exfiltration queries or jobs (i.e. copy or export)?
+category: Data Usage
+severity: Low
+description: |
+  Detect any exfiltration queries or jobs such as copy or export.
+
+sources:
+  - Audit Logs - Data Access
+
+use_cases:
+  - Audit
+  - Detect
+
+test:
+
+samples:
+
+references:

@@ -1,0 +1,21 @@
+---
+id: '5.02'
+name: users_who_accessed_most_amount_of_data
+# Refer to corresponding queries: 5_02_users_who_accessed_most_amount_of_data.{sql|yaral|...}
+display_name: Which users accessed most amount of data in the past week?
+category: Data Usage
+severity: Low
+description: |
+  Top users who have accessed most amount of data in the past week, based on total bytes billed for all user's queries.
+
+sources:
+  - Audit Logs - Data Access
+
+use_cases:
+  - Audit
+
+test:
+
+samples:
+
+references:
