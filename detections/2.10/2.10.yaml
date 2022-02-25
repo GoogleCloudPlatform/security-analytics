@@ -1,0 +1,41 @@
+---
+id: '2.10'
+name: org_admin_permissions_granted
+# Refer to corresponding queries: 2_10_org_admin_permissions_granted.{sql|yaral|...}
+display_name: Organization admin permissions granted
+category: IAM, Keys & Secrets Admin Activity
+severity: Medium
+description: |
+  Organization admin role granted to some user identity
+
+sources:
+  - Audit Logs - Admin Activity
+
+use_cases:
+  - Detect
+  - Audit
+
+test:
+  description: |
+    Grant a user the Organization Administrator role over GCP test project
+  arguments:
+    project:
+      description: Name of GCP test project
+      type: String
+      default: test-project
+    user:
+      description: Name of user account to grant role to
+      type: String
+      default: test-user
+  command: |
+    gcloud projects add-iam-policy-binding #{project} --member=user:#{user} --role=roles/resourcemanager.organizationAdmin
+  prerequisites:
+    - title: 'Install gcloud'
+      link: 'https://cloud.google.com/sdk/docs/install'
+    - title: 'Create new user in test GCP org (Cloud Identity)' 
+      link: 'https://support.google.com/a/answer/33310'
+
+samples:
+  - google.cloud.audit.AuditLog.setIamPolicy
+
+references:
