@@ -5,6 +5,14 @@ name: excessive_login_failures
 display_name: Excessive login failures from any user identity
 category: Login & Access Patterns
 severity: Low
+attack_mapping: 
+  - technique: T1078.004
+    title: Valid Accounts (Cloud Accounts)
+    link: https://attack.mitre.org/techniques/T1078/004/
+  - technique: T1110
+    title: Brute Force
+    link: https://attack.mitre.org/techniques/T1110/
+
 description: |
   Multiple login failures (>= 3) detected from any particular user identity in the last 24 hours.
 authors:
