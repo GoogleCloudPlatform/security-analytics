@@ -1,0 +1,22 @@
+---
+id: '3.12'
+name: firewall_rules_modified_or_deleted
+# Refer to corresponding queries: 3_12_firewall_rules_modified_or_deleted.{sql|yaral|...}
+display_name: Firewall rules modified or deleted in the last 24 hrs
+category: Cloud Provisioning Activity
+severity: Medium
+description: |
+  Firewall rules modified or deleted in the last 24 hrs
+
+sources:
+  - Audit Logs - Admin Activity
+
+use_cases:
+  - Detect
+  - Audit
+
+test:
+
+samples:
+
+references:

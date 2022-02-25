@@ -1,0 +1,22 @@
+---
+id: '3.15'
+name: cloud_storage_buckets_modified_or_deleted_by_unfamiliar_user_identity
+# Refer to corresponding queries: 3_15_cloud_storage_buckets_modified_or_deleted_by_unfamiliar_user_identity.{sql|yaral|...}
+display_name: Cloud Storage buckets modified or deleted by unfamiliar user identities
+category: Cloud Provisioning Activity
+severity: Medium
+description: |
+  Any Cloud Storage buckets modified or deleted by unfamiliar user identities
+
+sources:
+  - Audit Logs - Admin Activity
+
+use_cases:
+  - Detect
+  - Audit
+
+test:
+
+samples:
+
+references:

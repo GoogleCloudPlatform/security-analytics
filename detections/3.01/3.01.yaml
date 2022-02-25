@@ -1,0 +1,22 @@
+---
+id: '3.01'
+name: logging_settings_modified
+# Refer to corresponding queries: 3_01_logging_settings_modified.{sql|yaral|...}
+display_name: Changes made to logging settings
+category: Cloud Provisioning Activity
+severity: Medium
+description: |
+  Any changes made to logging settings
+
+sources:
+  - Audit Logs - Admin Activity
+
+use_cases:
+  - Detect
+  - Audit
+
+test:
+
+samples:
+
+references:
