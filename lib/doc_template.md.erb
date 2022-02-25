@@ -6,14 +6,11 @@
 </br>
 **Use Cases:** <%= detection['use_cases'].join(', ') %>
 </br>
+**Data Sources:** <%= detection['sources'].join(', ') %>
+</br>
 <%- if detection['authors'] != nil -%>
 **Authors:** <%= detection['authors'].join(', ') %>
 <%- end -%>
-
-## Data Source
-<% detection['sources'].each do |source| -%>
-- <%= source %>
-<% end %>
 
 ## Queries or Rules
 BigQuery |
