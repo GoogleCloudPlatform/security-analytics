@@ -1,0 +1,21 @@
+---
+id: '6.30'
+name: virus_or_malware_detected_by_cloud_IDS
+# Refer to corresponding queries: 6_30_virus_or_malware_detected_by_cloud_IDS.{sql|yaral|...}
+display_name: Virus or malware detected by Cloud IDS
+category: Network Activity
+severity: High
+description: |
+  Alert on any high-severity virus or malware detected by Cloud IDS.
+
+sources:
+  - Cloud IDS Threat Logs
+
+use_cases:
+  - Detect
+
+test:
+
+samples:
+
+references:

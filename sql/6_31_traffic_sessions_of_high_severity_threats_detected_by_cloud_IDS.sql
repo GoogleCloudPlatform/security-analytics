@@ -29,7 +29,7 @@ SELECT
   ANY_VALUE(tr.jsonPayload.network) as network
 FROM
  `[MY_PROJECT_ID].[MY_DATASET_ID].ids_googleapis_com_traffic` AS tr
-RIGHT OUTER JOIN `[MY_PROJECT_ID].[MY_DATASET_ID].ids_googleapis_com_traffic` AS th
+RIGHT OUTER JOIN `[MY_PROJECT_ID].[MY_DATASET_ID].ids_googleapis_com_threat` AS th
 ON tr.jsonPayload.session_id = th.jsonPayload.session_id
 WHERE
   tr.timestamp >= TIMESTAMP_SUB(CURRENT_TIMESTAMP(), INTERVAL 30 DAY)

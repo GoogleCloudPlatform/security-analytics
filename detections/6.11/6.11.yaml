@@ -1,0 +1,22 @@
+---
+id: '6.11'
+name: connections_to_malicious_IP
+# Refer to corresponding queries: 6_11_connections_to_malicious_IP.{sql|yaral|...}
+display_name: Connections to a malicious IP
+category: Network Activity
+severity: High
+description: |
+  Detect any connection to a known malicious IP (hardcoded).
+
+sources:
+  - VPC Flow Logs
+
+use_cases:
+  - Detect
+  - Respond
+
+test:
+
+samples:
+
+references:
