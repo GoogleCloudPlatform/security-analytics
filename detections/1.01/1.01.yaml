@@ -1,12 +1,16 @@
 ---
 id: '1.01'
-name: login_highly_priviledged_account
-# Refer to corresponding queries: 1_01_login_highly_priviledged_account.{sql|yaral|...}
-display_name: Login from a highly-priviledged account
+name: login_highly_privileged_account
+# Refer to corresponding queries: 1_01_login_highly_privileged_account.{sql|yaral|...}
+display_name: Login from a highly-privileged account
 category: Login & Access Patterns
 severity: Low
+attack_mapping: 
+  - technique: T1078.004
+    title: Valid Accounts (Cloud Accounts)
+    link: https://attack.mitre.org/techniques/T1078/004/
 description: |
-  A login occured from a highly priviledged account (e.g. Super Admin, Org Admin) to Google Cloud,
+  A login occured from a highly privileged account (e.g. Super Admin, Org Admin) to Google Cloud,
   be it from Cloud Console, Admin Console or gcloud CLI. 
 
 sources:
