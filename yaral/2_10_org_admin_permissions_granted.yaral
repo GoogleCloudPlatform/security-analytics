@@ -16,7 +16,7 @@
 
 rule workspace_user_granted_admin_privilege {
   meta:
-    author = "Google Cloud Security"
+    author = "Rishalin Pillay"
     description = "A user is granted an admin privilege"
     severity = "HIGH"
     url = "https://developers.google.com/admin-sdk/reports/v1/appendix/activity/admin-delegated-admin-settings"
