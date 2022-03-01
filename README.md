@@ -8,7 +8,8 @@ TDaC is a set of foundational security analytics designed to provide organizatio
 
 Current release include:
 - SQL queries for [BigQuery](https://cloud.google.com/bigquery/)
-- (YARA-L and more formats to follow)
+- YARA-L 2 rules for [Chroncile](https://chronicle.security/)
+- More formats to follow
 
 The security use cases below are grouped in 6 categories depending on underlying activity type and log sources:
 
@@ -29,7 +30,7 @@ To learn more about the variety of Google Cloud logs, how to enable and natively
 | # | Cloud Security Threat | Log Source | Audit | Detect | Respond |
 |---|---|---|:-:|:-:|:-:|
 | 1 | :vertical_traffic_light: **Login & Access Patterns**
-| 1.01 | [Login occured from a highly-priviledged account](./detections/1.01/1.01.md) | Cloud Identity Logs<br>(Google Workspace Login) | | :white_check_mark: | |
+| 1.01 | [Login occured from a highly-privileged account](./detections/1.01/1.01.md) | Cloud Identity Logs<br>(Google Workspace Login) | | :white_check_mark: | |
 | 1.02 | [Suspicious login attempts flagged by Google Workspace](./detections/1.02/1.02.md) | Cloud Identity Logs<br>(Google Workspace Login) | | :white_check_mark: | |
 | 1.03 | [Excessive login failures from any user identity](./detections/1.03/1.03.md) | Cloud Identity Logs<br>(Google Workspace Login) | | :white_check_mark: | |
 | 1.10 | [Access attempts violating VPC service controls](./detections/1.10/1.10.md) | Audit Logs - Policy | :white_check_mark: | :white_check_mark: | |
