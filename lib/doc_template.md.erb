@@ -13,9 +13,9 @@
 <%- end -%>
 
 ## Queries or Rules
-BigQuery |
---- |
-<%= queryPaths['sql'] != nil ? "[SQL](#{queryPaths['sql']})" : "[Contribute query](../../CONTRIBUTING.md)"%> |
+BigQuery | Chronicle |
+--- | --- |
+<%= query_paths['sql'] != nil ? "[SQL](#{query_paths['sql']})" : "[Contribute query](../../CONTRIBUTING.md)"%> | <%= query_paths['yaral'] != nil ? "[YARA-L](#{query_paths['yaral']})" : "[Contribute rule](../../CONTRIBUTING.md)"%>
 
 ## Event Generation
 <%- if detection['test'] != nil -%>

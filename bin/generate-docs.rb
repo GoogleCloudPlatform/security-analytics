@@ -23,10 +23,21 @@ class TdacDocs
     Tdac.detections.each do |detection|
       begin
         print "Generating docs for #{detection['detection_yaml_path']}"
-        generate_detection_docs! detection, detection['detection_yaml_path'].gsub(/.yaml/, '.md')
+
+        query_paths = {}
+        if (File.file?("#{TDAC_DIR}/sql/#{detection['id'].to_s.gsub(/\./,'_')}_#{detection['name']}.sql"))
+          query_paths['sql'] = "../../sql/#{detection['id'].to_s.gsub(/\./,'_')}_#{detection['name']}.sql"
+        end
+        if (File.file?("#{TDAC_DIR}/yaral/#{detection['id'].to_s.gsub(/\./,'_')}_#{detection['name']}.yaral"))
+          query_paths['yaral'] = "../../yaral/#{detection['id'].to_s.gsub(/\./,'_')}_#{detection['name']}.yaral"
+        end
+
+        generate_detection_docs! detection, query_paths, detection['detection_yaml_path'].gsub(/.yaml/, '.md')
 
         oks << detection['detection_yaml_path']
         puts "OK"
+        if (query_paths['sql']!= nil) then puts "Found #{TDAC_DIR}/sql/#{detection['id'].to_s.gsub(/\./,'_')}_#{detection['name']}.sql" end
+        if (query_paths['yaral']!= nil) then puts "Found #{TDAC_DIR}/yaral/#{detection['id'].to_s.gsub(/\./,'_')}_#{detection['name']}.yaral" end
       rescue => ex
         fails << detection['detection_yaml_path']
         puts "FAIL\n#{ex}\n#{ex.backtrace.join("\n")}"
@@ -40,7 +51,7 @@ class TdacDocs
   #
   # Generates Markdown documentation for a specific detection from its YAML source
   #
-  def generate_detection_docs!(detection, output_doc_path)
+  def generate_detection_docs!(detection, query_paths, output_doc_path)
     samples = []
     sampleFilenames = detection.fetch('samples') || []
     sampleFilenames.each do |filename|
@@ -48,12 +59,6 @@ class TdacDocs
         'title' => filename,
         'payload' => JSON.parse(File.read("#{TDAC_FIXTURES_DIR}/#{filename}.json"))
       })
-    end
-
-    queryPaths = {}
-    if (File.file?("#{TDAC_DIR}/sql/#{detection['id'].to_s.gsub(/\./,'_')}_#{detection['name']}.sql"))
-      puts "\nFound #{TDAC_DIR}/sql/#{detection['id'].to_s.gsub(/\./,'_')}_#{detection['name']}.sql"
-      queryPaths['sql'] = "../../sql/#{detection['id'].to_s.gsub(/\./,'_')}_#{detection['name']}.sql"
     end
 
     template = ERB.new File.read("#{TDAC_LIB_DIR}/doc_template.md.erb"), nil, "-"
