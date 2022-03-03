@@ -5,6 +5,10 @@ name: BQ_queries_with_large_scans
 display_name: Any queries doing very large scans?
 category: Data Usage
 severity: Low
+attack_mapping:
+  - technique: T1530
+    title: Data from Cloud Storage Object
+    link: https://attack.mitre.org/techniques/T1530/
 description: |
   Detect any query that is doing a very large scan (> 1 GB).
 

@@ -5,6 +5,10 @@ name: org_admin_permissions_granted
 display_name: Organization admin permissions granted
 category: IAM, Keys & Secrets Changes
 severity: Medium
+attack_mapping:
+  - technique: T1484.002
+    title: Domain Policy Modification (Domain Trust Modification)
+    link: https://attack.mitre.org/techniques/T1484/002/
 description: |
   Organization admin role granted to some user identity
 

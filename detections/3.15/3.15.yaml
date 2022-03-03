@@ -5,6 +5,10 @@ name: cloud_storage_buckets_modified_or_deleted_by_unfamiliar_user_identity
 display_name: Cloud Storage buckets modified or deleted by unfamiliar user identities
 category: Cloud Provisioning Activity
 severity: Medium
+attack_mapping:
+  - technique: T1578
+    title: Modify Cloud Compute Infrastructure
+    link: https://attack.mitre.org/techniques/T1578/
 description: |
   Any Cloud Storage buckets modified or deleted by unfamiliar user identities
 

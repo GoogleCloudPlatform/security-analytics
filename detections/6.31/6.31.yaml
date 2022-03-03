@@ -5,6 +5,10 @@ name: traffic_sessions_of_high_severity_threats_detected_by_cloud_IDS
 display_name: Traffic sessions of high severity threats detected by Cloud IDS
 category: Network Activity
 severity: High
+attack_mapping:
+  - technique: T1071
+    title: Application Layer Protocol
+    link: https://attack.mitre.org/techniques/T1071/
 description: |
   Show traffic sessions corresponding to high severity threats detected by Cloud IDS.
 

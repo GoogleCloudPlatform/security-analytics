@@ -5,6 +5,10 @@ name: connections_to_malicious_IP
 display_name: Connections to a malicious IP
 category: Network Activity
 severity: High
+attack_mapping:
+  - technique: T1071
+    title: Application Layer Protocol
+    link: https://attack.mitre.org/techniques/T1071/
 description: |
   Detect any connection to a known malicious IP (hardcoded).
 

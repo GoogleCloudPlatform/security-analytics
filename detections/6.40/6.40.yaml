@@ -5,6 +5,10 @@ name: DNS_top_queried_domains
 display_name: Top 10 DNS queried domains
 category: Network Activity
 severity: Low
+attack_mapping:
+  - technique: T1071.004
+    title: Command and Scripting Interpreter (Unix Shell)
+    link: https://attack.mitre.org/techniques/T1071/004/
 description: |
   List top 10 DNS queried domains over the last 60 days.
 

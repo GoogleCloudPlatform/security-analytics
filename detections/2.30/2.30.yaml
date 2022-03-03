@@ -5,6 +5,10 @@ name: service_accounts_or_keys_created_by_non_approved_identity
 display_name: Service accounts or keys created by non-approved identity
 category: IAM, Keys & Secrets Changes
 severity: Medium
+attack_mapping:
+  - technique: T1136.003
+    title: Create Account (Cloud Account)
+    link: https://attack.mitre.org/techniques/T1136/003/
 description: |
   Service accounts or service account keys created by non-approved identity
   e.g. manually by a user vs an automated workflow with a service account

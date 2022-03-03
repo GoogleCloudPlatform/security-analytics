@@ -5,6 +5,10 @@ name: permissions_granted_to_non_allowed_user
 display_name: Permissions granted to a user from a non-allowed domain
 category: IAM, Keys & Secrets Changes
 severity: Medium
+attack_mapping:
+  - technique: T1484.002
+    title: Domain Policy Modification (Domain Trust Modification)
+    link: https://attack.mitre.org/techniques/T1484/002/
 description: |
   Permissions granted to a user from a non-allowed domain
 

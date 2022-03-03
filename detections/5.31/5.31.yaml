@@ -5,6 +5,10 @@ name: cloud_storage_object_accessed_from_new_IP
 display_name: Cloud Storage objects accessed from a new IP
 category: Data Usage
 severity: Medium
+attack_mapping:
+  - technique: T1530
+    title: Data from Cloud Storage Object
+    link: https://attack.mitre.org/techniques/T1530/
 description: |
   Cloud Storage objects accessed from a new IP address, first-time seen in the last 24 hours.
   List Cloud Storage resource's name, user action and calling user identity if available.

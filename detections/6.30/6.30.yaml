@@ -5,6 +5,10 @@ name: virus_or_malware_detected_by_cloud_IDS
 display_name: Virus or malware detected by Cloud IDS
 category: Network Activity
 severity: High
+attack_mapping:
+  - technique: T1059
+    title: Command and Scripting Interpreter
+    link: https://attack.mitre.org/techniques/T1059/
 description: |
   Alert on any high-severity virus or malware detected by Cloud IDS.
 

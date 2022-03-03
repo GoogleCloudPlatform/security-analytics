@@ -5,6 +5,10 @@ name: users_who_accessed_data_in_table
 display_name: Which users accessed data in a given table in the past month?
 category: Data Usage
 severity: Low
+attack_mapping:
+  - technique: T1078.004
+    title: Valid Accounts (Cloud Accounts)
+    link: https://attack.mitre.org/techniques/T1078/004/
 description: |
   List all users who accessed data in a particular table, say `accounts` table, in the past month.
 

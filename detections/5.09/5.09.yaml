@@ -5,6 +5,10 @@ name: BQ_queries_exfiltration
 display_name: Any exfiltration queries or jobs (i.e. copy or export)?
 category: Data Usage
 severity: Low
+attack_mapping:
+  - technique: T1530
+    title: Data from Cloud Storage Object
+    link: https://attack.mitre.org/techniques/T1530/
 description: |
   Detect any exfiltration queries or jobs such as copy or export.
 

@@ -5,6 +5,10 @@ name: cloud_storage_buckets_enumerated_by_unfamiliar_users
 display_name: Cloud Storage buckets enumerated by unfamiliar user identities
 category: Data Usage
 severity: Low
+attack_mapping:
+  - technique: T1530
+    title: Data from Cloud Storage Object
+    link: https://attack.mitre.org/techniques/T1530/
 description: |
   Cloud Storage buckets enumerated by unfamiliar user identities.
 

@@ -5,6 +5,10 @@ name: data_amount_accessed_by_user_per_day
 display_name: How much data was accessed by each user per day in the past week?
 category: Data Usage
 severity: Low
+attack_mapping:
+  - technique: T1530
+    title: Data from Cloud Storage Object
+    link: https://attack.mitre.org/techniques/T1530/
 description: |
   Amount of data accessed by each user per day in the past week, based on total bytes billed in user's queries.
 

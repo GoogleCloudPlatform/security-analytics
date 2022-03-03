@@ -5,6 +5,10 @@ name: top_data_access_actions
 display_name: Most common data (and metadata) access actions in the past month
 category: Data Usage
 severity: Low
+attack_mapping:
+  - technique: T1530
+    title: Data from Cloud Storage Object
+    link: https://attack.mitre.org/techniques/T1530/
 description: |
   Most common data (and metadata) access actions from any cloud resource in the past month.
 
