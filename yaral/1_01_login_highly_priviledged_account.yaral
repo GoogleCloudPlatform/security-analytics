@@ -14,7 +14,7 @@
  * limitations under the License.
  */
 
-rule workspace_super_user_login {
+rule 1_01_login_highly_privileged_account {
   meta:
     author = "Google Cloud Security"
     description = "A super user has successfully logged via any AUTH method.  Require WORKSPACE_USERS context be setup."

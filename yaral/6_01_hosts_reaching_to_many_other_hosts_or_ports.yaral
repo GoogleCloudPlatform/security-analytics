@@ -17,7 +17,7 @@
 
 
 
-rule Port_Scanning_from_Single_IP {
+rule 6_01_hosts_reaching_to_many_other_hosts_or_ports {
 meta:
     author = "Google Cloud Security"
     description = "Detection of a single IP attempting to connect on 50 unique TCP/UDP ports over a 10 minute window"
