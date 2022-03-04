@@ -1,15 +1,14 @@
-# Threat Detection As Code (TDaC)
+# Community Security Analytics (CSA)
 
-As organizations go through the Autonomic Security modernization journey, this repository serves as a community-driven list of sample security analytics for detecting potential threats to your data &amp; workloads in Google Cloud. These may assist **detection engineers**, **threat hunters** and **data governance analysts**.
+As organizations go through the Autonomic Security modernization journey, this repository serves as a community-driven list of sample security analytics for auditing cloud usage and for detecting threats to your data &amp; workloads in Google Cloud. These may assist **detection engineers**, **threat hunters** and **data governance analysts**.
 
 ![Security Monitoring](./img/gcp_security_mon.png)
 
-TDaC is a set of foundational security analytics designed to provide organizations with a rich baseline of pre-built queries and rules that they can readily use to start analyzing their Google Cloud logs including Cloud Audit logs, VPC Flow logs, DNS logs, and more using cloud-native or third-party analytics tools. The source code is provided as is, without warranty. See [Copyright & License](#copyright-&-license) below.
+CSA is a set of foundational security analytics designed to provide organizations with a rich baseline of pre-built queries and rules that they can readily use to start analyzing their Google Cloud logs including Cloud Audit logs, VPC Flow logs, DNS logs, and more using cloud-native or third-party analytics tools. The source code is provided as is, without warranty. See [Copyright & License](#copyright-&-license) below.
 
 Current release include:
 - SQL queries for [BigQuery](https://cloud.google.com/bigquery/)
-- YARA-L 2 rules for [Chroncile](https://chronicle.security/)
-- More formats to follow
+- YARA-L rules for [Chroncile](https://chronicle.security/)
 
 The security use cases below are grouped in 6 categories depending on underlying activity type and log sources:
 
@@ -22,7 +21,7 @@ The security use cases below are grouped in 6 categories depending on underlying
 
 To learn more about the variety of Google Cloud logs, how to enable and natively export these logs to destinations like Chronicle or BigQuery for in-depth analytics, refer to Google Cloud [Security and access analytics solution guide](https://cloud.google.com/architecture/exporting-stackdriver-logging-for-security-and-access-analytics).
 
-**Caution:** TDaC is not meant to be a comprehensive set of threat detections, but a collection of community-contributed samples to get you started with detective controls. Use TDaC in your threat detection and response capabilities (e.g. Chronicle, BigQuery, Siemplify, or third-party SIEM) in conjunction with threat prevention capabilities (e.g. [Security Command Center](https://cloud.google.com/security-command-center), [Cloud Armor](https://cloud.google.com/armor), [BeyondCorp](https://cloud.google.com/beyondcorp)). To learn more about Google’s approach to modern Security Operations, check out the [Autonomic Security Operations whitepaper](https://services.google.com/fh/files/misc/googlecloud_autonomicsecurityoperations_soc10x.pdf).
+**Caution:** CSA is not meant to be a comprehensive set of threat detections, but a collection of community-contributed samples to get you started with detective controls. Use CSA in your threat detection and response capabilities (e.g. [Security Command Center](https://cloud.google.com/security-command-center), Chronicle, BigQuery, Siemplify, or third-party SIEM) in conjunction with threat prevention capabilities (e.g. [Security Command Center](https://cloud.google.com/security-command-center), [Cloud Armor](https://cloud.google.com/armor), [BeyondCorp](https://cloud.google.com/beyondcorp)). To learn more about Google’s approach to modern Security Operations, check out the [Autonomic Security Operations whitepaper](https://services.google.com/fh/files/misc/googlecloud_autonomicsecurityoperations_soc10x.pdf).
 
 
 ## Security Analytics Use Cases

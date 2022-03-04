@@ -1,8 +1,8 @@
 require 'yaml'
 require 'erb'
 
-class Tdac
-  DETECTIONS_DIR = "#{File.dirname(File.dirname(__FILE__))}/detections"
+class CSA
+  DETECTIONS_DIR = "#{File.dirname(File.dirname(__FILE__))}/src"
 
   #
   # Returns a list of paths that contain Detections
