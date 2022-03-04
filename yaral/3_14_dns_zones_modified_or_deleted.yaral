@@ -14,7 +14,7 @@
  * limitations under the License.
  */
 
-rule gcp_dns_modification {
+rule 3_14_dns_zones_modified_or_deleted {
   meta:
     author = "Google Cloud Security"
     description = "Monitors DNS creation or deletion activity from non-service accounts."

@@ -14,7 +14,7 @@
  * limitations under the License.
  */
 
-rule workspace_user_granted_admin_privilege {
+rule 2_01_super_admin_or_admin_permissions_granted {
   meta:
     author = "Google Cloud Security"
     description = "A user is granted an admin privilege"
