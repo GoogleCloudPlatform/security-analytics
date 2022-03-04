@@ -5,6 +5,10 @@ name: connections_blocked_by_cloud_armor
 display_name: Connections blocked by Cloud Armor
 category: Network Activity
 severity: Low
+attack_mapping:
+  - technique: T1071
+    title: Application Layer Protocol
+    link: https://attack.mitre.org/techniques/T1071/
 description: |
   Detect any connection blocked by Cloud Armor's security policy, indicating potential exploit attempt.
 

@@ -5,6 +5,10 @@ name: permissions_granted_to_impersonate_SA
 display_name: Permissions granted to impersonate Service Account
 category: IAM, Keys & Secrets Changes
 severity: Medium
+attack_mapping:
+  - technique: T1484.002
+    title: Domain Policy Modification (Domain Trust Modification)
+    link: https://attack.mitre.org/techniques/T1484/002/
 description: |
   Permissions granted to impersonate a service account
 

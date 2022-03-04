@@ -5,6 +5,10 @@ name: hosts_reaching_to_many_other_hosts_or_ports
 display_name: Hosts reaching out to many other hosts or ports per hour
 category: Network Activity
 severity: Low
+attack_mapping:
+  - technique: T1046
+    title: Network Service Scanning
+    link: https://attack.mitre.org/techniques/T1046/
 description: |
   Detect hosts reaching out to many other hosts or ports (> 10) in any given hour,
   indicating potential scanning activity or infected hosts.

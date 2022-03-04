@@ -5,6 +5,10 @@ name: BQ_queries_top
 display_name: Top 10 queries against BigQuery in the past week
 category: Data Usage
 severity: Low
+attack_mapping:
+  - technique: T1530
+    title: Data from Cloud Storage Object
+    link: https://attack.mitre.org/techniques/T1530/
 description: |
   Top 10 queries against BigQuery in the past week, while listing calling users and referenced tables for each query.
 

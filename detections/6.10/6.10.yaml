@@ -5,6 +5,10 @@ name: connection_from_new_IP
 display_name: Connections from a new IP to an in-scope network
 category: Network Activity
 severity: High
+attack_mapping:
+  - technique: T1018
+    title: Remote System Discovery
+    link: https://attack.mitre.org/techniques/T1018/
 description: |
   Connections from a new IP to a subnet, say `prod-customer-data` subnet, which is in-scope (e.g. GDPR, PCI, or other).
   New IP is any src IP address first-time seen in the last 24 hours.

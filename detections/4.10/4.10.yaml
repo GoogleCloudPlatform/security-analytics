@@ -5,6 +5,10 @@ name: autoscaling_usage_frequency
 display_name: Autoscaling usage in the past month
 category: Cloud Workload Usage
 severity: Low
+attack_mapping:
+  - technique: T1496
+    title: Resource Hijacking
+    link: https://attack.mitre.org/techniques/T1496/
 description: |
   Autoscaling usage in the past month
 

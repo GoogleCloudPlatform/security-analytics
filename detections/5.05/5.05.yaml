@@ -5,6 +5,10 @@ name: tables_most_frequently_accessed
 display_name: What tables are most frequently accessed and by whom?
 category: Data Usage
 severity: Low
+attack_mapping:
+  - technique: T1530
+    title: Data from Cloud Storage Object
+    link: https://attack.mitre.org/techniques/T1530/
 description: |
   List most frequently accessed tables and by whom, while providing a breakdown of data read vs write events.
 
