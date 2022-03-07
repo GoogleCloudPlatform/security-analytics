@@ -78,8 +78,8 @@ class CSADocs
     result = ''
     result += "## Security Analytics Use Cases\n"
     
-    result += "| # | Cloud Security Threat | Log Source | Audit | Detect | Respond | ATT&CK&reg; Techniques |\n"
-    result += "|---|---|---|:-:|:-:|:-:|:-:|\n"
+    result += "| # | Cloud Security Threat | Log Source | Audit | Detect | ATT&CK&reg; Techniques |\n"
+    result += "|---|---|---|:-:|:-:|:-:|\n"
 
     categoryId = 0
     CSA.detections.each do |detection|
@@ -105,7 +105,6 @@ class CSADocs
       result += "| #{detection['sources'].join(', ')}"
       result += "| " + ((detection['use_cases'].include? 'Audit') ? ':white_check_mark:' : '')
       result += "| " + ((detection['use_cases'].include? 'Detect') ? ':white_check_mark:' : '')
-      result += "| " + ((detection['use_cases'].include? 'Respond') ? ':white_check_mark:' : '')
         
       attack_technique_links = []
       if (detection['attack_mapping'] != nil && detection['attack_mapping'].count > 0)
