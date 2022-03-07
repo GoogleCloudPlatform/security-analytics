@@ -14,7 +14,7 @@
  * limitations under the License.
  */
 
-rule workspace_user_granted_admin_privilege {
+rule 2_10_org_admin_permissions_granted {
   meta:
     author = "Rishalin Pillay"
     description = "A user is granted an admin privilege"
