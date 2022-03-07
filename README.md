@@ -80,8 +80,14 @@ To learn more about the variety of Google Cloud logs, how to enable and natively
 | 6.31| [Traffic sessions of high severity threats detected by Cloud IDS](./src/6.31/6.31.md)| Cloud IDS Threat Logs, Cloud IDS Traffic Logs| | :white_check_mark:| [T1071](https://attack.mitre.org/techniques/T1071/ "Application Layer Protocol") |
 | 6.40| [Top 10 DNS queried domains](./src/6.40/6.40.md)| Cloud DNS Logs| :white_check_mark:| :white_check_mark:| [T1071.004](https://attack.mitre.org/techniques/T1071/004/ "Command and Scripting Interpreter (Unix Shell)") |
 
+## Support
+
+This is not an officially supported Google product. Queries, rules and other assets in Community Security Analytics (CSA) are community-supported. Please don't hesitate to [open a GitHub issue](./issues) if you have any question or a feature request.
+
+Contributions are also welcome via [Github pull requests](/pulls) if you have fixes or enhancements to source code or docs. Please refer to our [Contributing guidelines](./CONTRIBUTING.md).
+
 ## Copyright & License
 
 Copyright 2022 Google LLC
 
-Threat detection queries & rules under Threat Detections As Code are licensed under the Apache license, v2.0. Details can be found in [LICENSE](./LICENSE) file.
+Queries, rules and other assets under Community Security Analytics (CSA) are licensed under the Apache license, v2.0. Details can be found in [LICENSE](./LICENSE) file.
