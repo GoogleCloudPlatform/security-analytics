@@ -80,6 +80,10 @@ To learn more about the variety of Google Cloud logs, how to enable and natively
 | 6.31| [Traffic sessions of high severity threats detected by Cloud IDS](./src/6.31/6.31.md)| Cloud IDS Threat Logs, Cloud IDS Traffic Logs| | :white_check_mark:| [T1071](https://attack.mitre.org/techniques/T1071/ "Application Layer Protocol") |
 | 6.40| [Top 10 DNS queried domains](./src/6.40/6.40.md)| Cloud DNS Logs| :white_check_mark:| :white_check_mark:| [T1071.004](https://attack.mitre.org/techniques/T1071/004/ "Command and Scripting Interpreter (Unix Shell)") |
 
+## Limitations
+
+Detection queries provided by Community Security Analytics (CSA) are self-managed and you may need to tune to minimize alert noise. If you’re looking for managed & advanced detections, take a look at [Security Command Center Premium tier](https://cloud.google.com/security-command-center/pricing#premium-tier)'s threat detection suite ([Container Threat Detection](https://cloud.google.com/security-command-center/docs/concepts-container-threat-detection-overview), [Event Threat Detection](https://cloud.google.com/security-command-center/docs/concepts-event-threat-detection-overview) and [VM Threat Detection](https://cloud.google.com/security-command-center/docs/concepts-vm-threat-detection-overview)) which provide a list of regularly-updated advanced [managed detectors](https://cloud.google.com/security-command-center/docs/concepts-event-threat-detection-overview#rules) to identify threats within your systems in near real-time.
+
 ## Support
 
 This is not an officially supported Google product. Queries, rules and other assets in Community Security Analytics (CSA) are community-supported. Please don't hesitate to [open a GitHub issue](./issues) if you have any question or a feature request.
