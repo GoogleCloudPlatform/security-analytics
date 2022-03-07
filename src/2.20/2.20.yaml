@@ -1,0 +1,27 @@
+---
+id: '2.20'
+name: permissions_granted_over_SA
+# Refer to corresponding queries: 2_20_permissions_granted_over_SA.{sql|yaral|...}
+display_name: Permissions granted over a Service Account
+category: IAM, Keys & Secrets Changes
+severity: Medium
+attack_mapping:
+  - technique: T1484.002
+    title: Domain Policy Modification (Domain Trust Modification)
+    link: https://attack.mitre.org/techniques/T1484/002/
+description: |
+  Permissions granted to any principal over a service account, for example, to impersonate a
+  service account or create keys for that service account.
+
+sources:
+  - Audit Logs - Admin Activity
+
+use_cases:
+  - Detect
+  - Audit
+
+test:
+
+samples:
+
+references:

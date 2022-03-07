@@ -1,31 +1,4 @@
-# Community Security Analytics (CSA)
-
-As organizations go through the Autonomic Security modernization journey, this repository serves as a community-driven list of sample security analytics for auditing cloud usage and for detecting threats to your data &amp; workloads in Google Cloud. These may assist **detection engineers**, **threat hunters** and **data governance analysts**.
-
-![Security Monitoring](./img/gcp_security_mon.png)
-
-CSA is a set of foundational security analytics designed to provide organizations with a rich baseline of pre-built queries and rules that they can readily use to start analyzing their Google Cloud logs including Cloud Audit logs, VPC Flow logs, DNS logs, and more using cloud-native or third-party analytics tools. The source code is provided as is, without warranty. See [Copyright & License](#copyright-&-license) below.
-
-Current release include:
-- SQL queries for [BigQuery](https://cloud.google.com/bigquery/)
-- YARA-L rules for [Chroncile](https://chronicle.security/)
-
-The security use cases below are grouped in 6 categories depending on underlying activity type and log sources:
-
-1. :vertical_traffic_light: Login & Access Patterns
-2. :key: IAM, Keys & Secrets Admin Activity
-3. :building_construction: Cloud Provisoning Activity
-4. :cloud: Cloud Workload Usage
-5. :droplet: Data Usage
-6. :zap: Network Activity
-
-To learn more about the variety of Google Cloud logs, how to enable and natively export these logs to destinations like Chronicle or BigQuery for in-depth analytics, refer to Google Cloud [Security and access analytics solution guide](https://cloud.google.com/architecture/exporting-stackdriver-logging-for-security-and-access-analytics).
-
-**Caution:** CSA is not meant to be a comprehensive set of threat detections, but a collection of community-contributed samples to get you started with detective controls. Use CSA in your threat detection and response capabilities (e.g. [Security Command Center](https://cloud.google.com/security-command-center), Chronicle, BigQuery, Siemplify, or third-party SIEM) in conjunction with threat prevention capabilities (e.g. [Security Command Center](https://cloud.google.com/security-command-center), [Cloud Armor](https://cloud.google.com/armor), [BeyondCorp](https://cloud.google.com/beyondcorp)). To learn more about Google’s approach to modern Security Operations, check out the [Autonomic Security Operations whitepaper](https://services.google.com/fh/files/misc/googlecloud_autonomicsecurityoperations_soc10x.pdf).
-
-
-## Security Analytics Use Cases
-
+# Security Analytics Use Cases
 | # | Cloud Security Threat | Log Source | Audit | Detect | Respond | ATT&CK&reg; Techniques |
 |---|---|---|:-:|:-:|:-:|:-:|
 | 1 |:vertical_traffic_light: **Login & Access Patterns**
@@ -80,9 +53,3 @@ To learn more about the variety of Google Cloud logs, how to enable and natively
 | 6.30| [Virus or malware detected by Cloud IDS](./src/6.30/6.30.md)| Cloud IDS Threat Logs| | :white_check_mark:| | [T1059](https://attack.mitre.org/techniques/T1059/ "Command and Scripting Interpreter") |
 | 6.31| [Traffic sessions of high severity threats detected by Cloud IDS](./src/6.31/6.31.md)| Cloud IDS Threat Logs, Cloud IDS Traffic Logs| | :white_check_mark:| | [T1071](https://attack.mitre.org/techniques/T1071/ "Application Layer Protocol") |
 | 6.40| [Top 10 DNS queried domains](./src/6.40/6.40.md)| Cloud DNS Logs| :white_check_mark:| :white_check_mark:| | [T1071.004](https://attack.mitre.org/techniques/T1071/004/ "Command and Scripting Interpreter (Unix Shell)") |
-
-## Copyright & License
-
-Copyright 2022 Google LLC
-
-Threat detection queries & rules under Threat Detections As Code are licensed under the Apache license, v2.0. Details can be found in [LICENSE](./LICENSE) file.

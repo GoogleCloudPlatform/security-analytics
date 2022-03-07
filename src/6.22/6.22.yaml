@@ -1,0 +1,26 @@
+---
+id: '6.22'
+name: log4j_exploit_attempts_remote_IP_address_list
+# Refer to corresponding queries: 6_22_log4j_exploit_attempts_remote_IP_address_list.{sql|yaral|...}
+display_name: Any remote IP addresses attemting to exploit Log4j 2 vulnerability?
+category: Network Activity
+severity: Medium
+attack_mapping:
+  - technique: T1190
+    title: Exploit Public-Facing Application
+    link: https://attack.mitre.org/techniques/T1190/
+description: |
+  List top remote IP addresses most frequently attempting to exploit "Log4j 2" vulnerability
+  against any of your internet-facing applications sitting behind HTTP(S) Load Balancer.
+
+sources:
+  - HTTP(S) LB Logs
+
+use_cases:
+  - Detect
+
+test:
+
+samples:
+
+references:

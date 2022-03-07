@@ -1,0 +1,26 @@
+---
+id: '2.22'
+name: permissions_granted_to_create_SA_keys
+# Refer to corresponding queries: 2_22_permissions_granted_to_create_SA_keys.{sql|yaral|...}
+display_name: Permissions granted to create or manage Service Account keys
+category: IAM, Keys & Secrets Changes
+severity: Medium
+attack_mapping:
+  - technique: T1484.002
+    title: Domain Policy Modification (Domain Trust Modification)
+    link: https://attack.mitre.org/techniques/T1484/002/
+description: |
+  Permissions granted to create or manage Service Account keys (i.e. `roles/iam.serviceAccountKeyAdmin`) for a given service account
+
+sources:
+  - Audit Logs - Admin Activity
+
+use_cases:
+  - Detect
+  - Audit
+
+test:
+
+samples:
+
+references:
