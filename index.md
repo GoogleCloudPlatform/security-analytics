@@ -1,4 +1,4 @@
-# Security Analytics Use Cases
+## Security Analytics Use Cases
 | # | Cloud Security Threat | Log Source | Audit | Detect | Respond | ATT&CK&reg; Techniques |
 |---|---|---|:-:|:-:|:-:|:-:|
 | 1 |:vertical_traffic_light: **Login & Access Patterns**
