@@ -45,6 +45,9 @@ class CSADocs
     end
     puts
     puts "Generated docs for #{oks.count} detections, #{fails.count} failures"
+
+    generate_index!  "#{CSA_DIR}/index.md"
+
     return oks, fails
   end
 
@@ -66,6 +69,56 @@ class CSADocs
 
     print " => #{output_doc_path} => "
     File.write output_doc_path, generated_doc
+  end
+
+  #
+  # Generates Markdown table for all detections
+  #
+  def generate_index!(output_doc_path)
+    result = ''
+    result += "## Security Analytics Use Cases\n"
+    
+    result += "| # | Cloud Security Threat | Log Source | Audit | Detect | Respond | ATT&CK&reg; Techniques |\n"
+    result += "|---|---|---|:-:|:-:|:-:|:-:|\n"
+
+    categoryId = 0
+    CSA.detections.each do |detection|
+      
+      detectionCategoryId = detection['id'].to_s.split('.')[0].to_i
+      if (detectionCategoryId != categoryId)
+        categoryId = detectionCategoryId
+        result += "| #{categoryId} |"
+        result += case categoryId
+          when 1 then ":vertical_traffic_light:"
+          when 2 then ":key:"
+          when 3 then ":building_construction:"
+          when 4 then ":cloud:"
+          when 5 then ":droplet:"
+          when 6 then ":zap:"
+          else ""
+        end
+        result += " **#{detection['category']}**\n"
+      end
+
+      result += "| #{detection['id']}"
+      result += "| [#{detection['display_name']}](./src/#{detection['id']}/#{detection['id']}.md)"
+      result += "| #{detection['sources'].join(', ')}"
+      result += "| " + ((detection['use_cases'].include? 'Audit') ? ':white_check_mark:' : '')
+      result += "| " + ((detection['use_cases'].include? 'Detect') ? ':white_check_mark:' : '')
+      result += "| " + ((detection['use_cases'].include? 'Respond') ? ':white_check_mark:' : '')
+        
+      attack_technique_links = []
+      if (detection['attack_mapping'] != nil && detection['attack_mapping'].count > 0)
+        attack_technique_links = detection['attack_mapping'].map do |technique|
+          "[#{technique['technique']}](#{technique['link']} \"#{technique['title']}\")"
+        end
+      end
+      result += "| #{attack_technique_links.join(', ')} |\n"
+    end
+
+    File.write output_doc_path, result
+
+    puts "Generated use cases index at #{output_doc_path}"
   end
 end
 
