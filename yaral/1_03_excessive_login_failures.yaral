@@ -14,7 +14,7 @@
  * limitations under the License.
  */
 
-rule 1_03_excessive_login_failures {
+rule excessive_login_failures {
   meta:
     author = "Chronicle Security"
     description = "Detects repeated logon failures in Google Cloud Console or Google Workspace (Cloud Identity).  Requires WORKSPACE_CONTEXT is configured for email_addresses to userid mapping."
