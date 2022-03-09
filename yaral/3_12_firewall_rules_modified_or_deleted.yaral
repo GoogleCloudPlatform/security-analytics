@@ -14,7 +14,7 @@
  * limitations under the License.
  */
 
-rule 3_12_firewall_rules_modified_or_deleted {
+rule firewall_rules_modified_or_deleted {
   meta:
     author = "Google Cloud Security"
     description = "Ensure that the log metric filter and alerts exist for VPC Network Firewall rule changes."
