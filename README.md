@@ -78,9 +78,9 @@ Detection queries provided by Community Security Analytics (CSA) are self-manage
 
 ## Support
 
-This is not an officially supported Google product. Queries, rules and other assets in Community Security Analytics (CSA) are community-supported. Please don't hesitate to [open a GitHub issue](./issues) if you have any question or a feature request.
+This is not an officially supported Google product. Queries, rules and other assets in Community Security Analytics (CSA) are community-supported. Please don't hesitate to [open a GitHub issue](https://github.com/GoogleCloudPlatform/security-analytics/issues) if you have any question or a feature request.
 
-Contributions are also welcome via [Github pull requests](/pulls) if you have fixes or enhancements to source code or docs. Please refer to our [Contributing guidelines](./CONTRIBUTING.md).
+Contributions are also welcome via [Github pull requests](https://github.com/GoogleCloudPlatform/security-analytics/pulls) if you have fixes or enhancements to source code or docs. Please refer to our [Contributing guidelines](./CONTRIBUTING.md).
 
 ## Copyright & License
 
