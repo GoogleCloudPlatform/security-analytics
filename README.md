@@ -27,11 +27,12 @@ To learn more about the variety of Google Cloud logs, how to enable and natively
 | # | Cloud Security Threat | Log Source | Audit | Detect | ATT&CK&reg; Techniques |
 |---|---|---|:-:|:-:|:-:|
 | 1 |:vertical_traffic_light: **Login & Access Patterns**
-| 1.01| [Login from a highly-privileged account](./src/1.01/1.01.md)| Cloud Identity Logs (Google Workspace Login)| | :white_check_mark:| [T1078.004](https://attack.mitre.org/techniques/T1078/004/ "Valid Accounts (Cloud Accounts)") |
-| 1.02| [Suspicious login attempt flagged by Google Workspace](./src/1.02/1.02.md)| Cloud Identity Logs (Google Workspace Login)| | :white_check_mark:| [T1078.004](https://attack.mitre.org/techniques/T1078/004/ "Valid Accounts (Cloud Accounts)") |
-| 1.03| [Excessive login failures from any user identity](./src/1.03/1.03.md)| Cloud Identity Logs (Google Workspace Login)| | :white_check_mark:| [T1078.004](https://attack.mitre.org/techniques/T1078/004/ "Valid Accounts (Cloud Accounts)"), [T1110](https://attack.mitre.org/techniques/T1110/ "Brute Force") |
+| 1.01| [Login from a highly-privileged account](./src/1.01/1.01.md)| Workspace Login Audit (Cloud Identity Logs)| | :white_check_mark:| [T1078.004](https://attack.mitre.org/techniques/T1078/004/ "Valid Accounts (Cloud Accounts)") |
+| 1.02| [Suspicious login attempt flagged by Google Workspace](./src/1.02/1.02.md)| Workspace Login Audit (Cloud Identity Logs)| | :white_check_mark:| [T1078.004](https://attack.mitre.org/techniques/T1078/004/ "Valid Accounts (Cloud Accounts)") |
+| 1.03| [Excessive login failures from any user identity](./src/1.03/1.03.md)| Workspace Login Audit (Cloud Identity Logs)| | :white_check_mark:| [T1078.004](https://attack.mitre.org/techniques/T1078/004/ "Valid Accounts (Cloud Accounts)"), [T1110](https://attack.mitre.org/techniques/T1110/ "Brute Force") |
 | 1.20| [Access attempts violating IAP (i.e. BeyondCorp) access controls](./src/1.20/1.20.md)| HTTP(S) Load Balancer Logs| :white_check_mark:| :white_check_mark:|  |
 | 2 |:key: **IAM, Keys & Secrets Changes**
+| 2.02| [User added to highly-privileged Google Group](./src/2.02/2.02.md)| Workspace Admin Audit Logs| :white_check_mark:| :white_check_mark:| [T1078.004](https://attack.mitre.org/techniques/T1078/004/ "Valid Accounts (Cloud Accounts)"), [T1484.001](https://attack.mitre.org/techniques/T1484/001/ "Domain Policy Modification (Group Policy Modification)") |
 | 2.20| [Permissions granted over a Service Account](./src/2.20/2.20.md)| Audit Logs - Admin Activity| :white_check_mark:| :white_check_mark:| [T1484.002](https://attack.mitre.org/techniques/T1484/002/ "Domain Policy Modification (Domain Trust Modification)") |
 | 2.21| [Permissions granted to impersonate Service Account](./src/2.21/2.21.md)| Audit Logs - Admin Activity| :white_check_mark:| :white_check_mark:| [T1484.002](https://attack.mitre.org/techniques/T1484/002/ "Domain Policy Modification (Domain Trust Modification)") |
 | 2.22| [Permissions granted to create or manage Service Account keys](./src/2.22/2.22.md)| Audit Logs - Admin Activity| :white_check_mark:| :white_check_mark:| [T1484.002](https://attack.mitre.org/techniques/T1484/002/ "Domain Policy Modification (Domain Trust Modification)") |
@@ -71,10 +72,6 @@ To learn more about the variety of Google Cloud logs, how to enable and natively
 | 6.30| [Virus or malware detected by Cloud IDS](./src/6.30/6.30.md)| Cloud IDS Threat Logs| | :white_check_mark:| [T1059](https://attack.mitre.org/techniques/T1059/ "Command and Scripting Interpreter") |
 | 6.31| [Traffic sessions of high severity threats detected by Cloud IDS](./src/6.31/6.31.md)| Cloud IDS Threat Logs, Cloud IDS Traffic Logs| | :white_check_mark:| [T1071](https://attack.mitre.org/techniques/T1071/ "Application Layer Protocol") |
 | 6.40| [Top 10 DNS queried domains](./src/6.40/6.40.md)| Cloud DNS Logs| :white_check_mark:| :white_check_mark:| [T1071.004](https://attack.mitre.org/techniques/T1071/004/ "Command and Scripting Interpreter (Unix Shell)") |
-
-## Limitations
-
-Detection queries provided by Community Security Analytics (CSA) are self-managed and you may need to tune to minimize alert noise. If you’re looking for managed & advanced detections, take a look at [Security Command Center Premium tier](https://cloud.google.com/security-command-center/pricing#premium-tier)'s threat detection suite ([Container Threat Detection](https://cloud.google.com/security-command-center/docs/concepts-container-threat-detection-overview), [Event Threat Detection](https://cloud.google.com/security-command-center/docs/concepts-event-threat-detection-overview) and [VM Threat Detection](https://cloud.google.com/security-command-center/docs/concepts-vm-threat-detection-overview)) which provide a list of regularly-updated advanced [managed detectors](https://cloud.google.com/security-command-center/docs/concepts-event-threat-detection-overview#rules) to identify threats within your systems in near real-time.
 
 ## Support
 
