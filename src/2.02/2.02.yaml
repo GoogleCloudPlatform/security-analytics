@@ -15,7 +15,7 @@ attack_mapping:
 description: |
   A user member added via Admin Service (Admin Console or Directory API) to a highly-privileged Google Group (e.g. admin@example.com) thereby acquiring high level of access
 sources:
-  - Workspace Admin Audit Logs
+  - Workspace Admin Audit
 
 use_cases:
   - Detect
