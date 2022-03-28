@@ -1,0 +1,90 @@
+---
+# Security use case ID
+id: '1.01' # Category 1
+
+# Security use case name.
+# This is used to match & link any corresponding queries, in this case:
+# sql/1_01_login_highly_privileged_account.sql
+# yaral/1_01_login_highly_privileged_account.yaral
+name: login_highly_privileged_account
+
+# Security use case title to be displayed in docs
+display_name: Login from a highly-privileged account
+
+# Security use case description, specified as literal block
+description: |
+  A login occured from a highly privileged account (e.g. Super Admin, Org Admin) to Google Cloud,
+  be it from Cloud Console, Admin Console or gcloud CLI. 
+
+# Use case category must be one of the following:
+# Login & Access Patterns
+# IAM, Keys & Secrets Admin Activity
+# Cloud Provisoning Activity
+# Cloud Workload Usage
+# Data Usage
+# Network Activity
+category: Login & Access Patterns
+
+# Security use case threat or audit finding severity
+severity: Low
+
+# [Optional] List of ATT&CK techniques that are mapped to this security use case.
+# Each entry has the `technique` ID, `title` and `link` URL to technique page.
+attack_mapping: 
+  - technique: T1078.004
+    title: Valid Accounts (Cloud Accounts)
+    link: https://attack.mitre.org/techniques/T1078/004/
+
+# List of log sources. Use:
+# 'Audit Logs' for all Cloud Audit Logs (CAL),
+# 'Audit Logs - Admin Activity' for CAL Admin Activity,
+# 'Audit Logs - Data Access' for CAL Data Access,
+# 'Workspace Login Audit' for Workspace Login Audit logs,
+# 'Workspace Admin Audit' for Workspace Admin Audit logs,
+# 'HTTP(S) LB Logs' for Cloud Load Balancer logs,
+# 'VPC Flow Logs', 'Cloud DNS Logs', etc.
+sources:
+  - Workspace Login Audit
+
+# List of use cases. Use:
+# 'Detect' for threat detection use case,
+# 'Audit' for data usage audit use case, OR both
+use_cases:
+  - Detect
+  - Audit
+
+# [Optional] Test details to generate source event and re-trigger detection
+test:
+  # Test description, provided as literal block which accepts Markdown syntax
+  description: |
+    Login as admin user via gcloud CLI.
+    Note lag time of Workspace Audit Login Logs can be [up to a few hours](https://support.google.com/a/answer/7061566?hl=en).
+  # Mapping (hash) of test arguments needed to run the test programmatically.
+  # Each argument has a `description`, `type` and `default` value keys
+  arguments:
+    account:
+      description: user account of test admin to be used for authentication
+      type: String
+      default: test-admin
+  # Test command(s), provided as literal block
+  command: |
+    gcloud auth login #{account} --no-browser --force
+  # List of prerequisites to execute before running test.
+  # Each entry has a `title` and `link` keys to describe prerequisite step and URL doc.
+  prerequisites:
+    - title: 'Install gcloud'
+      link: 'https://cloud.google.com/sdk/docs/install'
+    - title: 'Enable Workspace Audit Logs forwarding to Cloud Audit Logs'
+      link: 'https://cloud.google.com/logging/docs/audit/configure-gsuite-audit-logs'
+
+# [Optional] List of log sample files (without '.json' filename extension).
+# This is used to match & link corresponding log samples available under test/fixtures, in this case:
+# test/fixtures/google.login.LoginService.loginSuccess.json
+samples:
+  - google.login.LoginService.loginSuccess
+
+# [Optional] List of URL references for reader to learn more about security use case,
+# corresponding log source/schema, or any other additional relevant docs or blogs.
+references:
+  - https://developers.google.com/admin-sdk/reports/v1/appendix/activity/login
+  - https://support.google.com/a/answer/9320190
