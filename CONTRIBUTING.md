@@ -34,7 +34,7 @@ To add a new threat detection or audit question, follow these steps:
 
 5. Generate CSA docs, as described in [Doc Generation](#doc-generation) section below. This will create a new individual CSA doc `src/5.40/5.40.md` and an updated root `README.md` based on the new CSA definition, that is source file `src/5.40/5.40.yaml`.
 
-3. Preview CSA docs, and submit PR with new (e.g. `src/5.40/*`) and modified `.md` files.
+3. Submit PR with new CSA files (e.g. `src/5.40/*`) and updated `README.md` file.
 
 ### New Query Implementation
 To implement a `SQL` query or `YARA-L` rule for an existing or new security question, follow the steps in this section. We'll assume the CSA in question has ID `5.40` and name `sql_tables_most_frequently_accessed`.
@@ -77,13 +77,15 @@ The [CSA index](./README.md#security-analytics-use-cases) in README.md as well a
 - Corresponding log samples under `test/fixtures/` folder, and,
 - Corresponding query implementations under `sql/` and `yaral/` folders.
 
-After adding or editing filers under any of those directory, here are the steps to regenerate the docs to reflect the changes:
+After adding or editing files under any of these directories, here are the steps to regenerate the docs to reflect the changes:
 
-1. Rebuild `index.md` and individual CSA docs (`src/*/*.md`) as follows:
+1. Rebuild `index.md` and individual CSA docs `src/*/*.md` as follows:
     ```
     ./bin/generate-docs.rb
     ```
-2. Copy/paste `index.md` content into [CSA index](./README.md#security-analytics-use-cases) section in README.md
+2. Copy/paste `index.md` content into [CSA index](./README.md#security-analytics-use-cases) section in `README.md`
+
+3. Preview to validate new (or updated) CSA use case docs `src/*/*.md` and the updated root `README.md` doc.
 
 ## Code Reviews
 
