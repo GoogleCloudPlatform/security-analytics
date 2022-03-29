@@ -57,12 +57,14 @@ Once a query is implemented, re-generate CSA docs as described in [Doc Generatio
 Every CSA use case or question has a unique ID to uniquely identify it. A CSA use case ID, or for short a CSA ID, is of the form `A.B` where:
 
 -  A is a 1-digit bumber from the set [1-6]. A specifies the category ID, per the following mapping:
-    1. Login & Access Patterns
-    2. IAM, Keys & Secrets Admin Activity
-    3. Cloud Provisoning Activity
-    4. Cloud Workload Usage
-    5. Data Usage
-    6. Network Activity
+    ```
+    1: Login & Access Patterns
+    2: IAM, Keys & Secrets Admin Activity
+    3: Cloud Provisoning Activity
+    4: Cloud Workload Usage
+    5: Data Usage
+    6: Network Activity
+    ```
 
 -  B is a 2-digit number from the set [01-99]. B is a continously increasing number which specifies the question ID within category A.
 
