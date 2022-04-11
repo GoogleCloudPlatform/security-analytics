@@ -88,12 +88,12 @@ class CSADocs
       if (detectionCategoryId != categoryId)
         categoryId = detectionCategoryId
         htmlElementId, htmlElementEmoji = case categoryId
-          when 1 then ['#login-access-patterns', ':vertical_traffic_light:']
-          when 2 then ['#iam-keys-secrets-changes', ':key:']
-          when 3 then ['#cloud-provisioning-activity', ':building_construction:']
-          when 4 then ['#cloud-workload-usage', ':cloud:']
-          when 5 then ['#data-usage', ':droplet:']
-          when 6 then ['#network-activity', ':zap:']
+          when 1 then ['login-access-patterns', ':vertical_traffic_light:']
+          when 2 then ['iam-keys-secrets-changes', ':key:']
+          when 3 then ['cloud-provisioning-activity', ':building_construction:']
+          when 4 then ['cloud-workload-usage', ':cloud:']
+          when 5 then ['data-usage', ':droplet:']
+          when 6 then ['network-activity', ':zap:']
           else ['', '']
         end
         result += "| <div id=\"#{htmlElementId}\">#{categoryId}</div> | #{htmlElementEmoji} **#{detection['category']}**\n"
