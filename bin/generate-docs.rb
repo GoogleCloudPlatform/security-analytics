@@ -96,7 +96,7 @@ class CSADocs
           when 6 then ['#network-activity', ':zap:']
           else ['', '']
         end
-        result += "| <div id='#{htmlElementId}'>#{categoryId}</div> | #{htmlElementEmoji} **#{detection['category']}**\n"
+        result += "| <div id=\"#{htmlElementId}\">#{categoryId}</div> | #{htmlElementEmoji} **#{detection['category']}**\n"
       end
 
       result += "| #{detection['id']}"
