@@ -27,18 +27,6 @@ To learn more about the variety of Google Cloud logs, how to enable and natively
 
 | # | Cloud Security Threat | Log Source | Audit | Detect | ATT&CK&reg; Techniques |
 |---|---|---|:-:|:-:|:-:|
-<<<<<<< Updated upstream
-| 1 |:vertical_traffic_light: **Login & Access Patterns**
-| 1.01| [Login from a highly-privileged account](./src/1.01/1.01.md)| Cloud Identity Logs (Google Workspace Login)| | :white_check_mark:| [T1078.004](https://attack.mitre.org/techniques/T1078/004/ "Valid Accounts (Cloud Accounts)") |
-| 1.02| [Suspicious login attempt flagged by Google Workspace](./src/1.02/1.02.md)| Cloud Identity Logs (Google Workspace Login)| | :white_check_mark:| [T1078.004](https://attack.mitre.org/techniques/T1078/004/ "Valid Accounts (Cloud Accounts)") |
-| 1.03| [Excessive login failures from any user identity](./src/1.03/1.03.md)| Cloud Identity Logs (Google Workspace Login)| | :white_check_mark:| [T1078.004](https://attack.mitre.org/techniques/T1078/004/ "Valid Accounts (Cloud Accounts)"), [T1110](https://attack.mitre.org/techniques/T1110/ "Brute Force") |
-| 1.10| [Access attempts violating VPC service controls](./src/1.10/1.10.md)| Audit Logs - Policy| :white_check_mark:| :white_check_mark:|  |
-| 1.20| [Access attempts violating IAP (i.e. BeyondCorp) access controls](./src/1.20/1.20.md)| HTTP(S) Load Balancer Logs| :white_check_mark:| :white_check_mark:|  |
-| 2 |:key: **IAM, Keys & Secrets Changes**
-| 2.01| [Super admin or Admin permissions granted](./src/2.01/2.01.md)| Audit Logs - Admin Activity (Google Workspace Admin)| :white_check_mark:| :white_check_mark:| [T1484.001](https://attack.mitre.org/techniques/T1484/001/ "Domain Policy Modification (Group Policy Modification)") |
-| 2.10| [Organization admin permissions granted](./src/2.10/2.10.md)| Audit Logs - Admin Activity| :white_check_mark:| :white_check_mark:| [T1484.002](https://attack.mitre.org/techniques/T1484/002/ "Domain Policy Modification (Domain Trust Modification)") |
-| 2.11| [Permissions granted to a user from a non-allowed domain](./src/2.11/2.11.md)| Audit Logs - Admin Activity| :white_check_mark:| :white_check_mark:| [T1484.002](https://attack.mitre.org/techniques/T1484/002/ "Domain Policy Modification (Domain Trust Modification)") |
-=======
 | <p id="login-access-patterns">1</p> |:vertical_traffic_light: **Login & Access Patterns**
 | 1.01| [Login from a highly-privileged account](./src/1.01/1.01.md)| Workspace Login Audit (Cloud Identity Logs)| | :white_check_mark:| [T1078.004](https://attack.mitre.org/techniques/T1078/004/ "Valid Accounts (Cloud Accounts)") |
 | 1.02| [Suspicious login attempt flagged by Google Workspace](./src/1.02/1.02.md)| Workspace Login Audit (Cloud Identity Logs)| | :white_check_mark:| [T1078.004](https://attack.mitre.org/techniques/T1078/004/ "Valid Accounts (Cloud Accounts)") |
@@ -47,7 +35,6 @@ To learn more about the variety of Google Cloud logs, how to enable and natively
 | 1.20| [Access attempts violating IAP (i.e. BeyondCorp) access controls](./src/1.20/1.20.md)| HTTP(S) LB Logs| :white_check_mark:| :white_check_mark:|  |
 | <p id="iam-keys-secrets-change">2</p> |:key: **IAM, Keys & Secrets Changes**
 | 2.02| [User added to highly-privileged Google Group](./src/2.02/2.02.md)| Workspace Admin Audit| :white_check_mark:| :white_check_mark:| [T1078.004](https://attack.mitre.org/techniques/T1078/004/ "Valid Accounts (Cloud Accounts)"), [T1484.001](https://attack.mitre.org/techniques/T1484/001/ "Domain Policy Modification (Group Policy Modification)") |
->>>>>>> Stashed changes
 | 2.20| [Permissions granted over a Service Account](./src/2.20/2.20.md)| Audit Logs - Admin Activity| :white_check_mark:| :white_check_mark:| [T1484.002](https://attack.mitre.org/techniques/T1484/002/ "Domain Policy Modification (Domain Trust Modification)") |
 | 2.21| [Permissions granted to impersonate Service Account](./src/2.21/2.21.md)| Audit Logs - Admin Activity| :white_check_mark:| :white_check_mark:| [T1484.002](https://attack.mitre.org/techniques/T1484/002/ "Domain Policy Modification (Domain Trust Modification)") |
 | 2.22| [Permissions granted to create or manage Service Account keys](./src/2.22/2.22.md)| Audit Logs - Admin Activity| :white_check_mark:| :white_check_mark:| [T1484.002](https://attack.mitre.org/techniques/T1484/002/ "Domain Policy Modification (Domain Trust Modification)") |
