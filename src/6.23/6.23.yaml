@@ -10,8 +10,8 @@ attack_mapping:
     title: Exploit Public-Facing Application
     link: https://attack.mitre.org/techniques/T1190/
 description: |
-  Detect Spring4Shell vulnerability ([CVE-2022-22965](https://tanzu.vmware.com/security/cve-2022-22965)) exploit attempt against any of your internet-facing applications
-  sitting behind HTTP(S) Load Balancer. While this detection casts a wide net, it is not meant to be exhaustive of all variants of this exploit.
+  Detect subset of Spring4Shell vulnerability ([CVE-2022-22965](https://tanzu.vmware.com/security/cve-2022-22965)) exploit attempts against any of your internet-facing applications
+  sitting behind HTTP(S) Load Balancer. This detection inspects URL and query string only; it is not meant to be exhaustive of all variants of this exploit.
 
 sources:
   - HTTP(S) LB Logs
