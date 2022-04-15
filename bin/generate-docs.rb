@@ -1,7 +1,9 @@
 #! /usr/bin/env ruby
-CSA_DIR = "#{File.dirname(File.dirname(__FILE__))}"
+CSA_DIR = "#{File.expand_path("..", File.dirname(__FILE__))}"
 CSA_LIB_DIR = "#{CSA_DIR}/lib"
 CSA_FIXTURES_DIR = "#{CSA_DIR}/test/fixtures"
+
+print CSA_DIR
 
 $LOAD_PATH << "#{CSA_LIB_DIR}" unless $LOAD_PATH.include? "#{CSA_LIB_DIR}"
 require 'erb'
