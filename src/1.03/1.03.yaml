@@ -17,7 +17,7 @@ description: |
   Multiple login failures (>= 3) detected from any particular user identity in the last 24 hours.
 
 sources:
-  - Cloud Identity Logs (Google Workspace Login)
+  - Workspace Login Audit (Cloud Identity Logs)
 
 use_cases:
   - Detect

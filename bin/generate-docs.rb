@@ -87,17 +87,16 @@ class CSADocs
       detectionCategoryId = detection['id'].to_s.split('.')[0].to_i
       if (detectionCategoryId != categoryId)
         categoryId = detectionCategoryId
-        result += "| #{categoryId} |"
-        result += case categoryId
-          when 1 then ":vertical_traffic_light:"
-          when 2 then ":key:"
-          when 3 then ":building_construction:"
-          when 4 then ":cloud:"
-          when 5 then ":droplet:"
-          when 6 then ":zap:"
-          else ""
+        htmlElementId, htmlElementEmoji = case categoryId
+          when 1 then ['login-access-patterns', ':vertical_traffic_light:']
+          when 2 then ['iam-keys-secrets-changes', ':key:']
+          when 3 then ['cloud-provisioning-activity', ':building_construction:']
+          when 4 then ['cloud-workload-usage', ':cloud:']
+          when 5 then ['data-usage', ':droplet:']
+          when 6 then ['network-activity', ':zap:']
+          else ['', '']
         end
-        result += " **#{detection['category']}**\n"
+        result += "| <div id=\"#{htmlElementId}\">#{categoryId}</div> | #{htmlElementEmoji} **#{detection['category']}**\n"
       end
 
       result += "| #{detection['id']}"

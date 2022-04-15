@@ -2,11 +2,20 @@
 id: '1.10'
 name: access_attempts_blocked_by_VPC_SC
 # Refer to corresponding queries: 1_10_access_attempts_blocked_by_VPC_SC.{sql|yaral|...}
-display_name: Access attempts violating VPC service controls
+display_name: Access attempts violating VPC Service Controls
 category: Login & Access Patterns
 severity: Low
+attack_mapping: 
+  - technique: T1078.004
+    title: Valid Accounts (Cloud Accounts)
+    link: https://attack.mitre.org/techniques/T1078/004/
+  - technique: T1537
+    title: Transfer Data to Cloud Account
+    link: https://attack.mitre.org/techniques/T1537/
 description: |
-  Access attempt blocked by VPC Service Controls, indicating an initial access or data exfiltration attempt.
+  Access attempt blocked by VPC Service Controls, indicating potential malicious activity like data exfiltration attempt
+  and/or access from unauthorized networks using stolen credentials. To learn more about the security benefits of VPC Service Controls,
+  see this [VPC Service Controls overview](https://cloud.google.com/vpc-service-controls/docs/overview#benefits).
 
 sources:
   - Audit Logs - Policy
@@ -37,3 +46,4 @@ samples:
 
 references:
   - https://cloud.google.com/vpc-service-controls/docs/troubleshooting#gcs_vm_outside_perimeter
+  - https://cloud.google.com/vpc-service-controls/docs/overview#benefits

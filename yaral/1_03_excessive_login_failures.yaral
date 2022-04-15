@@ -14,25 +14,26 @@
  * limitations under the License.
  */
 
-rule suspicious_login_attempt {
+rule excessive_login_failures {
   meta:
     author = "Chronicle Security"
-    description = "Detects repeated logon failures against Google Workspace (Cloud Identity).  Requires WORKSPACE_CONTEXT is configured for email_addresses to userid mapping."
+    description = "Detects repeated logon failures in Google Cloud Console or Google Workspace (Cloud Identity).  Requires WORKSPACE_CONTEXT is configured for email_addresses to userid mapping."
     severity = "MEDIUM"
+    url = "https://developers.google.com/admin-sdk/reports/v1/appendix/activity/login#login_failure"
 
   events:
     $e.metadata.event_type = "USER_LOGIN"
     $e.metadata.vendor_name = "Google Workspace"
     $e.metadata.product_name = "login"
-    $e.security_result.action = "BLOCK"
+    $e.metadata.product_event_type = /login_failure/ nocase
     ( 
         not $e.target.user.userid = "" and
         $e.target.user.userid = $user 
     )
-
+     
   match:
     $user over 15m
 
   condition:
-    #e > 3
+    #e >= 3
 }

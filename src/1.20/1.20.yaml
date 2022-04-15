@@ -9,7 +9,7 @@ description: |
   Access attempt blocked by Identity-Aware Proxy (IAP), indicating an initial access or vulnerability exploit attempt.
 
 sources:
-  - HTTP(S) Load Balancer Logs
+  - HTTP(S) LB Logs
 
 use_cases:
   - Detect

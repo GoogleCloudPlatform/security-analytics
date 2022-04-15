@@ -14,7 +14,7 @@ description: |
   be it from Cloud Console, Admin Console or gcloud CLI. 
 
 sources:
-  - Cloud Identity Logs (Google Workspace Login)
+  - Workspace Login Audit (Cloud Identity Logs)
 
 use_cases:
   - Detect
