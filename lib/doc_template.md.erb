@@ -12,10 +12,21 @@
 **Authors:** <%= detection['authors'].join(', ') %>
 <%- end -%>
 
+<%def generate_query_links(query_paths, backend)
+    links = query_paths[backend].map do |language, path|
+        languageDisplayName = case language
+            when 'yaral' then 'YARA-L'
+            else language.upcase
+        end
+        "[#{languageDisplayName}](#{path})"
+    end.join(", ")
+    return links.empty? ? "[Contribute query](../../CONTRIBUTING.md)" : links
+end%>
+
 ## Queries or Rules
-BigQuery | Chronicle |
---- | --- |
-<%= query_paths['sql'] != nil ? "[SQL](#{query_paths['sql']})" : "[Contribute query](../../CONTRIBUTING.md)"%> | <%= query_paths['yaral'] != nil ? "[YARA-L](#{query_paths['yaral']})" : "[Contribute rule](../../CONTRIBUTING.md)"%>
+[BigQuery](https://cloud.google.com/bigquery/) | [Chronicle](https://chronicle.security/) | [Log Analytics](https://cloud.google.com/logging/docs/log-analytics)
+--- | --- | ---
+<%= generate_query_links(query_paths, 'bigquery') %> | <%= generate_query_links(query_paths, 'chronicle') %> | <%= generate_query_links(query_paths, 'log_analytics') %>
 
 ## Event Generation
 <%- if detection['test'] != nil -%>
