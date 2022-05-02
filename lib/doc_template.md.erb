@@ -20,7 +20,11 @@
         end
         "[#{languageDisplayName}](#{path})"
     end.join(", ")
-    return links.empty? ? "[Contribute query](../../CONTRIBUTING.md)" : links
+    if links.empty?
+        return "[Contribute " + (backend == 'chronicle' ? 'rule' : 'query') + "](../../CONTRIBUTING.md)"
+    else
+        return links
+    end
 end%>
 
 ## Queries or Rules
