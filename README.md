@@ -9,6 +9,7 @@ CSA is a set of foundational security analytics designed to provide organization
 Current release include:
 - SQL queries for [BigQuery](https://cloud.google.com/bigquery/)
 - YARA-L rules for [Chronicle](https://chronicle.security/)
+- SQL queries for [Log Analytics](https://cloud.google.com/logging/docs/log-analytics) (Preview)
 
 The security use cases below are grouped in 6 categories depending on underlying activity type and log sources:
 
