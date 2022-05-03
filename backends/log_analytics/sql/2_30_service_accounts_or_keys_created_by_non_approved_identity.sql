@@ -16,14 +16,14 @@
 
 SELECT
   timestamp,
-  protopayload_auditlog.authenticationInfo.principalEmail,
-  protopayload_auditlog.methodName,
-  protopayload_auditlog.resourceName,
-  JSON_VALUE(protopayload_auditlog.responseJson, "$.email") as serviceAccountEmail
+  proto_payload.audit_log.authentication_info.principal_email,
+  proto_payload.audit_log.method_name,
+  proto_payload.audit_log.resource_name,
+  JSON_VALUE(proto_payload.audit_log.response.email) as service_account_email
 FROM
-  `[MY_PROJECT_ID].[MY_DATASET_ID].cloudaudit_googleapis_com_activity`
+  `[MY_PROJECT_ID].[MY_DATASET_ID]._AllLogs`
 WHERE
-  timestamp >= TIMESTAMP_SUB(CURRENT_TIMESTAMP(), INTERVAL 180 DAY)
+  timestamp >= TIMESTAMP_SUB(CURRENT_TIMESTAMP(), INTERVAL 30 DAY)
   AND resource.type="service_account"
-  AND protopayload_auditlog.methodName LIKE "%CreateServiceAccount%"
-  AND protopayload_auditlog.authenticationInfo.principalEmail NOT LIKE "%.gserviceaccount.com"
+  AND proto_payload.audit_log.method_name LIKE "%CreateServiceAccount%"
+  AND proto_payload.audit_log.authentication_info.principal_email NOT LIKE "%.gserviceaccount.com"

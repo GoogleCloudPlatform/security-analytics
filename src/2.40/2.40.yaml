@@ -22,5 +22,6 @@ use_cases:
 test:
 
 samples:
-
+  - google.cloud.iap.v1.IdentityAwareProxyAdminService.SetIamPolicy
+  
 references:

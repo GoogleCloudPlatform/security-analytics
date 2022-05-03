@@ -23,5 +23,6 @@ use_cases:
 test:
 
 samples:
+  - google.iam.admin.v1.CreateServiceAccountRequest
 
 references:

@@ -14,7 +14,7 @@
  * limitations under the License.
  */
 
- SELECT
+SELECT
   timestamp,
   protopayload_auditlog.authenticationInfo.principalEmail,
   protopayload_auditlog.methodName,
@@ -29,7 +29,7 @@ FROM `[MY_PROJECT_ID].[MY_DATASET_ID].cloudaudit_googleapis_com_activity`
 WHERE
   timestamp >= TIMESTAMP_SUB(CURRENT_TIMESTAMP(), INTERVAL 120 DAY)
   AND protopayload_auditlog.serviceName = "admin.googleapis.com"
-  AND protopayload_auditlog.methodName LIKE "google.admin.AdminService.addGroupMember"
+  AND protopayload_auditlog.methodName = "google.admin.AdminService.addGroupMember"
   AND EXISTS(
     SELECT * FROM UNNEST(JSON_QUERY_ARRAY(protopayload_auditlog.metadataJson, '$.event[0].parameter')) AS x
     WHERE

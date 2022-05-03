@@ -1,29 +1,3 @@
-# 2.40 - User access added (or removed) from IAP-protected HTTPS services
-User access added (or removed) from IAP-protected HTTPS services (using IAP role `roles/iap.httpsResourceAccessor`)
-
-
-**Category:** IAM, Keys & Secrets Changes
-</br>
-**Use Cases:** Detect, Audit
-</br>
-**Data Sources:** Audit Logs - Admin Activity
-</br>
-
-
-
-## Queries or Rules
-BigQuery | Chronicle | Log Analytics
---- | --- | ---
-[SQL](../../backends/bigquery/sql/2_40_user_access_modified_in_IAP.sql) | [Contribute rule](../../CONTRIBUTING.md) | [SQL](../../backends/log_analytics/sql/2_40_user_access_modified_in_IAP.sql)
-
-## Event Generation
-No event generation steps provided. [Contribute emulation test](../../CONTRIBUTING.md) to this use case.
-
-## Sample Event
-
-
-### google.cloud.iap.v1.IdentityAwareProxyAdminService.SetIamPolicy
-```
 {
   "protoPayload": {
     "@type": "type.googleapis.com/google.cloud.audit.AuditLog",
@@ -35,11 +9,9 @@ No event generation steps provided. [Contribute emulation test](../../CONTRIBUTI
       "callerSuppliedUserAgent": "<redacted>",
       "requestAttributes": {
         "time": "2022-05-03T02:15:06.445972944Z",
-        "auth": {
-        }
+        "auth": {}
       },
-      "destinationAttributes": {
-      }
+      "destinationAttributes": {}
     },
     "serviceName": "iap.googleapis.com",
     "methodName": "google.cloud.iap.v1.IdentityAwareProxyAdminService.SetIamPolicy",
@@ -107,6 +79,3 @@ No event generation steps provided. [Contribute emulation test](../../CONTRIBUTI
   "logName": "projects/1234/logs/cloudaudit.googleapis.com%2Factivity",
   "receiveTimestamp": "2022-05-03T02:15:07.274292127Z"
 }
-```
-
-

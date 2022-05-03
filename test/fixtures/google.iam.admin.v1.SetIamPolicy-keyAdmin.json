@@ -1,35 +1,7 @@
-# 2.20 - Permissions granted over a Service Account
-Permissions granted to any principal over a service account, for example, to impersonate a
-service account or create keys for that service account.
-
-
-**Category:** IAM, Keys & Secrets Changes
-</br>
-**Use Cases:** Detect, Audit
-</br>
-**Data Sources:** Audit Logs - Admin Activity
-</br>
-
-
-
-## Queries or Rules
-BigQuery | Chronicle | Log Analytics
---- | --- | ---
-[SQL](../../backends/bigquery/sql/2_20_permissions_granted_over_SA.sql) | [YARA-L](../../backends/chronicle/yaral/2_20_permissions_granted_over_SA.yaral) | [SQL](../../backends/log_analytics/sql/2_20_permissions_granted_over_SA.sql)
-
-## Event Generation
-No event generation steps provided. [Contribute emulation test](../../CONTRIBUTING.md) to this use case.
-
-## Sample Event
-
-
-### google.iam.admin.v1.SetIamPolicy-tokenCreator
-```
 {
   "protoPayload": {
     "@type": "type.googleapis.com/google.cloud.audit.AuditLog",
-    "status": {
-    },
+    "status": {},
     "authenticationInfo": {
       "principalEmail": "admin@example.com",
       "principalSubject": "user:admin@example.com"
@@ -39,11 +11,9 @@ No event generation steps provided. [Contribute emulation test](../../CONTRIBUTI
       "callerSuppliedUserAgent": "<redacted>",
       "requestAttributes": {
         "time": "2022-05-02T21:52:50.576347902Z",
-        "auth": {
-        }
+        "auth": {}
       },
-      "destinationAttributes": {
-      }
+      "destinationAttributes": {}
     },
     "serviceName": "iam.googleapis.com",
     "methodName": "google.iam.admin.v1.SetIAMPolicy",
@@ -51,8 +21,7 @@ No event generation steps provided. [Contribute emulation test](../../CONTRIBUTI
       {
         "permission": "iam.serviceAccounts.setIamPolicy",
         "granted": true,
-        "resourceAttributes": {
-        }
+        "resourceAttributes": {}
       }
     ],
     "resourceName": "projects/-/serviceAccounts/123456789",
@@ -62,7 +31,7 @@ No event generation steps provided. [Contribute emulation test](../../CONTRIBUTI
         "bindingDeltas": [
           {
             "action": "ADD",
-            "role": "roles/iam.serviceAccountTokenCreator",
+            "role": "roles/iam.serviceAccountKeyAdmin",
             "member": "user:test-user@example.com"
           }
         ]
@@ -76,7 +45,7 @@ No event generation steps provided. [Contribute emulation test](../../CONTRIBUTI
             "members": [
               "user:test-user@example.com"
             ],
-            "role": "roles/iam.serviceAccountTokenCreator"
+            "role": "roles/iam.serviceAccountKeyAdmin"
           }
         ],
         "etag": "BwXeDmj5wbY=",
@@ -88,7 +57,7 @@ No event generation steps provided. [Contribute emulation test](../../CONTRIBUTI
       "etag": "BwXeDmndGQ4=",
       "bindings": [
         {
-          "role": "roles/iam.serviceAccountTokenCreator",
+          "role": "roles/iam.serviceAccountKeyAdmin",
           "members": [
             "user:test-user@example.com"
           ]
@@ -112,6 +81,3 @@ No event generation steps provided. [Contribute emulation test](../../CONTRIBUTI
   "logName": "projects/my-project/logs/cloudaudit.googleapis.com%2Factivity",
   "receiveTimestamp": "2022-05-02T21:52:51.172264363Z"
 }
-```
-
-
