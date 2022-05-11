@@ -21,7 +21,7 @@ SELECT
   httpRequest.status,jsonpayload_type_loadbalancerlogentry.enforcedsecuritypolicy.name,
   resource.labels.backend_service_name,
   httpRequest.requestUrl,
-FROM `[MY_DATASET_ID].[MY_PROJECT_ID].requests`
+FROM `[MY_PROJECT_ID].[MY_DATASET_ID].requests`
 WHERE
   timestamp >= TIMESTAMP_SUB(CURRENT_TIMESTAMP(), INTERVAL 30 DAY)
   AND resource.type="http_load_balancer"

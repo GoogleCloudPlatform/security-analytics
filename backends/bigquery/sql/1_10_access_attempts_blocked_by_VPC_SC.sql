@@ -31,7 +31,7 @@ SELECT
     JSON_VALUE(protopayload_auditlog.metadataJson, '$.egressViolations[0].servicePerimeter')
   ) AS  servicePerimeter
 FROM
- `[MY_DATASET_ID].[MY_PROJECT_ID].cloudaudit_googleapis_com_policy`
+ `[MY_PROJECT_ID].[MY_DATASET_ID].cloudaudit_googleapis_com_policy`
 WHERE
   timestamp >= TIMESTAMP_SUB(CURRENT_TIMESTAMP(), INTERVAL 400 DAY)
   AND JSON_VALUE(protopayload_auditlog.metadataJson, '$."@type"') = 'type.googleapis.com/google.cloud.audit.VpcServiceControlAuditMetadata'
