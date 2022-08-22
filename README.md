@@ -1,8 +1,9 @@
 # Community Security Analytics (CSA)
+<p align="center">
+  <img src="./assets/csa_logo.png" alt="Community Security Analytics Logo">
+</p>
 
 As organizations go through the Autonomic Security modernization journey, this repository serves as a community-driven list of sample security analytics for auditing cloud usage and for detecting threats to your data &amp; workloads in Google Cloud. These may assist **detection engineers**, **threat hunters** and **data governance analysts**.
-
-![Security Monitoring](./assets/gcp_security_mon.png)
 
 CSA is a set of foundational security analytics designed to provide organizations with a rich baseline of pre-built queries and rules that they can readily use to start analyzing their Google Cloud logs including Cloud Audit logs, VPC Flow logs, DNS logs, and more using cloud-native or third-party analytics tools. The source code is provided as is, without warranty. See [Copyright & License](#copyright-&-license) below.
 
@@ -25,6 +26,8 @@ To learn more about the variety of Google Cloud logs, how to enable and natively
 **Caution:** CSA is not meant to be a comprehensive set of threat detections, but a collection of community-contributed samples to get you started with detective controls. Use CSA in your threat detection and response capabilities (e.g. [Security Command Center](https://cloud.google.com/security-command-center), Chronicle, BigQuery, Siemplify, or third-party SIEM) in conjunction with threat prevention capabilities (e.g. [Security Command Center](https://cloud.google.com/security-command-center), [Cloud Armor](https://cloud.google.com/armor), [BeyondCorp](https://cloud.google.com/beyondcorp)). To learn more about Google’s approach to modern Security Operations, check out the [Autonomic Security Operations whitepaper](https://services.google.com/fh/files/misc/googlecloud_autonomicsecurityoperations_soc10x.pdf).
 
 ## Security Analytics Use Cases
+![Security Monitoring](./assets/gcp_security_mon.png)
+
 | # | Cloud Security Threat | Log Source | Audit | Detect | ATT&CK&reg; Techniques |
 |---|---|---|:-:|:-:|:-:|
 | <div id="login-access-patterns">1</div> | :vertical_traffic_light: **Login & Access Patterns**
