@@ -65,6 +65,8 @@ To learn more about the variety of Google Cloud logs, how to enable and natively
 | 5.06| [Top 10 queries against BigQuery in the past week](./src/5.06/5.06.md)| Audit Logs - Data Access| :white_check_mark:| | [T1530](https://attack.mitre.org/techniques/T1530/ "Data from Cloud Storage Object") |
 | 5.07| [Any queries doing very large scans?](./src/5.07/5.07.md)| Audit Logs - Data Access| :white_check_mark:| :white_check_mark:| [T1530](https://attack.mitre.org/techniques/T1530/ "Data from Cloud Storage Object") |
 | 5.08| [Any destructive queries or jobs (i.e. update or delete)?](./src/5.08/5.08.md)| Audit Logs| :white_check_mark:| :white_check_mark:| [T1565.001](https://attack.mitre.org/techniques/T1565/001/ "Data Manipulation (Stored Data Manipulation)") |
+| 5.10| [Recent data read with granular access and permissions details](./src/5.10/5.10.md)| Audit Logs - Data Access| :white_check_mark:| | [T1074](https://attack.mitre.org/techniques/T1074/ "Data Staged"), [T1213](https://attack.mitre.org/techniques/T1213/ "Data from Information Repositories") |
+| 5.11| [Recent dataset activity with granular permissions details](./src/5.11/5.11.md)| Audit Logs - Admin Activity| :white_check_mark:| | [T1074](https://attack.mitre.org/techniques/T1074/ "Data Staged"), [T1213](https://attack.mitre.org/techniques/T1213/ "Data from Information Repositories") |
 | 5.20| [Most common data (and metadata) access actions in the past month](./src/5.20/5.20.md)| Audit Logs - Data Access| :white_check_mark:| :white_check_mark:| [T1530](https://attack.mitre.org/techniques/T1530/ "Data from Cloud Storage Object") |
 | 5.30| [Cloud Storage buckets enumerated by unfamiliar user identities](./src/5.30/5.30.md)| Audit Logs - Data Access| :white_check_mark:| :white_check_mark:| [T1530](https://attack.mitre.org/techniques/T1530/ "Data from Cloud Storage Object") |
 | 5.31| [Cloud Storage objects accessed from a new IP](./src/5.31/5.31.md)| Audit Logs - Data Access| :white_check_mark:| :white_check_mark:| [T1530](https://attack.mitre.org/techniques/T1530/ "Data from Cloud Storage Object") |
@@ -78,7 +80,6 @@ To learn more about the variety of Google Cloud logs, how to enable and natively
 | 6.30| [Virus or malware detected by Cloud IDS](./src/6.30/6.30.md)| Cloud IDS Threat Logs| | :white_check_mark:| [T1059](https://attack.mitre.org/techniques/T1059/ "Command and Scripting Interpreter") |
 | 6.31| [Traffic sessions of high severity threats detected by Cloud IDS](./src/6.31/6.31.md)| Cloud IDS Threat Logs, Cloud IDS Traffic Logs| | :white_check_mark:| [T1071](https://attack.mitre.org/techniques/T1071/ "Application Layer Protocol") |
 | 6.40| [Top 10 DNS queried domains](./src/6.40/6.40.md)| Cloud DNS Logs| :white_check_mark:| :white_check_mark:| [T1071.004](https://attack.mitre.org/techniques/T1071/004/ "Command and Scripting Interpreter (Unix Shell)") |
-
 
 ## Support
 
