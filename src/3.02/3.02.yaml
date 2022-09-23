@@ -1,0 +1,25 @@
+---
+id: '3.02'
+name: vpc_flows_logging_disabled
+# Refer to corresponding queries: 3_02_vpc_flows_logging_disabled.{sql|yaral|...}
+display_name: Disabling VPC Flows logging
+category: Cloud Provisioning Activity
+severity: Medium
+attack_mapping:
+  - technique: T1562.008
+    title: Impair Defenses (Disable Cloud Logs)
+    link: https://attack.mitre.org/techniques/T1562/008/
+description: |
+  Disabling VPC Flows logging.
+
+sources:
+  - Audit Logs - Admin Activity
+
+use_cases:
+  - Detect
+  - Audit
+
+test:
+
+samples:
+  - google.v1.compute.subnetworks.patch-disableFlowLogs
