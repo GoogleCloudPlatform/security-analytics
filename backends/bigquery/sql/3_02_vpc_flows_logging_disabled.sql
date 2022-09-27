@@ -23,4 +23,4 @@ SELECT
 FROM `[MY_PROJECT_ID].[MY_DATASET_ID].cloudaudit_googleapis_com_activity`
 WHERE
 protopayload_auditlog.methodName = "v1.compute.subnetworks.patch" 
-AND protopayload_auditlog.request.enableFlowLogs = "false"
+AND JSON_VALUE(protopayload_auditlog.requestJson, "$.logConfig.enable") = "false"
