@@ -26,7 +26,7 @@ test:
       description: test subnet to modify VPC Flow logging
       type: String
       default: test-subnet
-  command:
+  command: |
     gcloud compute networks subnets update #{subnet} --no-enable-flow-log
   prerequisites:
     - title: 'Install gcloud'
