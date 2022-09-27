@@ -16,6 +16,7 @@
 | 2.40| [User access added (or removed) from IAP-protected HTTPS services](./src/2.40/2.40.md)| Audit Logs - Admin Activity| :white_check_mark:| :white_check_mark:| [T1484.002](https://attack.mitre.org/techniques/T1484/002/ "Domain Policy Modification (Domain Trust Modification)") |
 | <div id="cloud-provisioning-activity">3</div> | :building_construction: **Cloud Provisioning Activity**
 | 3.01| [Changes made to logging settings](./src/3.01/3.01.md)| Audit Logs - Admin Activity| :white_check_mark:| :white_check_mark:| [T1562.008](https://attack.mitre.org/techniques/T1562/008/ "Impair Defenses (Disable Cloud Logs)") |
+| 3.02| [Disabling VPC Flows logging](./src/3.02/3.02.md)| Audit Logs - Admin Activity| | :white_check_mark:| [T1562.008](https://attack.mitre.org/techniques/T1562/008/ "Impair Defenses (Disable Cloud Logs)") |
 | 3.11| [Unusual number of firewall rules modified in the last 7 days](./src/3.11/3.11.md)| Audit Logs - Admin Activity| | :white_check_mark:| [T1562.007](https://attack.mitre.org/techniques/T1562/007/ "Impair Defenses (Disable or Modify Cloud Firewall)") |
 | 3.12| [Firewall rules modified or deleted in the last 24 hrs](./src/3.12/3.12.md)| Audit Logs - Admin Activity| :white_check_mark:| :white_check_mark:| [T1562.007](https://attack.mitre.org/techniques/T1562/007/ "Impair Defenses (Disable or Modify Cloud Firewall)") |
 | 3.13| [VPN tunnels created or deleted](./src/3.13/3.13.md)| Audit Logs - Admin Activity| :white_check_mark:| :white_check_mark:| [T1133](https://attack.mitre.org/techniques/T1133/ "External Remote Services") |
