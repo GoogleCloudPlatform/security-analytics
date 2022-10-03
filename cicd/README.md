@@ -2,15 +2,15 @@
 
 ## Overview
 
-This folder contains Python helper scripts to gather rules from a local folder and from the remote
+The [`python` folder](./python/) contains Python helper scripts to gather rules from a local folder and from the remote
 Chronicle instance, and to compare them, uploading changed or new files to the Chronicle instance.
 
 ## Pre-installation
 
-Pre-requisites can be installed by running `pip3 install -r requirements.txt`
+Pre-requisites can be installed by copying the files from the folder locally, and running `pip3 install -r requirements.txt`
 
-To run this script you will need a Chronicle API Service Account JSON file. This can be 
-obtained from your Google Chronicle account team.
+To run this script you will need a Chronicle API Service Account JSON file. This can be obtained from your Google Chronicle 
+account team.
 
 ## Usage
 
@@ -69,16 +69,18 @@ Example output from making changes (including `-m` flag):
 
 ## Using in a GitHub Actions pipeline
 
-The `chronicle-rules-cicd.yaml` file located in the `github-actions` folder in this repository 
-contains an example of using this Python script to push updates or new detection content to a 
-Chronicle instance. There are two variables to edit in this script:
+The [`chronicle-rules-cicd.yaml`](./github-actions/chronicle-rules-cicd.yml) file located in the 
+[`github-actions` folder](./github-actions/) in this repository contains an example of using this 
+Python script to push updates or new detection content to a Chronicle instance. There are two variables 
+to edit in this script:
 
 Variable Name | Description | Example Value
 ---|---|---
 `region` | The region for your Chronicle instance | us
 `rules_path` | The relative path from the root of the repository containing the YARA-L rules to work with | rules/yaral
 
-These should be modified for your environment, and the file should be placed in a `.github/workflow` folder.
+These should be modified for your environment, and the file should be placed in a `.github/workflow` folder in the root of your
+repository.
 
 In addition to this, the pipeline file requires a secret to be created on your GitHub repository. Details for creating this
 can be found [here](https://docs.github.com/en/actions/security-guides/encrypted-secrets). The secret in this case should 

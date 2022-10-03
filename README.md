@@ -82,6 +82,11 @@ To learn more about the variety of Google Cloud logs, how to enable and natively
 | 6.31| [Traffic sessions of high severity threats detected by Cloud IDS](./src/6.31/6.31.md)| Cloud IDS Threat Logs, Cloud IDS Traffic Logs| | :white_check_mark:| [T1071](https://attack.mitre.org/techniques/T1071/ "Application Layer Protocol") |
 | 6.40| [Top 10 DNS queried domains](./src/6.40/6.40.md)| Cloud DNS Logs| :white_check_mark:| :white_check_mark:| [T1071.004](https://attack.mitre.org/techniques/T1071/004/ "Command and Scripting Interpreter (Unix Shell)") |
 
+## Continuous Integration / Continuous Delivery Pipelines
+
+The [`cicd` folder](./cicd/) contains a set of scripts which can help you with storing detection rules as code and testing/deploying updates you and 
+your team make in an automated fashion. More details can be found in the contained [readme file](./cicd/README.md).
+
 ## Support
 
 This is not an officially supported Google product. Queries, rules and other assets in Community Security Analytics (CSA) are community-supported. Please don't hesitate to [open a GitHub issue](https://github.com/GoogleCloudPlatform/security-analytics/issues) if you have any question or a feature request.
