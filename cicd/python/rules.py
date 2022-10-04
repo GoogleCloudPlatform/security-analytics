@@ -8,6 +8,7 @@ import argparse
 from typing import Optional
 from typing import Sequence
 import json
+import os
 
 API_BASE_URL='https://backstory.googleapis.com'
 SCOPES = ['https://www.googleapis.com/auth/chronicle-backstory']
@@ -19,6 +20,14 @@ def get_http_client_from_file(service_account_file):
   return requests.AuthorizedSession(credentials)
 
 def get_http_client_from_sa_info(service_account_info):
+  service_account_info = os.environ.get("SA_CREDENTIAL", "Not Found")
+  # Create a credential using Google Developer Service Account Credential and Chronicle API scope.
+  credentials = service_account.Credentials.from_service_account_info(json.loads(service_account_info), scopes=SCOPES)
+  # Build an HTTP client to make authorized OAuth requests.
+  return requests.AuthorizedSession(credentials)
+
+def get_http_client_from_sa_env(env_var_name):
+  service_account_info = os.environ.get(env_var_name)
   # Create a credential using Google Developer Service Account Credential and Chronicle API scope.
   credentials = service_account.Credentials.from_service_account_info(json.loads(service_account_info), scopes=SCOPES)
   # Build an HTTP client to make authorized OAuth requests.
@@ -32,6 +41,8 @@ def initialize_command_line_args(
     "-c", "--credentials_file", type=str, help="path to credentials file")
   parser.add_argument(
     "-i", "--credentials_info", type=str, help="service account credentials info (alternative to file)")
+  parser.add_argument(
+    "-e", "--credentials_env", type=str, help="service account credentials info stored in environment variable")
   parser.add_argument(
     "-l", "--local_path", type=str, required=True, help="local rules path")
   parser.add_argument(
@@ -230,6 +241,8 @@ if __name__ == "__main__":
     session = get_http_client_from_file(cli.credentials_file)
   elif cli.credentials_info:
     session = get_http_client_from_sa_info(cli.credentials_info)
+  elif cli.credentials_env:
+    session = get_http_client_from_sa_env(cli.credentials_env)
   else:
     print("No credential passed")
   if not cli.make_changes:
