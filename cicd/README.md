@@ -49,6 +49,9 @@ optional arguments:
                         Chronicle instance region (leave blank for US)
 ```
 
+NOTE: if you provide more than one of `CREDENTIALS_FILE`, `CREDENTIALS_INFO`, `CREDENTIALS_ENV`, then the 
+order of precedence will be file -> info -> environment variable.
+
 Example output from reporting (omitting `-m` flag):
 
 ```json
@@ -72,7 +75,7 @@ Example output from making changes (including `-m` flag):
 
 ## Using in a GitHub Actions pipeline
 
-The [`chronicle-rules-cicd.yaml`](./github-actions/chronicle-rules-cicd.yml) file located in the 
+The [`chronicle-rules-cicd.yaml`](./github-actions/chronicle-rules-cicd.yaml) file located in the 
 [`github-actions` folder](./github-actions/) in this repository contains an example of using this 
 Python script to push updates or new detection content to a Chronicle instance. There are two variables 
 to edit in this script:
@@ -122,7 +125,7 @@ Substitution Name | Description | Example Value
 ---|---|---
 `_REGION` | The region for your Chronicle instance | us
 `_RULES_PATH` | The relative path from the root of the repository containing the YARA-L rules to work with | rules/yaral
-`_PROJECT_ID` | The project ID containing the secret created earlier | 55528396123
+`_PROJECT_ID` | The project ID containing the secret created earlier | my-project-id
 `_SECRET_NAME` | The name of the secret created earlier | bk_api_credential
 
 More detail on substitutions can be found [here](https://cloud.google.com/build/docs/configuring-builds/substitute-variable-values#using_user-defined_substitutions).
