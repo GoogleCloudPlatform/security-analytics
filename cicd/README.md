@@ -75,7 +75,7 @@ Example output from making changes (including `-m` flag):
 
 ## Using in a GitHub Actions pipeline
 
-The [`chronicle-rules-cicd.yaml`](./github-actions/chronicle-rules-cicd.yaml) file located in the 
+The [`chronicle-rules-cicd.yml`](./github-actions/chronicle-rules-cicd.yml) file located in the 
 [`github-actions` folder](./github-actions/) in this repository contains an example of using this 
 Python script to push updates or new detection content to a Chronicle instance. There are two variables 
 to edit in this script:
