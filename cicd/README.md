@@ -149,6 +149,8 @@ Variable Name | Description | Example Value
 
 These should be modified for your environment, and the file should be placed in the root of your repository.
 
+The pool name value should also be updated in the pipelines file, to match the agent pool you want to use to run the code.
+
 In addition to this, the pipeline file requires a secret to be created on your Azure DevOps project. Details for creating this
 can be found [here](https://learn.microsoft.com/en-us/azure/devops/pipelines/process/set-secret-variables?view=azure-devops&tabs=yaml%2Cbash). The secret in this case should be named `SA_CREDENTIAL`. The value is the contents of your Chronicle API key, which can just be
 copy/pasted into the UI here from the JSON file containing the key.
