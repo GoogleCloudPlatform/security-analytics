@@ -131,3 +131,27 @@ Substitution Name | Description | Example Value
 More detail on substitutions can be found [here](https://cloud.google.com/build/docs/configuring-builds/substitute-variable-values#using_user-defined_substitutions).
 
 The cloudbuild.yaml file should be placed in the root of your repository.
+
+## Using in a Azure DevOps pipeline
+
+The [`azure-pipelines.yml`](./azure-devops/azure-pipelines.yml) file located in the 
+[`azure-devops` folder](./azure-devops/) in this repository contains an example of using this 
+Python script to push updates or new detection content to a Chronicle instance using Azure DevOps
+Pipelines.
+
+There are two variables 
+to edit in this script:
+
+Variable Name | Description | Example Value
+---|---|---
+`region` | The region for your Chronicle instance | us
+`rules_path` | The relative path from the root of the repository containing the YARA-L rules to work with | rules/yaral
+
+These should be modified for your environment, and the file should be placed in the root of your repository.
+
+In addition to this, the pipeline file requires a secret to be created on your Azure DevOps project. Details for creating this
+can be found [here](https://learn.microsoft.com/en-us/azure/devops/pipelines/process/set-secret-variables?view=azure-devops&tabs=yaml%2Cbash). The secret in this case should be named `SA_CREDENTIAL`. The value is the contents of your Chronicle API key, which can just be
+copy/pasted into the UI here from the JSON file containing the key.
+
+Now whenever a change is written to the repository the contents of the passed rules folder will be checked and updated/uploaded
+on the Chronicle instance.
