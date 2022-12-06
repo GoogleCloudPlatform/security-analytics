@@ -24,4 +24,7 @@ FROM
   `[MY_PROJECT_ID].[MY_DATASET_ID]._AllLogs`
 WHERE
   proto_payload.audit_log.method_name = "v1.compute.subnetworks.patch" 
-AND JSON_VALUE(proto_payload.audit_log.request, "$.logConfig.enable") = "false"
+  AND (
+    JSON_VALUE(proto_payload.audit_log.request, "$.logConfig.enable") = "false"
+    OR JSON_VALUE(proto_payload.audit_log.request, "$.enableFlowLogs") = "false"
+  )
