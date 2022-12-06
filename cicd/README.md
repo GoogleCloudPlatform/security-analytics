@@ -153,7 +153,7 @@ The pool name value should also be updated in the pipelines file, to match the a
 
 In addition to this, the pipeline file requires a secret to be created on your Azure DevOps project. Details for creating this
 can be found [here](https://learn.microsoft.com/en-us/azure/devops/pipelines/process/set-secret-variables?view=azure-devops&tabs=yaml%2Cbash). The secret in this case should be named `SA_CREDENTIAL`. The value is the contents of your Chronicle API key, which can just be
-copy/pasted into the UI here from the JSON file containing the key.
+copy/pasted into the UI, shown in the linked document above, from the JSON file containing the key.
 
 Now whenever a change is written to the repository the contents of the passed rules folder will be checked and updated/uploaded
 on the Chronicle instance.
