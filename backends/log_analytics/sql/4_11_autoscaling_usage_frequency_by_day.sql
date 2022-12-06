@@ -23,7 +23,7 @@ FROM
 WHERE
   resource.type = "gce_instance_group_manager"
   AND timestamp >= TIMESTAMP_SUB(CURRENT_TIMESTAMP(), INTERVAL 30 DAY)
-  AND log_name LIKE "%cloudaudit.googleapis.com%"
+  AND log_id = "cloudaudit.googleapis.com/activity"
 GROUP BY
   1, 2
 ORDER BY
