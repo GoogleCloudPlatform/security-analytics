@@ -21,6 +21,7 @@ SELECT
   proto_payload.audit_log.resource_name,
   proto_payload.audit_log.method_name
 FROM 
-  `[MY_PROJECT_ID].[MY_DATASET_ID]._AllLogs`,
+  `[MY_PROJECT_ID].[MY_DATASET_ID]._AllLogs`
 WHERE
   proto_payload.audit_log.service_name = "logging.googleapis.com"
+  AND log_name LIKE "%cloudaudit.googleapis.com%2Factivity"
