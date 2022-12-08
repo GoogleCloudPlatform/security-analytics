@@ -21,8 +21,7 @@ SELECT
   CAST(JSON_VALUE(proto_payload.audit_log.metadata, "$.jobChange.job.jobStats.queryStats.totalBilledBytes") AS INT64) AS totalBilledBytes,
   JSON_VALUE(proto_payload.audit_log.metadata, "$.jobChange.job.jobConfig.queryConfig.query") AS query
 FROM
-  #`[MY_PROJECT_ID].[MY_DATASET_ID].cloudaudit_googleapis_com_data_access`
-  `logs_next21_US._AllLogs`
+  `[MY_PROJECT_ID].[MY_DATASET_ID].cloudaudit_googleapis_com_data_access`
 WHERE
   timestamp >= TIMESTAMP_SUB(CURRENT_TIMESTAMP(), INTERVAL 30 DAY)
   AND operation.last = TRUE 
