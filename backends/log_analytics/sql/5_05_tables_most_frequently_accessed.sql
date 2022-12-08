@@ -17,18 +17,21 @@
 SELECT
   proto_payload.audit_log.resource_name,
   proto_payload.audit_log.authentication_info.principal_email,
-  COUNTIF(JSON_VALUE(proto_payload.audit_log.metadata.tableDataRead) IS NOT NULL) AS dataReadEvents,
-  COUNTIF(JSON_VALUE(proto_payload.audit_log.metadata.tableDataChange) IS NOT NULL) AS dataChangeEvents,
+  COUNTIF(JSON_VALUE(proto_payload.audit_log.metadata, "$.tableDataRead") IS NOT NULL) AS dataReadEvents,
+  COUNTIF(JSON_VALUE(proto_payload.audit_log.metadata, "$.tableDataChange") IS NOT NULL) AS dataChangeEvents,
   COUNT(*) AS totalEvents
 FROM 
   `[MY_PROJECT_ID].[MY_DATASET_ID]._AllLogs`
 WHERE
   STARTS_WITH(resource.type, 'bigquery') IS TRUE
-  AND (JSON_VALUE(proto_payload.audit_log.metadata.tableDataRead) IS NOT NULL
-    OR JSON_VALUE(proto_payload.audit_log.metadata.tableDataChange) IS NOT NULL)
+  AND (JSON_VALUE(proto_payload.audit_log.metadata, "$.tableDataRead") IS NOT NULL
+    OR JSON_VALUE(proto_payload.audit_log.metadata, "$.tableDataChange") IS NOT NULL)
   AND timestamp >= TIMESTAMP_SUB(CURRENT_TIMESTAMP(), INTERVAL 30 DAY)
 GROUP BY
   1, 2
 ORDER BY
   5 DESC, 1, 2
 LIMIT 1000
+
+
+proto_payload.audit_log.metadata, "$.jobChange")
