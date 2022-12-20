@@ -22,10 +22,11 @@ SELECT
   proto_payload.audit_log.resource_name,
   JSON_VALUE(proto_payload.audit_log.metadata, "$.jobChange.job.jobConfig.queryConfig.query") AS query
 FROM
-  `[MY_PROJECT_ID].[MY_DATASET_ID].cloudaudit_googleapis_com_data_access`
+  `[MY_PROJECT_ID].[MY_DATASET_ID]._AllLogs`
 WHERE
   timestamp >= TIMESTAMP_SUB(CURRENT_TIMESTAMP(), INTERVAL 30 DAY)
   AND resource.type LIKE "bigquery%"
+  AND log_id="cloudaudit.googleapis.com/data_access"
   AND (
     (JSON_VALUE(proto_payload.audit_log.metadata, "$.jobChange.job.jobConfig.type") = 'QUERY'
       AND JSON_VALUE(proto_payload.audit_log.metadata, "$.jobChange.job.jobConfig.queryConfig.statementType") IN (
