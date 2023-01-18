@@ -26,6 +26,8 @@ To learn more about the variety of Google Cloud logs, how to enable and natively
 **Caution:** CSA is not meant to be a comprehensive set of threat detections, but a collection of community-contributed samples to get you started with detective controls. Use CSA in your threat detection and response capabilities (e.g. [Security Command Center](https://cloud.google.com/security-command-center), Chronicle, BigQuery, Siemplify, or third-party SIEM) in conjunction with threat prevention capabilities (e.g. [Security Command Center](https://cloud.google.com/security-command-center), [Cloud Armor](https://cloud.google.com/armor), [BeyondCorp](https://cloud.google.com/beyondcorp)). To learn more about Google’s approach to modern Security Operations, check out the [Autonomic Security Operations whitepaper](https://services.google.com/fh/files/misc/googlecloud_autonomicsecurityoperations_soc10x.pdf).
 
 ## Security Analytics Use Cases
+![Security Monitoring](./assets/gcp_security_mon.png)
+
 | # | Cloud Security Threat | Log Source | Audit | Detect | ATT&CK&reg; Techniques |
 |---|---|---|:-:|:-:|:-:|
 | <div id="login-access-patterns">1</div> | :vertical_traffic_light: **Login & Access Patterns**
