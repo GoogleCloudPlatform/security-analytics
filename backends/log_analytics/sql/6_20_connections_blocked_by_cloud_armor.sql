@@ -15,16 +15,17 @@
  */
 
 SELECT
-  TIMESTAMP_TRUNC(timestamp, DAY) AS day,
-  proto_payload.audit_log.method_name,
-  COUNT(*) AS counter
-FROM
-   `[MY_PROJECT_ID].[MY_DATASET_ID]._AllLogs`
+  timestamp,
+  http_request.remote_ip,
+  http_request.request_method,
+  http_request.status,
+  JSON_VALUE(json_payload.enforcedSecurityPolicy.name),
+  JSON_VALUE(resource.labels.backend_service_name),
+  http_request.request_url,
+FROM `[MY_PROJECT_ID].[MY_DATASET_ID]._AllLogs`
 WHERE
-  resource.type = "gce_instance_group_manager"
-  AND timestamp >= TIMESTAMP_SUB(CURRENT_TIMESTAMP(), INTERVAL 30 DAY)
-  AND log_id = "cloudaudit.googleapis.com/activity"
-GROUP BY
-  1, 2
+  timestamp >= TIMESTAMP_SUB(CURRENT_TIMESTAMP(), INTERVAL 30 DAY)
+  AND resource.type="http_load_balancer"
+  AND JSON_VALUE(json_payload.statusDetails) = "denied_by_security_policy"
 ORDER BY
-  1, 2
+  timestamp DESC

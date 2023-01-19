@@ -15,7 +15,6 @@
  */
 
 SELECT
-  ANY_VALUE(_TABLE_SUFFIX),
   protopayload_auditlog.methodName,
   protopayload_auditlog.serviceName,
   resource.type,

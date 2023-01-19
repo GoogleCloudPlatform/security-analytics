@@ -15,16 +15,18 @@
  */
 
 SELECT
-  TIMESTAMP_TRUNC(timestamp, DAY) AS day,
   proto_payload.audit_log.method_name,
+  proto_payload.audit_log.service_name,
+  resource.type,
   COUNT(*) AS counter
-FROM
-   `[MY_PROJECT_ID].[MY_DATASET_ID]._AllLogs`
+FROM `[MY_PROJECT_ID].[MY_DATASET_ID]._AllLogs`
 WHERE
-  resource.type = "gce_instance_group_manager"
-  AND timestamp >= TIMESTAMP_SUB(CURRENT_TIMESTAMP(), INTERVAL 30 DAY)
-  AND log_id = "cloudaudit.googleapis.com/activity"
+  timestamp >= TIMESTAMP_SUB(CURRENT_TIMESTAMP(), INTERVAL 30 DAY)
+  AND log_id="cloudaudit.googleapis.com/data_access"
 GROUP BY
-  1, 2
+  proto_payload.audit_log.method_name,
+  proto_payload.audit_log.service_name,
+  resource.type,
 ORDER BY
-  1, 2
+  counter DESC
+LIMIT 100
