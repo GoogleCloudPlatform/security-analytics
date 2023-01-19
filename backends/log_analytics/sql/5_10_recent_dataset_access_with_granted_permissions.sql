@@ -24,13 +24,13 @@ SELECT
   SPLIT(proto_payload.audit_log.resource_name, '/')[SAFE_OFFSET(1)] AS referenced_project,
   SPLIT(proto_payload.audit_log.resource_name, '/')[SAFE_OFFSET(3)] AS referenced_dataset,
   SPLIT(proto_payload.audit_log.resource_name, '/')[SAFE_OFFSET(5)] AS referenced_table,
-  ARRAY_LENGTH(SPLIT(JSON_VALUE(JSON_EXTRACT(proto_payload.audit_log.metadata, '$.tableDataRead'), '$.fields'), ','))  as num_fields,
-  SPLIT(JSON_VALUE(JSON_EXTRACT(proto_payload.audit_log.metadata, '$.tableDataRead'), '$.fields'),",") as fields
+  JSON_VALUE_ARRAY(proto_payload.audit_log.metadata.tableDataRead.fields) as fields,
+  ARRAY_LENGTH(JSON_VALUE_ARRAY(proto_payload.audit_log.metadata.tableDataRead.fields))  as num_fields,
 FROM `[MY_PROJECT_ID].[MY_DATASET_ID]._AllLogs` As data_access,
   UNNEST(proto_payload.audit_log.authorization_info) AS auth
 WHERE
   log_id="cloudaudit.googleapis.com/data_access"
   AND proto_payload.audit_log.method_name = "google.cloud.bigquery.v2.JobService.InsertJob"
   AND data_access.resource.type = 'bigquery_dataset'
-  AND JSON_VALUE(JSON_EXTRACT(proto_payload.audit_log.metadata, '$.tableDataRead'), '$.reason') = "JOB"
+  AND JSON_VALUE(proto_payload.audit_log.metadata.tableDataRead.reason) = "JOB"
   AND timestamp >= TIMESTAMP_SUB(CURRENT_TIMESTAMP(), INTERVAL 30 DAY)

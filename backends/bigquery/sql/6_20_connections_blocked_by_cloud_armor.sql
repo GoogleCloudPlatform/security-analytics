@@ -18,7 +18,8 @@ SELECT
   timestamp,
   httpRequest.remoteIp,
   httpRequest.requestMethod,
-  httpRequest.status,jsonpayload_type_loadbalancerlogentry.enforcedsecuritypolicy.name,
+  httpRequest.status,
+  jsonpayload_type_loadbalancerlogentry.enforcedsecuritypolicy.name,
   resource.labels.backend_service_name,
   httpRequest.requestUrl,
 FROM `[MY_PROJECT_ID].[MY_DATASET_ID].requests`
