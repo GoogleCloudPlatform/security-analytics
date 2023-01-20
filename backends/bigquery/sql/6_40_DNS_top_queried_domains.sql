@@ -16,7 +16,7 @@
 
 SELECT
  jsonPayload.queryname,
- COUNT(jsonPayload.queryname) AS TotalQueries
+ COUNT(*) AS TotalQueries
 FROM
  `[MY_PROJECT_ID].[MY_DATASET_ID].dns_googleapis_com_dns_queries`
 WHERE
