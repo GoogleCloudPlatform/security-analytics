@@ -17,7 +17,8 @@
 SELECT
   timestamp,
   proto_payload.audit_log.authentication_info.principal_email as principal_email,
-  JSON_VALUE(proto_payload.audit_log.request_metadata.caller_ip),
+  proto_payload.audit_log.request_metadata.caller_ip,
+  proto_payload.audit_log.request_metadata.caller_supplied_user_agent,
   CAST(JSON_VALUE(proto_payload.audit_log.metadata, "$.jobChange.job.jobStats.queryStats.totalBilledBytes") AS INT64) AS totalBilledBytes,
   JSON_VALUE(proto_payload.audit_log.metadata, "$.jobChange.job.jobConfig.queryConfig.query") AS query
 FROM

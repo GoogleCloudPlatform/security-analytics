@@ -17,7 +17,8 @@
 SELECT
   timestamp,
   proto_payload.audit_log.authentication_info.principal_email as principal_email,
-  JSON_VALUE(proto_payload.audit_log.request_metadata.caller_ip),
+  proto_payload.audit_log.request_metadata.caller_ip,
+  proto_payload.audit_log.request_metadata.caller_supplied_user_agent,
   proto_payload.audit_log.method_name,
   proto_payload.audit_log.resource_name,
   JSON_VALUE(proto_payload.audit_log.metadata, "$.jobChange.job.jobConfig.queryConfig.query") AS query
