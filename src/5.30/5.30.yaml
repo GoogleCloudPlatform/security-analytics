@@ -20,6 +20,13 @@ use_cases:
   - Detect
 
 test:
+  description: |
+    List all buckets in a project.
+  command: |
+    gsutil ls
+  prerequisites:
+    - title: 'Install gsutil (installed as part of Google Cloud CLI)'
+      link: 'https://cloud.google.com/sdk/docs/install'
 
 samples:
 
