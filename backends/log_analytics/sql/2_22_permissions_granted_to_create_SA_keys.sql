@@ -15,20 +15,28 @@
  */
 
 SELECT
- timestamp,
- log_name,
- proto_payload.audit_log.authentication_info.principal_email,
- proto_payload.audit_log.method_name,
- proto_payload.audit_log.resource_name,
- bindingDelta
+  timestamp,
+  proto_payload.audit_log.authentication_info.principal_email as grantor,
+  JSON_VALUE(bindingDelta.member) as grantee,
+  JSON_VALUE(bindingDelta.role) as role,
+  proto_payload.audit_log.resource_name,
+  proto_payload.audit_log.method_name
 FROM
- `[MY_PROJECT_ID].[MY_DATASET_ID]._AllLogs`,
+  `[MY_PROJECT_ID].[MY_DATASET_ID]._AllLogs`,
   UNNEST(JSON_QUERY_ARRAY(proto_payload.audit_log.service_data.policyDelta.bindingDeltas)) AS bindingDelta
 WHERE
   timestamp >= TIMESTAMP_SUB(CURRENT_TIMESTAMP(), INTERVAL 180 DAY)
-  AND resource.type = "service_account"
-  AND proto_payload.audit_log.method_name LIKE "google.iam.admin.%.SetIAMPolicy"
-  AND JSON_VALUE(bindingDelta.action) = 'ADD'
-  AND JSON_VALUE(bindingDelta.role) IN (
-    'roles/iam.serviceAccountKeyAdmin'
+  -- AND log_id = "cloudaudit.googleapis.com/activity"
+  AND (
+    (resource.type = "service_account"
+    AND proto_payload.audit_log.method_name LIKE "google.iam.admin.%.SetIAMPolicy")
+    OR
+    (resource.type IN ("project", "folder", "organization")
+    AND proto_payload.audit_log.method_name = "SetIamPolicy")
   )
+  AND JSON_VALUE(bindingDelta.role) = 'roles/iam.serviceAccountKeyAdmin'
+  AND JSON_VALUE(bindingDelta.action) = 'ADD'
+  -- Principal (grantee) exclusions
+  AND JSON_VALUE(bindingDelta.member) NOT LIKE "%@example.com"
+ORDER BY
+  timestamp DESC
