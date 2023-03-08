@@ -19,14 +19,14 @@ SELECT
   proto_payload.audit_log.service_name,
   resource.type,
   COUNT(*) AS counter
-FROM `[MY_PROJECT_ID].[MY_DATASET_ID]._AllLogs`
+FROM `[MY_PROJECT_ID].[LOG_BUCKET_REGION]._Default._AllLogs`
 WHERE
   timestamp >= TIMESTAMP_SUB(CURRENT_TIMESTAMP(), INTERVAL 30 DAY)
   AND log_id="cloudaudit.googleapis.com/data_access"
 GROUP BY
   proto_payload.audit_log.method_name,
   proto_payload.audit_log.service_name,
-  resource.type,
+  resource.type
 ORDER BY
   counter DESC
 LIMIT 100
