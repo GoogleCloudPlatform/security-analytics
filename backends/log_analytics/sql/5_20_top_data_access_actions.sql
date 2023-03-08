@@ -19,7 +19,7 @@ SELECT
   proto_payload.audit_log.service_name,
   resource.type,
   COUNT(*) AS counter
-FROM `[MY_PROJECT_ID].[LOG_BUCKET_REGION]._Default._AllLogs`
+FROM `[MY_PROJECT_ID].[MY_LOG_BUCKET_REGION].[MY_LOG_BUCKET_NAME]._AllLogs`
 WHERE
   timestamp >= TIMESTAMP_SUB(CURRENT_TIMESTAMP(), INTERVAL 30 DAY)
   AND log_id="cloudaudit.googleapis.com/data_access"
