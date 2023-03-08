@@ -30,10 +30,14 @@ WHERE
   AND protopayload_auditlog.serviceName = 'storage.googleapis.com'
   AND protopayload_auditlog.requestMetadata.callerIp IS NOT NULL
   AND protopayload_auditlog.authenticationInfo.principalEmail NOT IN (
-    -- Exclusions
+    -- Actor exclusions
     "service-account-123456@developer.gserviceaccount.com",
     "user@example.com"
   )
+  AND (protopayload_auditlog.resourceName NOT IN (
+    -- Resource (bucket) exclusions
+    "projects/_/buckets/non-sensitive-bucket"
+  ) OR protopayload_auditlog.resourceName IS NULL)
 GROUP BY
   callerIp
 ORDER BY
