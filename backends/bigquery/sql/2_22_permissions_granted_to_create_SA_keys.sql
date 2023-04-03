@@ -14,15 +14,6 @@
  * limitations under the License.
  */
 
-WHERE
-  timestamp >= TIMESTAMP_SUB(CURRENT_TIMESTAMP(), INTERVAL 180 DAY)
-  AND resource.type="service_account"
-  AND protopayload_auditlog.methodName LIKE "google.iam.admin.%.SetIAMPolicy"
-  AND bindingDelta.action = 'ADD'
-  AND bindingDelta.role IN (
-    'roles/iam.serviceAccountKeyAdmin'
-  )
-
 SELECT
   timestamp,
   protopayload_auditlog.authenticationInfo.principalEmail as grantor,
