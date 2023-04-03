@@ -38,6 +38,3 @@ HAVING
   channel = 'Cloud Console'
 ORDER BY
   last_seen DESC;
-
-
-
