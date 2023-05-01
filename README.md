@@ -75,6 +75,7 @@ To learn more about the variety of Google Cloud logs, how to enable and natively
 | <div id="network-activity">6</div> | :zap: **Network Activity**
 | 6.01| [Hosts reaching out to many other hosts or ports per hour](./src/6.01/6.01.md)| VPC Flow Logs| :white_check_mark:| :white_check_mark:| [T1046](https://attack.mitre.org/techniques/T1046/ "Network Service Scanning") |
 | 6.10| [Connections from a new IP to an in-scope network](./src/6.10/6.10.md)| VPC Flow Logs| :white_check_mark:| :white_check_mark:| [T1018](https://attack.mitre.org/techniques/T1018/ "Remote System Discovery") |
+| 6.15| [List all IP addresses with any associated entities](./src/6.15/6.15.md)| VPC Flow Logs| :white_check_mark:| | [T1018](https://attack.mitre.org/techniques/T1018/ "Remote System Discovery"), [T1046](https://attack.mitre.org/techniques/T1046/ "Network Service Scanning") |
 | 6.20| [Connections blocked by Cloud Armor](./src/6.20/6.20.md)| HTTP(S) LB Logs| :white_check_mark:| :white_check_mark:| [T1071](https://attack.mitre.org/techniques/T1071/ "Application Layer Protocol") |
 | 6.21| [Log4j 2 vulnerability exploit attempts](./src/6.21/6.21.md)| HTTP(S) LB Logs| | :white_check_mark:| [T1190](https://attack.mitre.org/techniques/T1190/ "Exploit Public-Facing Application") |
 | 6.22| [Any remote IP addresses attemting to exploit Log4j 2 vulnerability?](./src/6.22/6.22.md)| HTTP(S) LB Logs| | :white_check_mark:| [T1190](https://attack.mitre.org/techniques/T1190/ "Exploit Public-Facing Application") |
