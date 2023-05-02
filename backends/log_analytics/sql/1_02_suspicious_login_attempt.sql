@@ -19,7 +19,7 @@ SELECT
   proto_payload.audit_log.authentication_info.principal_email,
   proto_payload.audit_log.request_metadata.caller_ip,
   proto_payload.audit_log.method_name, parameter
-FROM `[MY_PROJECT_ID].[MY_DATASET_ID]._AllLogs`,
+FROM `[MY_PROJECT_ID].[MY_LOG_BUCKET_REGION].[MY_LOG_BUCKET_NAME]._AllLogs`,
   UNNEST(JSON_QUERY_ARRAY(proto_payload.audit_log.metadata.event[0].parameter)) AS parameter
 WHERE
   timestamp >= TIMESTAMP_SUB(CURRENT_TIMESTAMP(), INTERVAL 60 DAY)
