@@ -34,5 +34,5 @@ WHERE
     SELECT * FROM UNNEST(JSON_QUERY_ARRAY(proto_payload.audit_log.metadata.event[0].parameter)) AS x
     WHERE
       JSON_VALUE(x.name) = "GROUP_EMAIL"
-      AND REGEXP_CONTAINS(JSON_VALUE(x.value), r'[admin|prod].*') -- Update regexp with other sensitive groups if applicable
+      AND REGEXP_CONTAINS(JSON_VALUE(x.value), r'(admin|prod).*') -- Update regexp with other sensitive groups if applicable
   )
