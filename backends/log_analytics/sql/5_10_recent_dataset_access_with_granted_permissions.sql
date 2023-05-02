@@ -26,7 +26,7 @@ SELECT
   SPLIT(proto_payload.audit_log.resource_name, '/')[SAFE_OFFSET(5)] AS referenced_table,
   JSON_VALUE_ARRAY(proto_payload.audit_log.metadata.tableDataRead.fields) as fields,
   ARRAY_LENGTH(JSON_VALUE_ARRAY(proto_payload.audit_log.metadata.tableDataRead.fields))  as num_fields,
-FROM `[MY_PROJECT_ID].[MY_DATASET_ID]._AllLogs` As data_access,
+FROM `[MY_PROJECT_ID].[MY_LOG_BUCKET_REGION].[MY_LOG_BUCKET_NAME]._AllLogs` As data_access,
   UNNEST(proto_payload.audit_log.authorization_info) AS auth
 WHERE
   log_id="cloudaudit.googleapis.com/data_access"
