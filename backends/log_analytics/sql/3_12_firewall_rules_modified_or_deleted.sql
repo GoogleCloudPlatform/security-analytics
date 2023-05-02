@@ -19,7 +19,7 @@ SELECT
   proto_payload.audit_log.method_name,
   proto_payload.audit_log.resource_name
 FROM 
-  `[MY_PROJECT_ID].[MY_DATASET_ID]._AllLogs`
+  `[MY_PROJECT_ID].[MY_LOG_BUCKET_REGION].[MY_LOG_BUCKET_NAME]._AllLogs`
 WHERE
   timestamp >= TIMESTAMP_SUB(CURRENT_TIMESTAMP(), INTERVAL 1 DAY)
   AND log_name LIKE "%cloudaudit.googleapis.com%"
