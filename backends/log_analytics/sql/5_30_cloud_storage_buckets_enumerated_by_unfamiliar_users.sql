@@ -23,7 +23,7 @@ SELECT
   ARRAY_AGG(DISTINCT COALESCE(proto_payload.audit_log.resource_name, 'ALL')) as resource_names,
   ARRAY_AGG(DISTINCT proto_payload.audit_log.request_metadata.caller_supplied_user_agent IGNORE NULLS) as user_agents,
   COUNT(*) counter
-FROM `[MY_PROJECT_ID].[MY_DATASET_ID]._AllLogs`
+FROM `[MY_PROJECT_ID].[MY_LOG_BUCKET_REGION].[MY_LOG_BUCKET_NAME]._AllLogs`
 WHERE
   timestamp >= TIMESTAMP_SUB(CURRENT_TIMESTAMP(), INTERVAL 60 DAY)
   AND proto_payload.audit_log.service_name = 'storage.googleapis.com'

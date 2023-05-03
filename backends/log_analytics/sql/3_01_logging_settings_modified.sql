@@ -21,7 +21,7 @@ SELECT
   proto_payload.audit_log.resource_name,
   proto_payload.audit_log.method_name
 FROM 
-  `[MY_PROJECT_ID].[MY_DATASET_ID]._AllLogs`
+  `[MY_PROJECT_ID].[MY_LOG_BUCKET_REGION].[MY_LOG_BUCKET_NAME]._AllLogs`
 WHERE
   proto_payload.audit_log.service_name = "logging.googleapis.com"
   AND log_id = "cloudaudit.googleapis.com/activity"

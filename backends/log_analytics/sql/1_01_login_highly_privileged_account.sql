@@ -20,7 +20,7 @@ SELECT
   proto_payload.audit_log.method_name,
   proto_payload.audit_log.request_metadata.caller_ip,
   JSON_VALUE(proto_payload.audit_log.metadata.event[0].parameter[0].value) AS loginType
-FROM `[MY_PROJECT_ID].[MY_DATASET_ID]._AllLogs`
+FROM `[MY_PROJECT_ID].[MY_LOG_BUCKET_REGION].[MY_LOG_BUCKET_NAME]._AllLogs`
 WHERE
   timestamp >= TIMESTAMP_SUB(CURRENT_TIMESTAMP(), INTERVAL 60 DAY)
   AND proto_payload.audit_log IS NOT NULL

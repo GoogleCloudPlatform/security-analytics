@@ -31,7 +31,7 @@ SELECT
     JSON_VALUE(proto_payload.audit_log.metadata.ingressViolations[0].servicePerimeter),
     JSON_VALUE(proto_payload.audit_log.metadata.egressViolations[0].servicePerimeter)
   ) AS  servicePerimeter
-FROM `[MY_PROJECT_ID].[MY_DATASET_ID]._AllLogs`
+FROM `[MY_PROJECT_ID].[MY_LOG_BUCKET_REGION].[MY_LOG_BUCKET_NAME]._AllLogs`
 WHERE
   timestamp >= TIMESTAMP_SUB(CURRENT_TIMESTAMP(), INTERVAL 30 DAY)
   AND proto_payload.audit_log IS NOT NULL

@@ -25,7 +25,7 @@ SELECT
   proto_payload.audit_log.method_name as method,
   proto_payload.audit_log.status.message as status,
   auth.granted as granted
-FROM `[MY_PROJECT_ID].[MY_DATASET_ID]._AllLogs`,
+FROM `[MY_PROJECT_ID].[MY_LOG_BUCKET_REGION].[MY_LOG_BUCKET_NAME]._AllLogs`,
   UNNEST(proto_payload.audit_log.authorization_info) as auth
 WHERE
   log_id="cloudaudit.googleapis.com/activity"

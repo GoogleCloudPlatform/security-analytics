@@ -20,7 +20,7 @@ SELECT
   proto_payload.audit_log.resource_name,
   proto_payload.audit_log.method_name
 FROM 
-  `[MY_PROJECT_ID].[MY_DATASET_ID]._AllLogs`
+  `[MY_PROJECT_ID].[MY_LOG_BUCKET_REGION].[MY_LOG_BUCKET_NAME]._AllLogs`
 WHERE
   resource.type = "gce_instance"
   AND proto_payload.audit_log.method_name = "v1.compute.instances.delete"

@@ -22,7 +22,7 @@ SELECT
   ARRAY_AGG(DISTINCT JSON_VALUE(resource.labels.subnetwork_name)) as subnetNames,
   ARRAY_AGG(DISTINCT JSON_VALUE(json_payload.dest_instance.vm_name)) as vmNames,
   COUNT(*) numSamples
-FROM `[MY_PROJECT_ID].[MY_DATASET_ID]._AllLogs`
+FROM `[MY_PROJECT_ID].[MY_LOG_BUCKET_REGION].[MY_LOG_BUCKET_NAME]._AllLogs`
 WHERE
   timestamp >= TIMESTAMP_SUB(CURRENT_TIMESTAMP(), INTERVAL 60 DAY)
   AND JSON_VALUE(json_payload.reporter) = 'DEST'
