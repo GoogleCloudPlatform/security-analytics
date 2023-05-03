@@ -36,7 +36,7 @@ FROM (
       EXTRACT(DATE FROM timestamp) AS day,
       ARRAY_AGG(DISTINCT proto_payload.audit_log.method_name IGNORE NULLS) AS actions,
       COUNT(*) AS counter
-    FROM `[MY_PROJECT_ID].[MY_DATASET_ID]._AllLogs`
+    FROM `[MY_PROJECT_ID].[MY_LOG_BUCKET_REGION].[MY_LOG_BUCKET_NAME]._AllLogs`
     WHERE
       timestamp >= TIMESTAMP_SUB(CURRENT_TIMESTAMP(), INTERVAL 60 DAY)
       AND proto_payload.audit_log.authentication_info.principal_email IS NOT NULL

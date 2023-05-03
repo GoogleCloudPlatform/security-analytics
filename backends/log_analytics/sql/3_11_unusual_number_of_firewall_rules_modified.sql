@@ -32,7 +32,7 @@ FROM (
       ARRAY_AGG(DISTINCT proto_payload.audit_log.method_name IGNORE NULLS) AS actions,
       ARRAY_AGG(DISTINCT proto_payload.audit_log.authentication_info.principal_email IGNORE NULLS) AS actors,
       COUNT(*) AS counter
-    FROM `[MY_PROJECT_ID].[MY_DATASET_ID]._AllLogs`
+    FROM `[MY_PROJECT_ID].[MY_LOG_BUCKET_REGION].[MY_LOG_BUCKET_NAME]._AllLogs`
     WHERE
       timestamp >= TIMESTAMP_SUB(CURRENT_TIMESTAMP(), INTERVAL 90 DAY)
       AND proto_payload.audit_log.method_name LIKE "v1.compute.firewalls.%"

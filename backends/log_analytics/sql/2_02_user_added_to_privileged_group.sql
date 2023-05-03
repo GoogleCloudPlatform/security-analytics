@@ -25,7 +25,7 @@ SELECT
   (SELECT JSON_VALUE(x.value)
    FROM UNNEST(JSON_QUERY_ARRAY(proto_payload.audit_log.metadata.event[0].parameter)) AS x
    WHERE JSON_VALUE(x.name) = "GROUP_EMAIL") AS group_email,
-FROM `[MY_PROJECT_ID].[MY_DATASET_ID]._AllLogs`
+FROM `[MY_PROJECT_ID].[MY_LOG_BUCKET_REGION].[MY_LOG_BUCKET_NAME]._AllLogs`
 WHERE
   timestamp >= TIMESTAMP_SUB(CURRENT_TIMESTAMP(), INTERVAL 120 DAY)
   AND proto_payload.audit_log.service_name = "admin.googleapis.com"

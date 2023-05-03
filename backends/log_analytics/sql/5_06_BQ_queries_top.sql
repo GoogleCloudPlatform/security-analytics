@@ -24,7 +24,7 @@ SELECT
    JSON_EXTRACT_ARRAY(proto_payload.audit_log.metadata, "$.jobInsertion.job.jobStats.queryStats.referencedTables"))) as tables,
   COUNT(*) AS counter
 FROM 
-  `[MY_PROJECT_ID].[MY_DATASET_ID]._AllLogs`
+  `[MY_PROJECT_ID].[MY_LOG_BUCKET_REGION].[MY_LOG_BUCKET_NAME]._AllLogs`
 WHERE
   (resource.type = 'bigquery_project' OR resource.type = 'bigquery_dataset')
   AND operation.last IS TRUE

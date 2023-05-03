@@ -21,7 +21,7 @@ SELECT
   COUNTIF(JSON_VALUE(proto_payload.audit_log.metadata, "$.tableDataChange") IS NOT NULL) AS dataChangeEvents,
   COUNT(*) AS totalEvents
 FROM 
-  `[MY_PROJECT_ID].[MY_DATASET_ID]._AllLogs`
+  `[MY_PROJECT_ID].[MY_LOG_BUCKET_REGION].[MY_LOG_BUCKET_NAME]._AllLogs`
 WHERE
   STARTS_WITH(resource.type, 'bigquery') IS TRUE
   AND (JSON_VALUE(proto_payload.audit_log.metadata, "$.tableDataRead") IS NOT NULL
