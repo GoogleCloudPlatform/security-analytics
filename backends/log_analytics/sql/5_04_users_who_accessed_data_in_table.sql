@@ -18,7 +18,7 @@ SELECT
   proto_payload.audit_log.authentication_info.principal_email,
   COUNT(*) AS COUNTER
 FROM 
-  `[MY_PROJECT_ID].[MY_DATASET_ID]._AllLogs`,
+  `[MY_PROJECT_ID].[MY_LOG_BUCKET_REGION].[MY_LOG_BUCKET_NAME]._AllLogs`,
   UNNEST(proto_payload.audit_log.authorization_info) authorization_info
 WHERE
   (proto_payload.audit_log.method_name = "google.cloud.bigquery.v2.JobService.InsertJob" OR

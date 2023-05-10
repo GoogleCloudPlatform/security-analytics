@@ -19,7 +19,7 @@ SELECT
   MIN(timestamp) AS earliest,
   MAX(timestamp) AS latest,
   count(*) AS attempts
-FROM `[MY_PROJECT_ID].[MY_DATASET_ID]._AllLogs`
+FROM `[MY_PROJECT_ID].[MY_LOG_BUCKET_REGION].[MY_LOG_BUCKET_NAME]._AllLogs`
 WHERE
   timestamp >= TIMESTAMP_SUB(CURRENT_TIMESTAMP(), INTERVAL 1 DAY)
   AND proto_payload.audit_log.service_name = "login.googleapis.com"

@@ -22,7 +22,7 @@ SELECT
   proto_payload.audit_log.resource_name,
   proto_payload.audit_log.method_name
 FROM
-  `[MY_PROJECT_ID].[MY_DATASET_ID]._AllLogs`,
+  `[MY_PROJECT_ID].[MY_LOG_BUCKET_REGION].[MY_LOG_BUCKET_NAME]._AllLogs`,
   UNNEST(JSON_QUERY_ARRAY(proto_payload.audit_log.service_data.policyDelta.bindingDeltas)) AS bindingDelta
 WHERE
   timestamp >= TIMESTAMP_SUB(CURRENT_TIMESTAMP(), INTERVAL 400 DAY)

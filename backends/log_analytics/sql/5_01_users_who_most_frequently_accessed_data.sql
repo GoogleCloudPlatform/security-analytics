@@ -18,12 +18,12 @@ SELECT
   proto_payload.audit_log.authentication_info.principal_email,
   COUNT(*) AS COUNTER
 FROM 
-   `[MY_PROJECT_ID].[MY_DATASET_ID]._AllLogs`
+   `[MY_PROJECT_ID].[MY_LOG_BUCKET_REGION].[MY_LOG_BUCKET_NAME]._AllLogs`
 WHERE
   (proto_payload.audit_log.method_name = "google.cloud.bigquery.v2.JobService.InsertJob" OR
    proto_payload.audit_log.method_name = "google.cloud.bigquery.v2.JobService.Query")
   AND timestamp >= TIMESTAMP_SUB(CURRENT_TIMESTAMP(), INTERVAL 7 DAY)
-  AND log_name LIKE "%cloudaudit.googleapis.com%2Fdata_access"
+  AND log_id = "cloudaudit.googleapis.com/data_access"
 GROUP BY
   1
 ORDER BY

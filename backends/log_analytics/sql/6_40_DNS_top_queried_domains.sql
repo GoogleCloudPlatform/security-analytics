@@ -18,7 +18,7 @@ SELECT
  JSON_VALUE(json_payload.queryName),
  COUNT(*) AS TotalQueries
 FROM
- `[MY_PROJECT_ID].[MY_DATASET_ID]._AllLogs`
+ `[MY_PROJECT_ID].[MY_LOG_BUCKET_REGION].[MY_LOG_BUCKET_NAME]._AllLogs`
 WHERE
   timestamp >= TIMESTAMP_SUB(CURRENT_TIMESTAMP(), INTERVAL 60 DAY)
   AND log_id="dns.googleapis.com/dns_queries"

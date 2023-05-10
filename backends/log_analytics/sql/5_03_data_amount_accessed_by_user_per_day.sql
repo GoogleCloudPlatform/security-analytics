@@ -20,11 +20,11 @@ SELECT
   FORMAT('%9.3f',SUM(CAST(JSON_VALUE(proto_payload.audit_log.metadata,
       "$.jobChange.job.jobStats.queryStats.totalBilledBytes") AS INT64))/POWER(2, 40)) AS Billed_TB
 FROM
-  `[MY_PROJECT_ID].[MY_DATASET_ID]._AllLogs`
+  `[MY_PROJECT_ID].[MY_LOG_BUCKET_REGION].[MY_LOG_BUCKET_NAME]._AllLogs`
 WHERE
   timestamp >= TIMESTAMP_SUB(CURRENT_TIMESTAMP(), INTERVAL 7 DAY)
   AND JSON_VALUE(proto_payload.audit_log.metadata, "$.jobChange.job.jobConfig.type") = "QUERY"
-  AND log_name LIKE "%cloudaudit.googleapis.com%2Fdata_access"
+  AND log_id = "cloudaudit.googleapis.com/data_access"
 GROUP BY
   time_window,
   principal_email

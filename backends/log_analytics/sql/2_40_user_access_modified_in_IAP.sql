@@ -22,7 +22,7 @@ SELECT
   JSON_VALUE(binding, '$.role') as role,
   JSON_VALUE_ARRAY(binding, '$.members') as members
 FROM
-  `[MY_PROJECT_ID].[MY_DATASET_ID]._AllLogs`,
+  `[MY_PROJECT_ID].[MY_LOG_BUCKET_REGION].[MY_LOG_BUCKET_NAME]._AllLogs`,
   UNNEST(JSON_QUERY_ARRAY(proto_payload.audit_log.response, '$.bindings')) AS binding
 WHERE
   timestamp >= TIMESTAMP_SUB(CURRENT_TIMESTAMP(), INTERVAL 30 DAY)
