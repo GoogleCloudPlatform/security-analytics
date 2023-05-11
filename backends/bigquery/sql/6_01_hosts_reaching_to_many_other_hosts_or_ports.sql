@@ -20,7 +20,7 @@ SELECT
   COUNT(DISTINCT jsonPayload.connection.dest_ip) as numDestIps,
   COUNT(DISTINCT jsonPayload.connection.dest_port) as numDestPorts,
   ARRAY_AGG(DISTINCT resource.labels.subnetwork_name) as subnetNames,
-  ARRAY_AGG(DISTINCT IF(jsonPayload.reporter = 'DEST', jsonPayload.dest_instance.vmNames, jsonPayload.src_instance.vm_name)) as VMs,
+  ARRAY_AGG(DISTINCT IF(jsonPayload.reporter = 'DEST', jsonPayload.dest_instance.vm_name, jsonPayload.src_instance.vm_name)) as VMs,
   COUNT(*) numSamples
 FROM `[MY_PROJECT_ID].[MY_DATASET_ID].compute_googleapis_com_vpc_flows`
 WHERE

@@ -58,6 +58,8 @@ To learn more about the variety of Google Cloud logs, how to enable and natively
 | 4.01| [Unusually high API usage by any user identity](./src/4.01/4.01.md)| Audit Logs| :white_check_mark:| :white_check_mark:| [T1106](https://attack.mitre.org/techniques/T1106/ "Native API") |
 | 4.10| [Autoscaling usage in the past month](./src/4.10/4.10.md)| Audit Logs - Admin Activity| :white_check_mark:| | [T1496](https://attack.mitre.org/techniques/T1496/ "Resource Hijacking") |
 | 4.11| [Autoscaling usage per day in the past month](./src/4.11/4.11.md)| Audit Logs - Admin Activity| :white_check_mark:| | [T1496](https://attack.mitre.org/techniques/T1496/ "Resource Hijacking") |
+| 4.20| [Resource access by certain user identities in the past month](./src/4.20/4.20.md)| Audit Logs| :white_check_mark:| | [T1106](https://attack.mitre.org/techniques/T1106/ "Native API") |
+| 4.21| [Resource access by certain user identities in the past month (aggregated by day)](./src/4.21/4.21.md)| Audit Logs| :white_check_mark:| | [T1106](https://attack.mitre.org/techniques/T1106/ "Native API") |
 | <div id="data-usage">5</div> | :droplet: **Data Usage**
 | 5.01| [Which users most frequently accessed data in the past week?](./src/5.01/5.01.md)| Audit Logs - Data Access| :white_check_mark:| | [T1530](https://attack.mitre.org/techniques/T1530/ "Data from Cloud Storage Object") |
 | 5.02| [Which users accessed most amount of data in the past week?](./src/5.02/5.02.md)| Audit Logs - Data Access| :white_check_mark:| | [T1530](https://attack.mitre.org/techniques/T1530/ "Data from Cloud Storage Object") |
