@@ -29,8 +29,7 @@ WITH all_ips AS
     timestamp >= TIMESTAMP_SUB(CURRENT_TIMESTAMP(), INTERVAL 90 DAY))
 SELECT
   ip,
-  ANY_VALUE(
-    IF((offset = 0 AND reporter = 'SRC') OR (offset = 1 AND reporter = 'DEST'), True, False)) AS internal_entity,
+  LOGICAL_OR((offset = 0 AND reporter = 'SRC') OR (offset = 1 AND reporter = 'DEST')) AS internal_entity,
   -- TIMESTAMP supports up to 6 digits of fractional precision, so drop any more digits to avoid parse errors
   MIN(TIMESTAMP(REGEXP_REPLACE(jsonPayload.start_time, r'\.(\d{0,6})\d+(Z)?$', '.\\1\\2'))) AS ip_first_seen,
   MAX(TIMESTAMP(REGEXP_REPLACE(jsonPayload.start_time, r'\.(\d{0,6})\d+(Z)?$', '.\\1\\2'))) AS ip_last_seen,
