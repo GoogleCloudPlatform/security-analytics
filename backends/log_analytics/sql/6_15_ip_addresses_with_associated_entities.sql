@@ -30,8 +30,7 @@ WITH all_ips AS
     AND log_id = 'compute.googleapis.com/vpc_flows')
 SELECT
   ip,
-  ANY_VALUE(
-    IF((offset = 0 AND reporter = 'SRC') OR (offset = 1 AND reporter = 'DEST'), True, False)) AS internal_entity,
+  LOGICAL_OR((offset = 0 AND reporter = 'SRC') OR (offset = 1 AND reporter = 'DEST')) AS internal_entity,
   -- TIMESTAMP supports up to 6 digits of fractional precision, so drop any more digits to avoid parse errors
   MIN(TIMESTAMP(REGEXP_REPLACE(JSON_VALUE(json_payload.start_time), r'\.(\d{0,6})\d+(Z)?$', '.\\1\\2'))) AS ip_first_seen,
   MAX(TIMESTAMP(REGEXP_REPLACE(JSON_VALUE(json_payload.start_time), r'\.(\d{0,6})\d+(Z)?$', '.\\1\\2'))) AS ip_last_seen,
