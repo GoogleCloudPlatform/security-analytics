@@ -24,7 +24,7 @@ FROM
 WHERE
   timestamp >= TIMESTAMP_SUB(CURRENT_TIMESTAMP(), INTERVAL 1 DAY)
   AND protopayload_auditlog.serviceName="login.googleapis.com"
-  AND protopayload_auditlog.methodName="google.login.LoginService.LoginFailure"
+  AND protopayload_auditlog.methodName="google.login.LoginService.loginFailure"
 GROUP BY
   1
 HAVING
