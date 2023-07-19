@@ -1,2 +1,4 @@
 .DS_Store
 *.code-workspace
+.df-credentials.json
+node_modules/

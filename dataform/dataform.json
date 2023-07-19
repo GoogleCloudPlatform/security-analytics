@@ -1,0 +1,14 @@
+{
+  "warehouse": "bigquery",
+  "defaultDatabase": "[PROJECT_ID]",
+  "defaultSchema": "csa",
+  "assertionSchema": "csa_assertions",
+  "defaultLocation": "US",
+  "vars": {
+    "logs_export_project": "[LOGS_PROJECT_ID]",
+    "logs_export_dataset": "[LOGS_DATASET_ID]",
+    "raw_lookback_days": "90",
+    "summary_lookback_days": "90",
+    "report_interval_days": "30"
+  }
+}
