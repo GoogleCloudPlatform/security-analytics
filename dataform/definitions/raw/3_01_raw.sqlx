@@ -1,0 +1,17 @@
+config {
+  type: "view",
+  description: "logging_settings_modified"
+}
+
+
+SELECT
+  receive_timestamp, timestamp AS eventTimestamp,
+  proto_payload.audit_log.request_metadata.caller_ip,
+  proto_payload.audit_log.authentication_info.principal_email, 
+  proto_payload.audit_log.resource_name,
+  proto_payload.audit_log.method_name
+FROM 
+  ${ref("_AllLogs")}
+WHERE
+  proto_payload.audit_log.service_name = "logging.googleapis.com"
+  AND log_id = "cloudaudit.googleapis.com/activity"

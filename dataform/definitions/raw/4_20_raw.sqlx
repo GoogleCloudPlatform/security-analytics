@@ -1,0 +1,25 @@
+config {
+  type: "view",
+  description: "actions_by_user_identity_over_time"
+}
+
+
+SELECT
+  timestamp,
+  proto_payload.audit_log.authentication_info.principal_email as actor,
+  proto_payload.audit_log.method_name as action,
+  proto_payload.audit_log.resource_name as resource,
+  COALESCE(service_account_delegation_info.first_party_principal.principal_email,
+    STRING(service_account_delegation_info.third_party_principal.third_party_claims)
+  ) as impersonated_by
+FROM ${ref("_AllLogs")}
+  LEFT JOIN UNNEST(proto_payload.audit_log.authentication_info.service_account_delegation_info) as service_account_delegation_info
+WHERE
+  timestamp >=  TIMESTAMP_SUB(CURRENT_TIMESTAMP(), INTERVAL ${dataform.projectConfig.vars.raw_lookback_days} DAY)
+  AND proto_payload.audit_log.authentication_info.principal_email IS NOT NULL
+  -- Actor(s) to be investigated
+  AND proto_payload.audit_log.authentication_info.principal_email IN (
+    "[MY_COMPROMISED_SA]@[MY_PROJECT_ID].iam.gserviceaccount.com"
+  )
+ORDER BY
+  timestamp DESC

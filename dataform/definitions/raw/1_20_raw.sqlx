@@ -1,0 +1,20 @@
+config {
+  type: "view",
+  description: "access_attempts_blocked_by_IAP"
+}
+
+
+SELECT
+  timestamp,
+  http_request.remote_ip,
+  http_request.request_method,
+  http_request.status,
+  JSON_VALUE(resource.labels.backend_service_name) AS backend_service_name,
+  http_request.request_url
+FROM ${ref("_AllLogs")}
+WHERE
+  timestamp >=  TIMESTAMP_SUB(CURRENT_TIMESTAMP(), INTERVAL ${dataform.projectConfig.vars.raw_lookback_days} DAY)
+  AND resource.type="http_load_balancer"
+  AND JSON_VALUE(json_payload.statusDetails) = "handled_by_identity_aware_proxy"
+ORDER BY
+  timestamp DESC

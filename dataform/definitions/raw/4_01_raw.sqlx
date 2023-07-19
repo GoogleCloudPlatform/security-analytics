@@ -1,0 +1,45 @@
+config {
+  type: "view",
+  description: "unusually_high_api_usage_by_user_identity"
+}
+
+
+SELECT
+  *
+FROM (
+  SELECT
+    *,
+    AVG(counter) OVER (
+      PARTITION BY principal_email
+      ORDER BY day
+      ROWS BETWEEN UNBOUNDED PRECEDING AND 1 PRECEDING) AS avg,
+    STDDEV(counter) OVER (
+      PARTITION BY principal_email
+      ORDER BY day
+      ROWS BETWEEN UNBOUNDED PRECEDING AND 1 PRECEDING) AS stddev,
+    COUNT(*) OVER (
+      PARTITION BY principal_email
+      RANGE BETWEEN UNBOUNDED PRECEDING AND UNBOUNDED FOLLOWING) AS numSamples
+  FROM (
+    SELECT
+      proto_payload.audit_log.authentication_info.principal_email,
+      EXTRACT(DATE FROM timestamp) AS day,
+      ARRAY_AGG(DISTINCT proto_payload.audit_log.method_name IGNORE NULLS) AS actions,
+      COUNT(*) AS counter
+    FROM ${ref("_AllLogs")}
+    WHERE
+      timestamp >=  TIMESTAMP_SUB(CURRENT_TIMESTAMP(), INTERVAL ${dataform.projectConfig.vars.raw_lookback_days} DAY)
+      AND proto_payload.audit_log.authentication_info.principal_email IS NOT NULL
+      AND proto_payload.audit_log.method_name NOT LIKE "storage.%.get"
+      AND proto_payload.audit_log.method_name NOT LIKE "v1.compute.%.list"
+      AND proto_payload.audit_log.method_name NOT LIKE "beta.compute.%.list"
+    GROUP BY
+      proto_payload.audit_log.authentication_info.principal_email,
+      day
+  )
+)
+WHERE
+  counter > avg + 3 * stddev
+  AND day >= DATE_SUB(CURRENT_DATE(), INTERVAL 7 DAY) 
+ORDER BY
+  counter DESC

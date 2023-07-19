@@ -1,0 +1,24 @@
+config {
+  type: "view",
+  description: "users_who_accessed_data_in_table"
+}
+
+
+SELECT
+  proto_payload.audit_log.authentication_info.principal_email,
+  COUNT(*) AS COUNTER
+FROM 
+  ${ref("_AllLogs")},
+  UNNEST(proto_payload.audit_log.authorization_info) authorization_info
+WHERE
+  (proto_payload.audit_log.method_name = "google.cloud.bigquery.v2.JobService.InsertJob" OR
+   proto_payload.audit_log.method_name = "google.cloud.bigquery.v2.JobService.Query")
+  AND authorization_info.permission = "bigquery.tables.getData"
+  AND authorization_info.resource = "projects/[PROJECT_ID]/datasets/[DATASET_ID]/tables/accounts"
+  AND timestamp >=  TIMESTAMP_SUB(CURRENT_TIMESTAMP(), INTERVAL ${dataform.projectConfig.vars.raw_lookback_days} DAY)
+GROUP BY
+  1
+ORDER BY
+  2 desc, 1
+LIMIT
+  100

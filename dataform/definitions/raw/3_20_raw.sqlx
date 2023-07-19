@@ -1,0 +1,23 @@
+config {
+  type: "view",
+  description: "virtual_machines_deleted"
+}
+
+SELECT
+  timestamp,
+  JSON_VALUE(resource.labels.instance_id) AS instance_id,
+  proto_payload.audit_log.authentication_info.principal_email, 
+  proto_payload.audit_log.resource_name,
+  proto_payload.audit_log.method_name
+FROM 
+  ${ref("_AllLogs")}
+WHERE
+  resource.type = "gce_instance"
+  AND proto_payload.audit_log.method_name = "v1.compute.instances.delete"
+  AND operation.first IS TRUE
+  AND timestamp >=  TIMESTAMP_SUB(CURRENT_TIMESTAMP(), INTERVAL ${dataform.projectConfig.vars.raw_lookback_days} DAY)
+ORDER BY
+  timestamp desc,
+  instance_id
+LIMIT
+  1000
