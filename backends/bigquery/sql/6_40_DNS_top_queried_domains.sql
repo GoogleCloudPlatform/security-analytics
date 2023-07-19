@@ -15,15 +15,15 @@
  */
 
 SELECT
- jsonPayload.queryname,
- COUNT(*) AS TotalQueries
+ jsonPayload.queryname AS query_name,
+ COUNT(*) AS total_queries
 FROM
  `[MY_PROJECT_ID].[MY_DATASET_ID].dns_googleapis_com_dns_queries`
 WHERE
   timestamp >= TIMESTAMP_SUB(CURRENT_TIMESTAMP(), INTERVAL 60 DAY)
 GROUP BY
- jsonPayload.queryname
+ query_name
 ORDER BY
- TotalQueries DESC
+ total_queries DESC
 LIMIT
  10

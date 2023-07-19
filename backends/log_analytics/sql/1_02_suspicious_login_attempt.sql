@@ -27,4 +27,4 @@ WHERE
   AND proto_payload.audit_log.service_name = "login.googleapis.com"
   AND proto_payload.audit_log.method_name = "google.login.LoginService.loginSuccess"
   AND JSON_VALUE(parameter.name) = "is_suspicious"
-  AND JSON_VALUE(parameter.boolValue) = "true";
+  AND JSON_VALUE(parameter.boolValue) = "true"

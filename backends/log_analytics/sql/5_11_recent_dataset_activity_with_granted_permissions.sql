@@ -30,4 +30,4 @@ FROM `[MY_PROJECT_ID].[MY_LOG_BUCKET_REGION].[MY_LOG_BUCKET_NAME]._AllLogs`,
 WHERE
   log_id="cloudaudit.googleapis.com/activity"
   AND LOWER(proto_payload.audit_log.method_name) like '%dataset%'
-  AND timestamp >= TIMESTAMP_SUB(CURRENT_TIMESTAMP(), INTERVAL 30 DAY);
+  AND timestamp >= TIMESTAMP_SUB(CURRENT_TIMESTAMP(), INTERVAL 30 DAY)
