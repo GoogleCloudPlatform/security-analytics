@@ -1,0 +1,45 @@
+/*
+ * Copyright 2023 Google LLC
+ *
+ * Licensed under the Apache License, Version 2.0 (the "License");
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ *     http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ */
+
+config {
+  type: "view"
+}
+
+WITH sessions AS (
+  SELECT
+    * EXCEPT(day, first_seen, last_seen, channel),
+    MIN(first_seen) as first_seen,
+    MAX(last_seen) as last_seen,
+    ANY_VALUE(channel) as channel
+  FROM ${ref("1_30_summary_daily")}
+  WHERE
+    day >= DATE_SUB(CURRENT_DATE(), INTERVAL ${dataform.projectConfig.vars.report_interval_days} DAY) 
+    AND channel = 'Cloud Console'
+  GROUP BY
+    user, user_agent, ip
+  ORDER BY
+    last_seen DESC
+)
+SELECT
+  st.* EXCEPT(first_seen, last_seen),
+  -- flag any new never-seen-before combination (user, user agent, ip)
+  IF(lt.first_seen IS NULL, TRUE, FALSE) AS new_source,
+  -- retrieve all-time first instance from historical lookup table
+  IF(lt.first_seen IS NULL, st.first_seen, lt.first_seen) AS first_seen,
+  -- retrieve all-time last instance from fresher summary table
+  st.last_seen,
+FROM sessions st
+LEFT JOIN ${ref("1_30_users_lookup")} lt USING(user, user_agent, ip)
