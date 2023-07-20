@@ -16,6 +16,7 @@
 
 config {
   type: "incremental",
+  tags: ["summary", "daily"],
   uniqueKey: ["time_window", "principal_email"],
   bigquery: {
     partitionBy: "DATE(time_window)",

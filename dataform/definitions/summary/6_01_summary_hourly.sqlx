@@ -16,6 +16,7 @@
 
 config {
   type: "incremental",
+  tags: ["summary", "hourly"],
   uniqueKey: ["time_window", "src_ip"],
   bigquery: {
     partitionBy: "DATE(time_window)",

@@ -15,7 +15,8 @@
  */
 
 config {
-  type: "view"
+  type: "view",
+  tags: ["report"],
 }
 
 WITH actions AS (

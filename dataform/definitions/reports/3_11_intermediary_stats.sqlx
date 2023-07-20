@@ -16,6 +16,7 @@
 
 config {
   type: "incremental",
+  tags: ["stats", "daily"],
   uniqueKey: ["day"],
   bigquery: {
     partitionBy: "day",
