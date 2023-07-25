@@ -9,6 +9,7 @@
     "logs_export_dataset": "[LOGS_DATASET_ID]",
     "raw_lookback_days": "90",
     "summary_lookback_days": "90",
-    "report_interval_days": "30"
+    "report_interval_days": "30",
+    "alert_interval_minutes": "60"
   }
 }

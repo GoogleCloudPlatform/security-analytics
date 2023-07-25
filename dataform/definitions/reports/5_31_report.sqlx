@@ -16,35 +16,36 @@
 
 config {
   type: "view",
-  description: "cloud_storage_buckets_enumerated_by_unfamiliar_users",
+  description: "cloud_storage_object_accessed_from_new_IP",
   tags: ["report"],
 }
 
 WITH actions AS (
   SELECT
-    principal_email,
+    caller_ip,
     MIN(first_seen) as first_seen,
     MAX(last_seen) as last_seen,
+    ARRAY_CONCAT_AGG(principal_emails ORDER BY day DESC) as principal_emails,
     ARRAY_CONCAT_AGG(method_names ORDER BY day DESC) as method_names,
     ARRAY_CONCAT_AGG(resource_names ORDER BY day DESC) as resource_names,
     ARRAY_CONCAT_AGG(user_agents ORDER BY day DESC) as user_agents,
     SUM(counter) as counter,
-  FROM ${ref("5_30_summary_daily")}
+  FROM ${ref("5_31_summary_daily")}
   WHERE
     day >= DATE_SUB(CURRENT_DATE(), INTERVAL ${dataform.projectConfig.vars.report_interval_days} DAY) 
   GROUP BY
-    principal_email
+    caller_ip
   ORDER BY
     last_seen DESC,
     counter DESC
 )
 SELECT
   st.* EXCEPT(first_seen, last_seen),
-  -- flag any new never-seen-before user
+  -- flag any new never-seen-before IP
   IF(lt.first_seen IS NULL, TRUE, FALSE) AS is_new,
   -- retrieve all-time first instance from historical lookup table
   IF(lt.first_seen IS NULL, st.first_seen, lt.first_seen) AS first_seen,
   -- retrieve all-time last instance from current summary table
   st.last_seen,
 FROM actions st
-LEFT JOIN ${ref("5_30_users_lookup")} lt USING(principal_email)
+LEFT JOIN ${ref("5_31_ips_lookup")} lt USING(caller_ip)
