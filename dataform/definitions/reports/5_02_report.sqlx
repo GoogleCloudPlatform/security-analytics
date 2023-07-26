@@ -16,18 +16,18 @@
 
 config {
   type: "view",
-  description: "data_amount_accessed_by_user_per_day",
+  description: "users_who_accessed_most_amount_of_data",
   tags: ["report"],
 }
 
 SELECT
-  day,
   principal_email,
-  FORMAT('%9.2f', total_billed_TB) AS total_billed_TB_fmt,
+  SUM(total_billed_TB) AS total_billed_TB
 FROM
   ${ref("5_01_summary_daily")}
 WHERE
   day >=  DATE_SUB(CURRENT_DATE(), INTERVAL ${dataform.projectConfig.vars.report_interval_days} DAY)
+GROUP BY
+  principal_email
 ORDER BY
-  day DESC,
   total_billed_TB DESC
