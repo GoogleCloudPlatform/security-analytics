@@ -59,7 +59,7 @@ FROM (
     lt.first_seen IS NULL AS is_new,
     -- retrieve all-time first instance from historical lookup table
     IF(lt.first_seen IS NULL, st.first_seen, lt.first_seen) AS first_seen,
-    -- retrieve all-time last instance from current summary table
+    -- retrieve all-time last instance from current raw table
     st.last_seen
   FROM actions st
   LEFT JOIN ${ref("5_31_ips_lookup")} lt USING(caller_ip)
