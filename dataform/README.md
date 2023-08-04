@@ -99,3 +99,38 @@ For more details on common `dataform compile` command line options, refer to [Vi
         dataform run
 
 For more details on common `dataform run` command line options, refer to [Execute code](https://cloud.google.com/dataform/docs/use-dataform-cli#execute_code)
+
+### Schedule executions with Google Cloud Workflows
+
+The [`daily-workflow.yaml`](./cloudworkflows/daily-workflow.yml) and [`hourly-workflow.yaml`](./cloudworkflows/daily-workflow.yml) files located in the 
+[`cloudworkflows` folder](./cloudworkflows/) in this repository contain an example of using Cloud Workflows to execute the .SQLX code on a schedule.
+
+* To deploy the workflows:
+
+1. Create a service account an assign the `Dataform Editor` role to it.
+2. Cd into the [`cloudworkflows` folder](./cloudworkflows/) folder using `cd cloudworkflows`.
+3. Replace `[PROJECT_ID]` placeholder value for with the ID of your Google Cloud Project containing the dataform repository, as well as [REGION] and [REPOSITORY].
+
+4. Deploy both workflows using:
+ ```bash
+ gcloud workflows deploy security-analytics-daily \
+ --source=daily-workflow.yaml \
+ --service-account=<SERVICE_ACCOUNT>@<PROJECT_ID>.iam.gserviceaccount.com 
+
+ gcloud workflows deploy security-analytics-hourly \
+ --source=hourly-workflow.yaml \
+ --service-account=<SERVICE_ACCOUNT>@<PROJECT_ID>.iam.gserviceaccount.com
+ ```
+ 3. Deploy the scheduling tasks using 
+ ```bash
+gcloud scheduler jobs create http security-analytics-daily \
+--schedule='0 0 * * *' \
+--uri=https://workflowexecutions.googleapis.com/v1/projects/<PROJECT_ID>/locations/<REGION>/workflows/security-analytics-daily/executions \
+--oauth-service-account-email=<SERVICE_ACCOUNT>@<PROJECT_ID>.iam.gserviceaccount.com
+
+gcloud scheduler jobs create http security-analytics-houry \
+--schedule='0 * * * *' \
+--uri=https://workflowexecutions.googleapis.com/v1/projects/<PROJECT_ID>/locations/<REGION>/workflows/security-analytics-hourly/executions \
+--oauth-service-account-email=<SERVICE_ACCOUNT>@<PROJECT_ID>.iam.gserviceaccount.com
+
+ ```
