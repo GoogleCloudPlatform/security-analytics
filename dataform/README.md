@@ -100,16 +100,24 @@ For more details on common `dataform compile` command line options, refer to [Vi
 
 For more details on common `dataform run` command line options, refer to [Execute code](https://cloud.google.com/dataform/docs/use-dataform-cli#execute_code)
 
-### Schedule executions with Google Cloud Workflows
+## Schedule executions with Workflows and Cloud Scheduler
 
 The [`daily-workflow.yaml`](./cloudworkflows/daily-workflow.yml) and [`hourly-workflow.yaml`](./cloudworkflows/daily-workflow.yml) files located in the 
-[`cloudworkflows` folder](./cloudworkflows/) in this repository contain an example of using Cloud Workflows to execute the .SQLX code on a schedule.
+[`cloudworkflows` folder](./cloudworkflows/) in this repository contain an example of using Workflows to execute the .SQLX code on a schedule. This is required to incrementally update the daily and hourly summary tables and their respective dependencies such as lookups and stats tables.
 
-* To deploy the workflows:
+### Before you begin
 
-1. Create a service account an assign the `Dataform Editor` role to it.
+If you haven't done so already, create a [Dataform repository](https://cloud.google.com/dataform/docs/create-repository) in Dataform console and [link to your Git repository](https://cloud.google.com/dataform/docs/connect-repository) where you would host this dataform directory with your own changes including dataform.json settings. The Workflows workflows you deploy in this section will compile and execute Dataform in your Dataform repository.
+
+### Deploy workflows
+
+1. Create a service account an assign the following roles:
+
+    - `Dataform Editor` so that it can access the Dataform repository and invoke Dataform workflows in that repository.
+    - `Workflows Invoker` so that it can trigger the Workflows workflows defined in [`daily-workflow.yaml`](./cloudworkflows/daily-workflow.yml) and [`hourly-workflow.yaml`](./cloudworkflows/daily-workflow.yml) YAML files.
+
 2. Cd into the [`cloudworkflows` folder](./cloudworkflows/) folder using `cd cloudworkflows`.
-3. Replace `[PROJECT_ID]` placeholder value for with the ID of your Google Cloud Project containing the dataform repository, as well as [REGION] and [REPOSITORY].
+3. Open the YAML files in your favorite editor, and replace `[PROJECT_ID]` placeholder value for with the ID of your Google Cloud Project containing the dataform repository, as well as `[REGION]` and `[REPOSITORY]` with the location and name of the repository.
 
 4. Deploy both workflows using:
  ```bash
@@ -134,3 +142,8 @@ gcloud scheduler jobs create http security-analytics-houry \
 --oauth-service-account-email=<SERVICE_ACCOUNT>@<PROJECT_ID>.iam.gserviceaccount.com
 
  ```
+
+You have now set up two scheduled workflows to continously and incrementally update your datasets in order to keep your reports and views current:
+
+- **security-analytics-daily**: which runs every day at 12:00 AM UTC to update all daily summary tables and their dependencies (e.g. lookup and stats).
+- **security-analytics-hourly**: which runs every hour at minute 0 to update all hourly summary tables and their dependencies (e.g. lookup and stats).
