@@ -17,7 +17,7 @@
 config {
   type: "view",
   description: "virtual_machines_deleted",
-  tags: ["alerts"],
+  tags: ["alert"],
 }
 
 SELECT

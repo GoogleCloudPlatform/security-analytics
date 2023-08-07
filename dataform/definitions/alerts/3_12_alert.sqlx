@@ -17,7 +17,7 @@
 config {
   type: "view",
   description: "firewall_rules_modified_or_deleted",
-  tags: ["alerts"]
+  tags: ["alert"],
 }
 
 SELECT

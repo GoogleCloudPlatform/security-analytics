@@ -16,7 +16,8 @@
  
 config {
   type: "view",
-  description: "BQ_queries_destructive"
+  description: "BQ_queries_destructive",
+  tags: ["alert"],
 }
 
 SELECT

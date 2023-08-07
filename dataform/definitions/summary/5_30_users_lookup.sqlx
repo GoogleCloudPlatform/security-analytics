@@ -16,7 +16,7 @@
 
 config {
   type: "table",
-  tags: ["lookup", "daily"],
+  tags: ["lookup"],
   uniqueKey: ["principal_email"],
   bigquery: {
     clusterBy: ["principal_email"]

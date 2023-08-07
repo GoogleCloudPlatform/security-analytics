@@ -16,7 +16,7 @@
 
 config {
   type: "table",
-  tags: ["lookup", "daily"],
+  tags: ["lookup"],
   uniqueKey: ["caller_ip"],
   bigquery: {
     clusterBy: ["caller_ip"]

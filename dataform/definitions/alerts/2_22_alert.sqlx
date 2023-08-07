@@ -17,7 +17,7 @@
 config {
   type: "view",
   description: "permissions_granted_to_create_SA_keys",
-  tags: ["alert"]
+  tags: ["alert"],
 }
 
 SELECT

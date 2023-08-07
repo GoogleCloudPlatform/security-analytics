@@ -17,7 +17,7 @@
 config {
   type: "table",
   description: "unusual_number_of_firewall_rules_modified",
-  tags: ["alert", "daily"],
+  tags: ["alert"],
 }
 
 SELECT

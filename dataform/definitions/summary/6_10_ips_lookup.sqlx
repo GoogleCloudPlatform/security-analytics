@@ -16,7 +16,7 @@
 
 config {
   type: "table",
-  tags: ["lookup", "daily"],
+  tags: ["lookup"],
   columns: {
     src_ip: "Connection source IP address",
     first_seen: "Timestamp of first connection seen from that source IP",
