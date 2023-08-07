@@ -23,6 +23,7 @@ main:
                 invocationConfig:
                     includedTags:
                     - daily
+                    transitiveDependenciesIncluded: true
         result: workflowInvocation
     - complete:
         return: ${workflowInvocation.body.name}
