@@ -16,6 +16,7 @@
 
 config {
   type: "view",
+  description: "DNS_top_queried_domains",
   tags: ["report"],
 }
 

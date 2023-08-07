@@ -16,7 +16,7 @@
 
 config {
   type: "table",
-  tags: ["lookup", "daily"],
+  tags: ["lookup"],
   uniqueKey: ["user", "user_agent", "ip"],
   bigquery: {
     clusterBy: ["user"]

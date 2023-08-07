@@ -17,7 +17,7 @@
 config {
   type: "view",
   description: "BQ_queries_with_large_scans",
-  tags: ["alerts"],
+  tags: ["alert"],
 }
 
 SELECT
