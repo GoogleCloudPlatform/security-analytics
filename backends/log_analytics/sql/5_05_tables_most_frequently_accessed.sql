@@ -32,6 +32,3 @@ GROUP BY
 ORDER BY
   5 DESC, 1, 2
 LIMIT 1000
-
-
-proto_payload.audit_log.metadata, "$.jobChange")

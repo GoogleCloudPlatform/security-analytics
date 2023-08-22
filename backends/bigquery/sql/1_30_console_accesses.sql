@@ -36,4 +36,4 @@ GROUP BY
 HAVING
   channel = 'Cloud Console'
 ORDER BY
-  last_seen DESC;
+  last_seen DESC

@@ -28,8 +28,8 @@ FROM
 WHERE
   (resource.type = 'bigquery_project' OR resource.type = 'bigquery_dataset')
   AND operation.last IS TRUE
-  AND (JSON_VALUE(proto_payload.audit_log.metadata, "$.jobChange")) IS NOT NULL
-    OR JSON_VALUE(proto_payload.audit_log.metadata, "$.jobInsertion")) IS NOT NULL)
+  AND (JSON_VALUE(proto_payload.audit_log.metadata, "$.jobChange") IS NOT NULL
+    OR JSON_VALUE(proto_payload.audit_log.metadata, "$.jobInsertion") IS NOT NULL)
   AND timestamp >= TIMESTAMP_SUB(CURRENT_TIMESTAMP(), INTERVAL 7 DAY)
 GROUP BY
   query

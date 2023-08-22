@@ -1,0 +1,26 @@
+config {
+  type: "view",
+  description: "connection_from_new_IP",
+  disabled: true
+}
+
+
+SELECT
+  JSON_VALUE(json_payload.connection.src_ip) as src_ip,
+  -- TIMESTAMP supports up to 6 digits of fractional precision, so drop any more digits to avoid parse errors
+  MIN(TIMESTAMP(REGEXP_REPLACE(JSON_VALUE(json_payload.start_time), r'\.(\d{0,6})\d+(Z)?$', '.\\1\\2'))) AS firstInstance,
+  MAX(TIMESTAMP(REGEXP_REPLACE(JSON_VALUE(json_payload.start_time), r'\.(\d{0,6})\d+(Z)?$', '.\\1\\2'))) AS lastInstance,
+  ARRAY_AGG(DISTINCT JSON_VALUE(resource.labels.subnetwork_name)) as subnetNames,
+  ARRAY_AGG(DISTINCT JSON_VALUE(json_payload.dest_instance.vm_name)) as vmNames,
+  COUNT(*) numSamples
+FROM ${ref("_AllLogs")}
+WHERE
+  timestamp >=  TIMESTAMP_SUB(CURRENT_TIMESTAMP(), INTERVAL ${dataform.projectConfig.vars.raw_lookback_days} DAY)
+  AND JSON_VALUE(json_payload.reporter) = 'DEST'
+  AND JSON_VALUE(resource.labels.subnetwork_name) IN ('prod-customer-data')
+GROUP BY
+  src_ip
+HAVING firstInstance >= TIMESTAMP_SUB(CURRENT_TIMESTAMP(), INTERVAL 1 DAY)
+ORDER BY
+  lastInstance DESC,
+  numSamples DESC

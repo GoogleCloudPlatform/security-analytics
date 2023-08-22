@@ -1,0 +1,21 @@
+config {
+  type: "view",
+  description: "vpc_flows_logging_disabled",
+  disabled: true
+}
+
+
+SELECT
+  receive_timestamp, timestamp AS eventTimestamp,
+  proto_payload.audit_log.request_metadata.caller_ip,
+  proto_payload.audit_log.authentication_info.principal_email, 
+  proto_payload.audit_log.resource_name,
+  proto_payload.audit_log.method_name
+FROM 
+  ${ref("_AllLogs")}
+WHERE
+  proto_payload.audit_log.method_name = "v1.compute.subnetworks.patch" 
+  AND (
+    JSON_VALUE(proto_payload.audit_log.request, "$.logConfig.enable") = "false"
+    OR JSON_VALUE(proto_payload.audit_log.request, "$.enableFlowLogs") = "false"
+  )

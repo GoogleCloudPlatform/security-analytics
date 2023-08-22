@@ -21,6 +21,7 @@ FROM
    `[MY_PROJECT_ID].[MY_LOG_BUCKET_REGION].[MY_LOG_BUCKET_NAME]._AllLogs`
 WHERE
   resource.type = "gce_instance_group_manager"
+  AND log_id = "cloudaudit.googleapis.com/activity"
   AND timestamp >= TIMESTAMP_SUB(CURRENT_TIMESTAMP(), INTERVAL 30 DAY)
 GROUP BY
   1

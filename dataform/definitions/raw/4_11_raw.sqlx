@@ -1,0 +1,21 @@
+config {
+  type: "view",
+  description: "autoscaling_usage_frequency_by_day",
+  disabled: true
+}
+
+
+SELECT
+  TIMESTAMP_TRUNC(timestamp, DAY) AS day,
+  proto_payload.audit_log.method_name,
+  COUNT(*) AS counter
+FROM
+   ${ref("_AllLogs")}
+WHERE
+  resource.type = "gce_instance_group_manager"
+  AND log_id = "cloudaudit.googleapis.com/activity"
+  AND timestamp >=  TIMESTAMP_SUB(CURRENT_TIMESTAMP(), INTERVAL ${dataform.projectConfig.vars.raw_lookback_days} DAY)
+GROUP BY
+  1, 2
+ORDER BY
+  1, 2

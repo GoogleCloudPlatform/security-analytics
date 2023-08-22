@@ -1,0 +1,21 @@
+config {
+  type: "view",
+  description: "suspicious_login_attempt",
+  disabled: true
+}
+
+
+SELECT
+  timestamp,
+  proto_payload.audit_log.authentication_info.principal_email,
+  proto_payload.audit_log.request_metadata.caller_ip,
+  proto_payload.audit_log.method_name, parameter
+FROM ${ref("_AllLogs")},
+  UNNEST(JSON_QUERY_ARRAY(proto_payload.audit_log.metadata.event[0].parameter)) AS parameter
+WHERE
+  timestamp >=  TIMESTAMP_SUB(CURRENT_TIMESTAMP(), INTERVAL ${dataform.projectConfig.vars.raw_lookback_days} DAY)
+  AND proto_payload.audit_log IS NOT NULL
+  AND proto_payload.audit_log.service_name = "login.googleapis.com"
+  AND proto_payload.audit_log.method_name = "google.login.LoginService.loginSuccess"
+  AND JSON_VALUE(parameter.name) = "is_suspicious"
+  AND JSON_VALUE(parameter.boolValue) = "true"

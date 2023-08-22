@@ -86,10 +86,13 @@ To learn more about the variety of Google Cloud logs, how to enable and natively
 | 6.31| [Traffic sessions of high severity threats detected by Cloud IDS](./src/6.31/6.31.md)| Cloud IDS Threat Logs, Cloud IDS Traffic Logs| | :white_check_mark:| [T1071](https://attack.mitre.org/techniques/T1071/ "Application Layer Protocol") |
 | 6.40| [Top 10 DNS queried domains](./src/6.40/6.40.md)| Cloud DNS Logs| :white_check_mark:| :white_check_mark:| [T1071.004](https://attack.mitre.org/techniques/T1071/004/ "Command and Scripting Interpreter (Unix Shell)") |
 
-## Continuous Integration / Continuous Delivery Pipelines
+## Dataform for CSA on BigQuery
 
-The [`cicd` folder](./cicd/) contains a set of scripts which can help you with storing detection rules as code and testing/deploying updates you and 
-your team make in an automated fashion. More details can be found in the contained [readme file](./cicd/README.md).
+The [`dataform` folder](./dataform/) contains the Dataform repo to automate deployment of CSA queries in BigQuery for optimized performance and cost. Use this Dataform repo to operationalize CSA use cases as reports and alerts powered by BigQuery. This Dataform project deploys and orchestrates pre-built ELT pipelines to filter, normalize and model log data leveraging incremental summary tables, lookup tables and views for fast, cost-effective and simpler querying. See underlying [README](./dataform/README.md) for more details.
+
+## CI/CD for CSA on Chronicle
+
+The [`cicd` folder](./cicd/) contains a set of scripts to help you with storing CSA YARA-L detection rules as code and testing/deploying updates you and your team make in an automated fashion. Whether you use GitHub Actions, Google Cloud Build or Azure DevOps, you can use the corresponding scripts to automatically test and deploy new or modified rules into your Chronicle instance. See underlying [README](./cicd/README.md) for more details.
 
 ## Support
 

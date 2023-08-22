@@ -1,0 +1,37 @@
+/*
+ * Copyright 2023 Google LLC
+ *
+ * Licensed under the Apache License, Version 2.0 (the "License");
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ *     http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ */
+
+config {
+  type: "view",
+  description: "traffic_volume_by_ip",
+  tags: ["report"],
+}
+
+SELECT
+  reporter_ip,
+  ANY_VALUE(vm_names HAVING MAX ARRAY_LENGTH(vm_names)) AS vm_names,
+  ANY_VALUE(vpc_names HAVING MAX ARRAY_LENGTH(vpc_names)) AS vpc_names,
+  ARRAY_AGG(STRUCT(
+    other_ip, flow_count,
+    bytes_sent, bytes_received,
+    packets_sent, packets_received,
+    external_net_asn, external_net_country) ORDER BY flow_count DESC) AS connections
+FROM
+  ${ref("6_15_summary_hourly")}
+WHERE
+  time_window >=  TIMESTAMP_SUB(CURRENT_TIMESTAMP(), INTERVAL ${dataform.projectConfig.vars.report_interval_days} DAY)
+GROUP BY
+  reporter_ip

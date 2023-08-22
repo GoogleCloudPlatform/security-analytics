@@ -19,7 +19,7 @@ SELECT
   http_request.remote_ip,
   http_request.request_method,
   http_request.status,
-  JSON_VALUE(resource.labels.backend_service_name),
+  JSON_VALUE(resource.labels.backend_service_name) AS backend_service_name,
   http_request.request_url
 FROM `[MY_PROJECT_ID].[MY_LOG_BUCKET_REGION].[MY_LOG_BUCKET_NAME]._AllLogs`
 WHERE

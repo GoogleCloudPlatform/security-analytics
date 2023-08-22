@@ -23,18 +23,18 @@ SELECT
     WHEN proto_payload.audit_log.request_metadata.caller_supplied_user_agent LIKE "google-cloud-sdk gcloud/%" THEN 'gcloud CLI'
     WHEN proto_payload.audit_log.request_metadata.caller_supplied_user_agent LIKE "google-api-go-client/% Terraform/%" THEN 'Terraform'
     ELSE 'Other'
-    END AS channel,
+  END AS channel,
   proto_payload.audit_log.request_metadata.caller_supplied_user_agent as user_agent,
   proto_payload.audit_log.request_metadata.caller_ip as ip,
-FROM `[MY_PROJECT_ID].[MY_DATASET_ID]._AllLogs`
+FROM `[MY_PROJECT_ID].[MY_LOG_BUCKET_REGION].[MY_LOG_BUCKET_NAME]._AllLogs`
 WHERE
   timestamp >= TIMESTAMP_SUB(CURRENT_TIMESTAMP(), INTERVAL 90 DAY)
   AND log_id = "cloudaudit.googleapis.com/data_access"
   AND proto_payload.audit_log.service_name = "cloudresourcemanager.googleapis.com"
-  AND proto_payload.audit_log.method_name IN ("GetProject" OR "FindOrCreateOrganization")
+  AND proto_payload.audit_log.method_name IN ("GetProject", "FindOrCreateOrganization")
 GROUP BY
   user, user_agent, ip
 HAVING
   channel = 'Cloud Console'
 ORDER BY
-  last_seen DESC;
+  last_seen DESC

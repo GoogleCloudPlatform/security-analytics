@@ -1,4 +1,4 @@
-# CI/CD Python Scripts
+# CI/CD for CSA on Chronicle
 
 ## Overview
 

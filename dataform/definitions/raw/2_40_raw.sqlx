@@ -1,0 +1,25 @@
+config {
+  type: "view",
+  description: "user_access_modified_in_IAP",
+  disabled: true
+}
+
+
+SELECT
+  timestamp,
+  proto_payload.audit_log.authentication_info.principal_email,
+  resource.type,
+  proto_payload.audit_log.resource_name,
+  JSON_VALUE(binding, '$.role') as role,
+  JSON_VALUE_ARRAY(binding, '$.members') as members
+FROM
+  ${ref("_AllLogs")},
+  UNNEST(JSON_QUERY_ARRAY(proto_payload.audit_log.response, '$.bindings')) AS binding
+WHERE
+  timestamp >=  TIMESTAMP_SUB(CURRENT_TIMESTAMP(), INTERVAL ${dataform.projectConfig.vars.raw_lookback_days} DAY)
+  -- AND log_id = "cloudaudit.googleapis.com/activity"
+  AND proto_payload.audit_log.service_name = "iap.googleapis.com"
+  AND proto_payload.audit_log.method_name LIKE "%.IdentityAwareProxyAdminService.SetIamPolicy"
+  AND JSON_VALUE(binding, '$.role') = "roles/iap.httpsResourceAccessor"
+ORDER BY
+  timestamp DESC

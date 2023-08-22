@@ -25,8 +25,8 @@ SELECT
 FROM
   `[MY_PROJECT_ID].[MY_LOG_BUCKET_REGION].[MY_LOG_BUCKET_NAME]._AllLogs`
 WHERE
-  log_id = "compute.googleapis.com/vpc_flows"
-  AND timestamp >= TIMESTAMP_SUB(CURRENT_TIMESTAMP(), INTERVAL 30 DAY)
+  timestamp >= TIMESTAMP_SUB(CURRENT_TIMESTAMP(), INTERVAL 30 DAY)
+  AND log_id = "compute.googleapis.com/vpc_flows"
 GROUP BY
   time_window,
   src_ip

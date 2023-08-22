@@ -1,0 +1,81 @@
+/*
+ * Copyright 2023 Google LLC
+ *
+ * Licensed under the Apache License, Version 2.0 (the "License");
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ *     http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ */
+
+config {
+  type: "view",
+  description: "ip_addresses_with_associated_entities",
+  tags: ["report"],
+}
+
+SELECT
+  ip,
+  LOGICAL_OR(internal_entity) AS internal_entity,
+  MAX(flow_count) AS flow_count,
+  ANY_VALUE(vm_names HAVING MAX ARRAY_LENGTH(vm_names)) AS vm_names,
+  ANY_VALUE(vpc_names HAVING MAX ARRAY_LENGTH(vpc_names)) AS vpc_names,
+  ANY_VALUE(external_net_asn) AS external_net_asn,
+  ANY_VALUE(external_net_country) AS external_net_country,
+  ANY_VALUE(connected_ips) AS connected_ips,
+  MIN(ip_first_seen) AS ip_first_seen,
+  MAX(ip_last_seen) AS ip_last_seen,
+  MAX(outbound_traffic_gb) AS outbound_traffic_gb,
+  MAX(inbound_traffic_gb) AS inbound_traffic_gb
+FROM (
+  SELECT
+    reporter_ip AS ip,
+    TRUE AS internal_entity,
+    SUM(flow_count) AS flow_count,
+    ANY_VALUE(vm_names HAVING MAX ARRAY_LENGTH(vm_names)) AS vm_names,
+    ANY_VALUE(vpc_names HAVING MAX ARRAY_LENGTH(vpc_names)) AS vpc_names,
+    NULL AS external_net_asn,
+    NULL AS external_net_country,
+    ARRAY_AGG(DISTINCT other_ip IGNORE NULLS ORDER BY other_ip) AS connected_ips,
+    MIN(time_window) AS ip_first_seen,
+    MAX(time_window) AS ip_last_seen,
+    FORMAT('%.2f', SUM(bytes_sent)/POWER(2, 30)) AS outbound_traffic_gb,
+    FORMAT('%.2f', SUM(bytes_received)/POWER(2, 30)) AS inbound_traffic_gb,
+  FROM
+    ${ref("6_15_summary_hourly")}
+  WHERE
+    time_window >=  TIMESTAMP_SUB(CURRENT_TIMESTAMP(), INTERVAL ${dataform.projectConfig.vars.report_interval_days} DAY)
+  GROUP BY
+    reporter_ip
+  UNION ALL
+  SELECT
+    other_ip AS ip,
+    FALSE AS internal_entity,
+    SUM(flow_count) AS flow_count,
+    NULL AS vm_names,
+    NULL AS vpc_names,
+    ANY_VALUE(external_net_asn) AS external_net_asn,
+    ANY_VALUE(external_net_country) AS external_net_country,
+    ARRAY_AGG(DISTINCT reporter_ip IGNORE NULLS ORDER BY reporter_ip) AS connected_ips,
+    MIN(time_window) AS ip_first_seen,
+    MAX(time_window) AS ip_last_seen,
+    FORMAT('%.2f', SUM(bytes_received)/POWER(2, 30)) AS outbound_traffic_gb,
+    FORMAT('%.2f', SUM(bytes_sent)/POWER(2, 30)) AS inbound_traffic_gb,
+  FROM
+    ${ref("6_15_summary_hourly")}
+  WHERE
+    time_window >=  TIMESTAMP_SUB(CURRENT_TIMESTAMP(), INTERVAL ${dataform.projectConfig.vars.report_interval_days} DAY)
+  GROUP BY
+    other_ip
+)
+GROUP BY
+  ip
+ORDER BY
+  internal_entity DESC,
+  flow_count DESC

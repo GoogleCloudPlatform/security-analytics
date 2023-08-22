@@ -1,0 +1,6 @@
+{
+  "name": "csa-operations",
+  "dependencies": {
+    "@dataform/core": "2.3.2"
+  }
+}
