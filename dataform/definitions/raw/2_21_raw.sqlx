@@ -1,6 +1,7 @@
 config {
   type: "view",
-  description: "permissions_granted_to_impersonate_SA"
+  description: "permissions_granted_to_impersonate_SA",
+  disabled: true
 }
 
 

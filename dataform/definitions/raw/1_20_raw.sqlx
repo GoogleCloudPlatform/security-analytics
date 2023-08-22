@@ -1,6 +1,7 @@
 config {
   type: "view",
-  description: "access_attempts_blocked_by_IAP"
+  description: "access_attempts_blocked_by_IAP",
+  disabled: true
 }
 
 

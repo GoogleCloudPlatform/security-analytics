@@ -1,6 +1,7 @@
 config {
   type: "view",
-  description: "logging_settings_modified"
+  description: "logging_settings_modified",
+  disabled: true
 }
 
 

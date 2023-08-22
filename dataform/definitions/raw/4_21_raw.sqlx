@@ -1,6 +1,7 @@
 config {
   type: "view",
-  description: "actions_by_user_identity_aggregated_by_day"
+  description: "actions_by_user_identity_aggregated_by_day",
+  disabled: true
 }
 
 

@@ -1,6 +1,7 @@
 config {
   type: "view",
-  description: "login_highly_privileged_account"
+  description: "login_highly_privileged_account",
+  disabled: true
 }
 
 

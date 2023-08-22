@@ -1,6 +1,7 @@
 config {
   type: "view",
-  description: "vpc_flows_logging_disabled"
+  description: "vpc_flows_logging_disabled",
+  disabled: true
 }
 
 

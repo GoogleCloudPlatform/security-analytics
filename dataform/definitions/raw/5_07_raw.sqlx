@@ -1,6 +1,7 @@
 config {
   type: "view",
-  description: "BQ_queries_with_large_scans"
+  description: "BQ_queries_with_large_scans",
+  disabled: true
 }
 
 

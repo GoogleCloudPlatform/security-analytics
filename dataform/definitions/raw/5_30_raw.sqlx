@@ -1,6 +1,7 @@
 config {
   type: "view",
-  description: "cloud_storage_buckets_enumerated_by_unfamiliar_users"
+  description: "cloud_storage_buckets_enumerated_by_unfamiliar_users",
+  disabled: true
 }
 
 

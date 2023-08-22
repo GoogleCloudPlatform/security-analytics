@@ -1,6 +1,7 @@
 config {
   type: "view",
-  description: "user_added_to_privileged_group"
+  description: "user_added_to_privileged_group",
+  disabled: true
 }
 
 

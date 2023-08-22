@@ -1,6 +1,7 @@
 config {
   type: "view",
-  description: "BQ_queries_top"
+  description: "BQ_queries_top",
+  disabled: true
 }
 
 

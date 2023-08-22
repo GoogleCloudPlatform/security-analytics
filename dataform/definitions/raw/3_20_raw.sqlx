@@ -1,6 +1,7 @@
 config {
   type: "view",
-  description: "virtual_machines_deleted"
+  description: "virtual_machines_deleted",
+  disabled: true
 }
 
 SELECT

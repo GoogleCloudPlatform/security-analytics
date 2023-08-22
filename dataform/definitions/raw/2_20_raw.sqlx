@@ -1,6 +1,7 @@
 config {
   type: "view",
-  description: "permissions_granted_over_SA"
+  description: "permissions_granted_over_SA",
+  disabled: true
 }
 
 

@@ -1,6 +1,7 @@
 config {
   type: "view",
-  description: "permissions_granted_to_create_SA_keys"
+  description: "permissions_granted_to_create_SA_keys",
+  disabled: true
 }
 
 

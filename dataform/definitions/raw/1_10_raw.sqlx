@@ -1,6 +1,7 @@
 config {
   type: "view",
-  description: "access_attempts_blocked_by_VPC_SC"
+  description: "access_attempts_blocked_by_VPC_SC",
+  disabled: true
 }
 
 

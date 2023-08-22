@@ -1,6 +1,7 @@
 config {
   type: "view",
-  description: "user_access_modified_in_IAP"
+  description: "user_access_modified_in_IAP",
+  disabled: true
 }
 
 

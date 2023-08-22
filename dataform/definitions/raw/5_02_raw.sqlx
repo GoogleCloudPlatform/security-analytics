@@ -1,6 +1,7 @@
 config {
   type: "view",
-  description: "users_who_accessed_most_amount_of_data"
+  description: "users_who_accessed_most_amount_of_data",
+  disabled: true
 }
 
 

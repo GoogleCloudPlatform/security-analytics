@@ -1,6 +1,7 @@
 config {
   type: "view",
-  description: "data_amount_accessed_by_user_per_day"
+  description: "data_amount_accessed_by_user_per_day",
+  disabled: true
 }
 
 

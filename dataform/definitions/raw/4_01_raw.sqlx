@@ -1,6 +1,7 @@
 config {
   type: "view",
-  description: "unusually_high_api_usage_by_user_identity"
+  description: "unusually_high_api_usage_by_user_identity",
+  disabled: true
 }
 
 

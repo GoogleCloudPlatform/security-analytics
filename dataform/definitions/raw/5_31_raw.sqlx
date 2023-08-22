@@ -1,6 +1,7 @@
 config {
   type: "view",
-  description: "cloud_storage_object_accessed_from_new_IP"
+  description: "cloud_storage_object_accessed_from_new_IP",
+  disabled: true
 }
 
 

@@ -1,6 +1,7 @@
 config {
   type: "view",
-  description: "unusual_number_of_firewall_rules_modified"
+  description: "unusual_number_of_firewall_rules_modified",
+  disabled: true
 }
 
 SELECT

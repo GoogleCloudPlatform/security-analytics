@@ -1,6 +1,7 @@
 config {
   type: "view",
-  description: "top_data_access_actions"
+  description: "top_data_access_actions",
+  disabled: true
 }
 
 

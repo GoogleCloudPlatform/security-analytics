@@ -1,6 +1,7 @@
 config {
   type: "view",
-  description: "DNS_top_queried_domains"
+  description: "DNS_top_queried_domains",
+  disabled: true
 }
 
 

@@ -1,6 +1,7 @@
 config {
   type: "view",
-  description: "excessive_login_failures"
+  description: "excessive_login_failures",
+  disabled: true
 }
 
 

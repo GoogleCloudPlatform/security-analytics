@@ -1,6 +1,7 @@
 config {
   type: "view",
-  description: "console_accesses"
+  description: "console_accesses",
+  disabled: true
 }
 
 

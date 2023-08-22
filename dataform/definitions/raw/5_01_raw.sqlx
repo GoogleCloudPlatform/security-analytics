@@ -1,6 +1,7 @@
 config {
   type: "view",
-  description: "users_who_most_frequently_accessed_data"
+  description: "users_who_most_frequently_accessed_data",
+  disabled: true
 }
 
 

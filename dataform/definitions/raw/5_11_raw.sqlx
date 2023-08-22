@@ -1,6 +1,7 @@
 config {
   type: "view",
-  description: "recent_dataset_activity_with_granted_permissions"
+  description: "recent_dataset_activity_with_granted_permissions",
+  disabled: true
 }
 
 

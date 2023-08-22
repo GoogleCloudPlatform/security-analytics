@@ -1,6 +1,7 @@
 config {
   type: "view",
-  description: "ip_addresses_with_associated_entities"
+  description: "ip_addresses_with_associated_entities",
+  disabled: true
 }
 
 

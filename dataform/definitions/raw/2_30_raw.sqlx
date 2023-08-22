@@ -1,6 +1,7 @@
 config {
   type: "view",
-  description: "service_accounts_or_keys_created_by_non_approved_identity"
+  description: "service_accounts_or_keys_created_by_non_approved_identity",
+  disabled: true
 }
 
 

@@ -1,6 +1,7 @@
 config {
   type: "view",
-  description: "autoscaling_usage_frequency"
+  description: "autoscaling_usage_frequency",
+  disabled: true
 }
 
 

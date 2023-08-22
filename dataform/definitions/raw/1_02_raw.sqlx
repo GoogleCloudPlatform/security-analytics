@@ -1,6 +1,7 @@
 config {
   type: "view",
-  description: "suspicious_login_attempt"
+  description: "suspicious_login_attempt",
+  disabled: true
 }
 
 

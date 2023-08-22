@@ -1,6 +1,7 @@
 config {
   type: "view",
-  description: "virus_or_malware_detected_by_cloud_IDS"
+  description: "virus_or_malware_detected_by_cloud_IDS",
+  disabled: true
 }
 
 

@@ -1,6 +1,7 @@
 config {
   type: "view",
-  description: "tables_most_frequently_accessed"
+  description: "tables_most_frequently_accessed",
+  disabled: true
 }
 
 
