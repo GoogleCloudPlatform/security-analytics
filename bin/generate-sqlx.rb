@@ -26,12 +26,10 @@ class CSASqlx
 
         query_filename = detection['query_abs_paths']['log_analytics']['sql'] || ''
         if not File.exist?(query_filename)
-          # print("File '#{query_filename}' does not exist.")
           puts " FAIL Source query does not exist."
           next
         end
 
-        #sqlx_filename = "#{detection['id'].to_s.gsub(/\./,'_')}_#{detection['name']}.sqlx"
         sqlx_filename = "#{detection['id'].to_s.gsub(/\./,'_')}_raw.sqlx"
         sqlx_filename = "#{CSA_DATAFORM_DIR}/#{sqlx_filename}"
 
@@ -78,7 +76,6 @@ class CSASqlx
     sqlx_query = sqlx_query.gsub(/\/\*.*?\*\//m, "")
 
     print " => #{output_sqlx_path} =>"
-    # File.open(output_sqlx_path, 'w') { |f| f.write(new_content) }
     File.write output_sqlx_path, sqlx_type + sqlx_query
   end
 end
