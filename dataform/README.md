@@ -1,4 +1,4 @@
-# Dataform repo for CSA
+# Dataform for CSA
 
 ## Overview
 
@@ -13,16 +13,25 @@ This Dataform repo is provided to automate deployment of all CSA queries and und
 
 To learn more about Dataform, see [Overview of Dataform](https://cloud.google.com/dataform/docs/overview).
 
+## Prerequisite
+Before you begin, you must have a linked BigQuery dataset with the `_AllLogs` view provided by Log Analytics. This view is the source data for all the tables and views that will be built by this Dataform. If you haven't already, make sure to:
+
+1. [Route your logs to single log bucket destination](https://cloud.google.com/architecture/security-log-analytics#create_an_aggregated_log_sink)
+1. [Upgrade your log bucket to use Log Analytics](https://cloud.google.com/logging/docs/buckets#upgrade-bucket)
+1. [Create a linked BigQuery dataset](https://cloud.google.com/logging/docs/buckets#link-bq-dataset)
+
+For details about the general workflow to enable and aggregate logs in Google Cloud, see [Security log analytics workflow](https://cloud.google.com/architecture/security-log-analytics#security_log_analytics_workflow) as part of Google Cloud Architecture Center.
+
 ## Configuration
 
-Configuration is controlled by values in [`dataform.json`](./dataform.json) file, in particular the destination Google Cloud project (`defaultDatabase`), the destination BigQuery dataset (`defaultSchema`) and its location (`defaultLocation`), and the variables listed in following section.
+Dataform configuration is controlled by values in [`dataform.json`](./dataform.json) file, in particular the destination Google Cloud project (`defaultDatabase`), the destination BigQuery dataset (`defaultSchema`) and location (`defaultLocation`), and the custom variables listed in following section.
 
 ### Variables
 
 | Variable | Description | Default value |
 |---|---|---|
-| `logs_export_project` | Project where logs are exported | |
-| `logs_export_dataset` | BigQuery dataset where logs are exported. Enter your BigQuery linked dataset of your Log Analytics-enabled log bucket | |
+| `logs_export_project` | Project where logs are exported, i.e. source project | |
+| `logs_export_dataset` | BigQuery dataset where logs are exported, i.e. source dataset. Enter your BigQuery linked dataset of your Log Analytics-enabled log bucket | |
 | `raw_lookback_days` | Lookback window for reports from raw data in number of days | 90 |
 | `summary_lookback_days` | Lookback window for creating summary tables from raw data in number of days | 90 |
 | `report_interval_days` | Report time interval in number of days | 30 |
