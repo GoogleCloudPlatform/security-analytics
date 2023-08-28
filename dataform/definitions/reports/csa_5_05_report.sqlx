@@ -27,7 +27,7 @@ SELECT
   SUM(dataChangeEvents) AS dataChangeEvents,
   SUM(totalEvents) AS totalEvents
 FROM
-  ${ref("5_05_summary_daily")}
+  ${ref("csa_5_05_summary_daily")}
 WHERE
   day >=  DATE_SUB(CURRENT_DATE(), INTERVAL ${dataform.projectConfig.vars.report_interval_days} DAY)
 GROUP BY

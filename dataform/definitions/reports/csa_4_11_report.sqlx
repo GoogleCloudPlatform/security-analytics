@@ -25,7 +25,7 @@ SELECT
   method_name,
   counter
 FROM
-  ${ref("4_10_summary_daily")}
+  ${ref("csa_4_10_summary_daily")}
 WHERE
   day >=  DATE_SUB(CURRENT_DATE(), INTERVAL ${dataform.projectConfig.vars.report_interval_days} DAY)
 ORDER BY

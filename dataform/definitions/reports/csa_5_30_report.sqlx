@@ -29,7 +29,7 @@ WITH actions AS (
     ARRAY_CONCAT_AGG(resource_names ORDER BY day DESC) as resource_names,
     ARRAY_CONCAT_AGG(user_agents ORDER BY day DESC) as user_agents,
     SUM(counter) as counter,
-  FROM ${ref("5_30_summary_daily")}
+  FROM ${ref("csa_5_30_summary_daily")}
   WHERE
     day >= DATE_SUB(CURRENT_DATE(), INTERVAL ${dataform.projectConfig.vars.report_interval_days} DAY) 
   GROUP BY
@@ -47,4 +47,4 @@ SELECT
   -- retrieve all-time last instance from current summary table
   st.last_seen,
 FROM actions st
-LEFT JOIN ${ref("5_30_users_lookup")} lt USING(principal_email)
+LEFT JOIN ${ref("csa_5_30_users_lookup")} lt USING(principal_email)

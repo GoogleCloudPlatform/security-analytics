@@ -21,7 +21,7 @@ config {
 
 SELECT *
 FROM
-  ${ref("6_01_summary_hourly")}
+  ${ref("csa_6_01_summary_hourly")}
 WHERE
   time_window >=  TIMESTAMP_SUB(CURRENT_TIMESTAMP(), INTERVAL ${dataform.projectConfig.vars.report_interval_days} DAY)
   AND (

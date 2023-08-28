@@ -24,7 +24,7 @@ SELECT
   query_name,
   SUM(total_queries) AS total_queries
 FROM
-  ${ref("6_40_summary_hourly")}
+  ${ref("csa_6_40_summary_hourly")}
 WHERE
   time_window >=  TIMESTAMP_SUB(CURRENT_TIMESTAMP(), INTERVAL ${dataform.projectConfig.vars.report_interval_days} DAY)
 GROUP BY

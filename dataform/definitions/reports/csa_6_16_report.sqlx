@@ -30,7 +30,7 @@ SELECT
     packets_sent, packets_received,
     external_net_asn, external_net_country) ORDER BY flow_count DESC) AS connections
 FROM
-  ${ref("6_15_summary_hourly")}
+  ${ref("csa_6_15_summary_hourly")}
 WHERE
   time_window >=  TIMESTAMP_SUB(CURRENT_TIMESTAMP(), INTERVAL ${dataform.projectConfig.vars.report_interval_days} DAY)
 GROUP BY

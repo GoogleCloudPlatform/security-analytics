@@ -22,7 +22,7 @@ config {
 SELECT
   *
 FROM
-  ${ref("3_11_intermediary_stats")}
+  ${ref("csa_3_11_intermediary_stats")}
 WHERE
   counter > avg + 2 * stddev
   AND day >= DATE_SUB(CURRENT_DATE(), INTERVAL 7 DAY)

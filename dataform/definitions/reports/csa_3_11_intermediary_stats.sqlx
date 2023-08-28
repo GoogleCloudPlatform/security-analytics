@@ -35,6 +35,6 @@ SELECT
     ROWS BETWEEN UNBOUNDED PRECEDING AND 1 PRECEDING) AS stddev,
   COUNT(*) OVER (
     RANGE BETWEEN UNBOUNDED PRECEDING AND UNBOUNDED FOLLOWING) AS numSamples
-FROM ${ref("3_11_summary_daily")}
+FROM ${ref("csa_3_11_summary_daily")}
 WHERE
   day >=  DATE_SUB(CURRENT_DATE(), INTERVAL ${dataform.projectConfig.vars.summary_lookback_days} DAY)

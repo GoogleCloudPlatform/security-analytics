@@ -25,7 +25,7 @@ WITH actions AS (
     MIN(first_seen) as first_seen,
     MAX(last_seen) as last_seen,
     ANY_VALUE(channel) as channel
-  FROM ${ref("1_30_summary_daily")}
+  FROM ${ref("csa_1_30_summary_daily")}
   WHERE
     day >= DATE_SUB(CURRENT_DATE(), INTERVAL ${dataform.projectConfig.vars.report_interval_days} DAY) 
     AND channel = 'Cloud Console'
@@ -43,4 +43,4 @@ SELECT
   -- retrieve all-time last instance from fresher summary table
   st.last_seen,
 FROM actions st
-LEFT JOIN ${ref("1_30_users_lookup")} lt USING(user, user_agent, ip)
+LEFT JOIN ${ref("csa_1_30_users_lookup")} lt USING(user, user_agent, ip)

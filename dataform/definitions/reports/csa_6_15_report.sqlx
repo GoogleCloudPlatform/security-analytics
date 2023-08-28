@@ -48,7 +48,7 @@ FROM (
     FORMAT('%.2f', SUM(bytes_sent)/POWER(2, 30)) AS outbound_traffic_gb,
     FORMAT('%.2f', SUM(bytes_received)/POWER(2, 30)) AS inbound_traffic_gb,
   FROM
-    ${ref("6_15_summary_hourly")}
+    ${ref("csa_6_15_summary_hourly")}
   WHERE
     time_window >=  TIMESTAMP_SUB(CURRENT_TIMESTAMP(), INTERVAL ${dataform.projectConfig.vars.report_interval_days} DAY)
   GROUP BY
@@ -68,7 +68,7 @@ FROM (
     FORMAT('%.2f', SUM(bytes_received)/POWER(2, 30)) AS outbound_traffic_gb,
     FORMAT('%.2f', SUM(bytes_sent)/POWER(2, 30)) AS inbound_traffic_gb,
   FROM
-    ${ref("6_15_summary_hourly")}
+    ${ref("csa_6_15_summary_hourly")}
   WHERE
     time_window >=  TIMESTAMP_SUB(CURRENT_TIMESTAMP(), INTERVAL ${dataform.projectConfig.vars.report_interval_days} DAY)
   GROUP BY

@@ -60,6 +60,6 @@ FROM (
     -- retrieve all-time last instance from current summary table
     st.last_seen
   FROM actions st
-  LEFT JOIN ${ref("5_30_users_lookup")} lt USING(principal_email)
+  LEFT JOIN ${ref("csa_5_30_users_lookup")} lt USING(principal_email)
 )
 WHERE is_new

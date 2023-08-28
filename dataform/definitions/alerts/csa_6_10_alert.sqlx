@@ -51,6 +51,6 @@ FROM (
     -- retrieve all-time last instance from current summary table
     st.last_seen
   FROM actions st
-  LEFT JOIN ${ref("6_10_ips_lookup")} lt USING(src_ip)
+  LEFT JOIN ${ref("csa_6_10_ips_lookup")} lt USING(src_ip)
 )
 WHERE is_new

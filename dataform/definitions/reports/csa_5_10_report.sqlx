@@ -22,7 +22,7 @@ config {
 
 SELECT
   *
-FROM ${ref("5_10_summary_daily")}
+FROM ${ref("csa_5_10_summary_daily")}
 WHERE
   timestamp >= TIMESTAMP_SUB(CURRENT_TIMESTAMP(), INTERVAL ${dataform.projectConfig.vars.report_interval_days} DAY)
 ORDER BY

@@ -28,7 +28,7 @@ WITH actions AS (
     ARRAY_CONCAT_AGG(subnetwork_names ORDER BY day DESC) as subnetwork_names,
     ARRAY_CONCAT_AGG(vm_names ORDER BY day DESC) as vm_names,
     SUM(counter) as counter,
-  FROM ${ref("6_10_summary_daily")}
+  FROM ${ref("csa_6_10_summary_daily")}
   WHERE
     day >= DATE_SUB(CURRENT_DATE(), INTERVAL ${dataform.projectConfig.vars.report_interval_days} DAY) 
   GROUP BY
@@ -46,4 +46,4 @@ SELECT
   -- retrieve all-time last instance from current summary table
   st.last_seen,
 FROM actions st
-LEFT JOIN ${ref("6_10_ips_lookup")} lt USING(src_ip)
+LEFT JOIN ${ref("csa_6_10_ips_lookup")} lt USING(src_ip)

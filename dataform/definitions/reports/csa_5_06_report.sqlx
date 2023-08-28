@@ -26,7 +26,7 @@ SELECT
   ARRAY_CONCAT_AGG(tables ORDER BY day DESC) AS tables,
   SUM(counter) AS counter
 FROM
-  ${ref("5_06_summary_daily")}
+  ${ref("csa_5_06_summary_daily")}
 WHERE
   day >=  DATE_SUB(CURRENT_DATE(), INTERVAL ${dataform.projectConfig.vars.report_interval_days} DAY)
 GROUP BY

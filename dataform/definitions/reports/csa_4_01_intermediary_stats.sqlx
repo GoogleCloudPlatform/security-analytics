@@ -38,6 +38,6 @@ SELECT
   COUNT(*) OVER (
     PARTITION BY principal_email
     RANGE BETWEEN UNBOUNDED PRECEDING AND UNBOUNDED FOLLOWING) AS numSamples
-FROM ${ref("4_01_summary_daily")}
+FROM ${ref("csa_4_01_summary_daily")}
 WHERE
   day >=  DATE_SUB(CURRENT_DATE(), INTERVAL ${dataform.projectConfig.vars.summary_lookback_days} DAY)
