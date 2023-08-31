@@ -80,7 +80,7 @@ To connect to your BigQuery warehouse and deploy datasets, Dataform requires a c
 
         dataform init-creds bigquery
 
-2. Follow the `init-creds` prompts that walks you through creating the credentials file `.df-credentials.json`
+1. Follow the `init-creds` prompts that walks you through creating the credentials file `.df-credentials.json`
 
 Warning: Do not accidentally commit that file to your repository. The repo `.gitignore` is configured to ignore the credentials file `.df-credentials.json` to help protect your access credentials.
 
@@ -89,10 +89,10 @@ Warning: Do not accidentally commit that file to your repository. The repo `.git
 You specify your source and target BigQuery datasets using `dataform.json` file. You can also override any other configuration variables defined in [variables section](#variables).
 
 1. Open `dataform.json` using your favorite editor.
-2. Replace `[PROJECT_ID]` placeholder value for `defaultDatabase` with the ID of your Google Cloud Project containing your target BigQuery dataset.
-3. Replace `csa` default value for `defaultSchema` with the name of your target BigQuery dataset.
-4. Replace `[LOGS_PROJECT_ID]` placeholder value for `logs_export_project` variable, with the ID of the Google Cloud Project where raw logs currently reside.
-5. Replace `[LOGS_DATASET_ID]` placeholder value for `logs_export_dataset` variable, with the name of your source BigQuery dataset, i.e. the BigQuery linked dataset where raw logs are stored.
+1. Replace `[PROJECT_ID]` placeholder value for `defaultDatabase` with the ID of your Google Cloud Project containing your target BigQuery dataset.
+1. Replace `csa` default value for `defaultSchema` with the name of your target BigQuery dataset.
+1. Replace `[LOGS_PROJECT_ID]` placeholder value for `logs_export_project` variable, with the ID of the Google Cloud Project where raw logs currently reside.
+1. Replace `[LOGS_DATASET_ID]` placeholder value for `logs_export_dataset` variable, with the name of your source BigQuery dataset, i.e. the BigQuery linked dataset where raw logs are stored.
 
 ### Compile Dataform code
 
@@ -112,8 +112,8 @@ For more details on common `dataform run` command line options, refer to [Execut
 
 ## Schedule executions with Workflows and Cloud Scheduler
 
-The [`daily-workflow.yaml`](./cloudworkflows/daily-workflow.yml) and [`hourly-workflow.yaml`](./cloudworkflows/daily-workflow.yml) files located in the 
-[`cloudworkflows` folder](./cloudworkflows/) in this repository contain an example of using Workflows to execute the .SQLX code on a schedule. This is required to incrementally update the daily and hourly summary tables and their respective dependencies such as lookups and stats tables.
+The [`daily-workflow.yaml`](./workflows/daily-workflow.yaml) and [`hourly-workflow.yaml`](./workflows/hourly-workflow.yaml) files located in the 
+[`workflows`](./workflows/) folder in this repository contain an example of using [Workflows](https://cloud.google.com/workflows) to execute the .SQLX code on a schedule. This is required to incrementally update the daily and hourly summary tables and their respective dependencies such as lookups and stats tables.
 
 ### Before you begin
 
@@ -124,13 +124,13 @@ If you haven't done so already, create a [Dataform repository](https://cloud.goo
 1. Create a service account an assign the following roles:
 
     - `Dataform Editor` so that it can access the Dataform repository and invoke Dataform workflows in that repository.
-    - `Workflows Invoker` so that it can trigger the Workflows workflows defined in [`daily-workflow.yaml`](./cloudworkflows/daily-workflow.yml) and [`hourly-workflow.yaml`](./cloudworkflows/daily-workflow.yml) YAML files.
+    - `Workflows Invoker` so that it can trigger the Workflows workflows defined in [`daily-workflow.yaml`](./workflows/daily-workflow.yaml) and [`hourly-workflow.yaml`](./workflows/hourly-workflow.yaml) YAML files.
 
-2. Cd into the [`cloudworkflows` folder](./cloudworkflows/) folder using `cd cloudworkflows`.
-3. Open the YAML files in your favorite editor, and replace `[PROJECT_ID]` placeholder value for with the ID of your Google Cloud Project containing the dataform repository, as well as `[REGION]` and `[REPOSITORY]` with the location and name of the repository.
+1. Cd into the [`workflows`](./workflows/) folder using `cd workflows`.
+1. Open the YAML files in your favorite editor, and replace `[PROJECT_ID]` placeholder value for with the ID of your Google Cloud Project containing the dataform repository, as well as `[REGION]` and `[REPOSITORY]` with the location and name of the repository.
 
-4. Deploy both workflows using:
- ```bash
+1. Deploy both workflows using:
+```bash
  gcloud workflows deploy security-analytics-daily \
  --source=daily-workflow.yaml \
  --service-account=<SERVICE_ACCOUNT>@<PROJECT_ID>.iam.gserviceaccount.com 
@@ -138,9 +138,10 @@ If you haven't done so already, create a [Dataform repository](https://cloud.goo
  gcloud workflows deploy security-analytics-hourly \
  --source=hourly-workflow.yaml \
  --service-account=<SERVICE_ACCOUNT>@<PROJECT_ID>.iam.gserviceaccount.com
- ```
- 3. Deploy the scheduling tasks using 
- ```bash
+```
+
+ 5. Deploy the scheduling tasks using 
+```bash
 gcloud scheduler jobs create http security-analytics-daily \
 --schedule='0 0 * * *' \
 --uri=https://workflowexecutions.googleapis.com/v1/projects/<PROJECT_ID>/locations/<REGION>/workflows/security-analytics-daily/executions \
@@ -151,7 +152,7 @@ gcloud scheduler jobs create http security-analytics-houry \
 --uri=https://workflowexecutions.googleapis.com/v1/projects/<PROJECT_ID>/locations/<REGION>/workflows/security-analytics-hourly/executions \
 --oauth-service-account-email=<SERVICE_ACCOUNT>@<PROJECT_ID>.iam.gserviceaccount.com
 
- ```
+```
 
 You have now set up two scheduled workflows to continously and incrementally update your datasets in order to keep your reports and views current:
 

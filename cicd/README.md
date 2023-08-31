@@ -85,8 +85,7 @@ Variable Name | Description | Example Value
 `region` | The region for your Chronicle instance | us
 `rules_path` | The relative path from the root of the repository containing the YARA-L rules to work with | rules/yaral
 
-These should be modified for your environment, and the file should be placed in a `.github/workflow` folder in the root of your
-repository.
+These should be modified for your environment, and the file should be placed in a `.github/workflows` folder in the root of your repository.
 
 In addition to this, the pipeline file requires a secret to be created on your GitHub repository. Details for creating this
 can be found [here](https://docs.github.com/en/actions/security-guides/encrypted-secrets). The secret in this case should 
@@ -100,8 +99,7 @@ cat ~/malachite-abc-7ba40dd4f123.json | tr '\n' ' ' | sed -r 's/\"/\\"/g'
 
 The resulting string can then be pasted into the Secrets UI in GitHub.
 
-Now whenever a change is written to the repository the contents of the passed rules folder will be checked and updated/uploaded
-on the Chronicle instance.
+Now whenever a change is written to the repository the contents of the passed rules folder will be checked and updated/uploaded on the Chronicle instance. To learn more GitHub Actions workflows, see [here](https://docs.github.com/en/actions/using-workflows/about-workflows).
 
 ## Using in a Google Cloud Build pipeline
 
