@@ -182,7 +182,7 @@ def upload_missing_rules(session, local_rules_path, silent=False):
 def verify_rule(session,rule_text,rule_name,silent=False):
   try:
     url=f'{API_BASE_URL}/v2/detect/rules:verifyRule'
-    body={"rule_text":rule_text}
+    body={"ruleText":rule_text}
     response = session.request(
       method="POST",
       url=url,
@@ -199,7 +199,7 @@ def create_rule(session,rule_text,rule_name, silent=False):
   if verify_rule(session,rule_text,rule_name,silent):
     try:
       url=f'{API_BASE_URL}/v2/detect/rules'
-      body={"rule_text":rule_text}
+      body={"ruleText":rule_text}
       response = session.request(
         method="POST",
         url=url,
