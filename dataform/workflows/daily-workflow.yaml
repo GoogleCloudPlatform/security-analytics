@@ -7,6 +7,8 @@ main:
         call: http.post
         args:
             url: ${"https://dataform.googleapis.com/v1beta1/" + repository + "/compilationResults"}
+            headers:
+                User-Agent: "cloud-solutions/security-analytics-usage-v1"
             auth:
                 type: OAuth2
             body:
@@ -16,6 +18,8 @@ main:
         call: http.post
         args:
             url: ${"https://dataform.googleapis.com/v1beta1/" + repository + "/workflowInvocations"}
+            headers:
+                User-Agent: "cloud-solutions/security-analytics-usage-v1"
             auth:
                 type: OAuth2
             body:
