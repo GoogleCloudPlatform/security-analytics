@@ -90,14 +90,7 @@ These should be modified for your environment, and the file should be placed in 
 In addition to this, the pipeline file requires a secret to be created on your GitHub repository. Details for creating this
 can be found [here](https://docs.github.com/en/actions/security-guides/encrypted-secrets). The secret in this case should 
 be named `SA_CREDENTIAL`. The value is derived from the contents of your Chronicle API key, but line breaks should be 
-removed from the file, and the `"` character should also be replaced with `\"`. This can be generated with the following 
-command in *nix operating systems:
-
-```bash
-cat ~/malachite-abc-7ba40dd4f123.json | tr '\n' ' ' | sed -r 's/\"/\\"/g'
-```
-
-The resulting string can then be pasted into the Secrets UI in GitHub.
+removed from the file, and the `"` character should also be replaced with `\"`. The resulting string can then be pasted into the Secrets UI in GitHub.
 
 Now whenever a change is written to the repository the contents of the passed rules folder will be checked and updated/uploaded on the Chronicle instance. To learn more GitHub Actions workflows, see [here](https://docs.github.com/en/actions/using-workflows/about-workflows).
 
