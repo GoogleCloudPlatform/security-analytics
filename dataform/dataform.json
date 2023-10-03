@@ -1,12 +1,12 @@
 {
   "warehouse": "bigquery",
-  "defaultDatabase": "[PROJECT_ID]",
+  "defaultDatabase": "noon-secops-stg",
   "defaultSchema": "csa",
   "assertionSchema": "csa_assertions",
   "defaultLocation": "US",
   "vars": {
-    "logs_export_project": "[LOGS_PROJECT_ID]",
-    "logs_export_dataset": "[LOGS_DATASET_ID]",
+    "logs_export_project": "noon-secops-stg",
+    "logs_export_dataset": "CSA_dataset",
     "raw_lookback_days": "90",
     "summary_lookback_days": "90",
     "report_interval_days": "30",
