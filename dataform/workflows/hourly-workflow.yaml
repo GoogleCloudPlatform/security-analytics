@@ -2,7 +2,7 @@ main:
     steps:
     - init:
         assign:
-        - repository: projects/[PROJECT_ID]/locations/[REGION]/repositories/[REPOSITORY]
+        - repository: projects/noon-secops-stg/locations/us-central1/repositories/CSA-Dataform-workflow
     - createCompilationResult:
         call: http.post
         args:
