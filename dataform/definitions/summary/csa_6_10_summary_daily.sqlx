@@ -41,7 +41,7 @@ SELECT
   MIN(TIMESTAMP(REGEXP_REPLACE(JSON_VALUE(json_payload.start_time), r'\.(\d{0,6})\d+(Z)?$', '.\\1\\2'))) AS first_seen,
   MAX(TIMESTAMP(REGEXP_REPLACE(JSON_VALUE(json_payload.start_time), r'\.(\d{0,6})\d+(Z)?$', '.\\1\\2'))) AS last_seen,
   ARRAY_AGG(DISTINCT JSON_VALUE(resource.labels.subnetwork_name)) as subnetwork_names,
-  ARRAY_AGG(DISTINCT JSON_VALUE(json_payload.dest_instance.vm_name)) as vm_names,
+  ARRAY_AGG(DISTINCT JSON_VALUE(json_payload.dest_instance.vm_name) IGNORE NULLS) as vm_names,
   COUNT(*) counter
 FROM ${ref("_AllLogs")}
 WHERE

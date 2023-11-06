@@ -39,7 +39,7 @@ SELECT
   COUNT(DISTINCT JSON_VALUE(json_payload.connection.dest_ip)) AS numDestIps,
   COUNT(DISTINCT JSON_VALUE(json_payload.connection.dest_port)) AS numDestPorts,
   ARRAY_AGG(DISTINCT JSON_VALUE(resource.labels.subnetwork_name)) AS subnetNames,
-  ARRAY_AGG(DISTINCT IF(JSON_VALUE(json_payload.reporter) = "DEST", JSON_VALUE(json_payload.dest_instance.vm_name), JSON_VALUE(json_payload.src_instance.vm_name))) as VMs,
+  ARRAY_AGG(DISTINCT IF(JSON_VALUE(json_payload.reporter) = "DEST", JSON_VALUE(json_payload.dest_instance.vm_name), JSON_VALUE(json_payload.src_instance.vm_name)) IGNORE NULLS) as VMs,
   COUNT(*) numSamples
 FROM
   ${ref("_AllLogs")}
