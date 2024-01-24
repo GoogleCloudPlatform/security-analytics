@@ -22,7 +22,6 @@ FROM
 WHERE
   (proto_payload.audit_log.method_name = "google.cloud.bigquery.v2.JobService.InsertJob" OR
    proto_payload.audit_log.method_name = "google.cloud.bigquery.v2.JobService.Query")
-  AND timestamp >= TIMESTAMP_SUB(CURRENT_TIMESTAMP(), INTERVAL 7 DAY)
   AND log_id = "cloudaudit.googleapis.com/data_access"
 GROUP BY
   1
