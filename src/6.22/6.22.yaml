@@ -2,7 +2,7 @@
 id: '6.22'
 name: log4j_exploit_attempts_remote_IP_address_list
 # Refer to corresponding queries: 6_22_log4j_exploit_attempts_remote_IP_address_list.{sql|yaral|...}
-display_name: Any remote IP addresses attemting to exploit Log4j 2 vulnerability?
+display_name: Any remote IP addresses attempting to exploit Log4j 2 vulnerability?
 category: Network Activity
 severity: Medium
 attack_mapping:
