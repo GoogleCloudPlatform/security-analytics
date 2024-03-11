@@ -1,0 +1,49 @@
+{
+    "protoPayload": {
+      "@type": "type.googleapis.com/google.cloud.audit.AuditLog",
+      "authenticationInfo": {
+        "principalEmail": "test-user@example.com",
+        "principalSubject": "user:test-user@example.com"
+      },
+      "requestMetadata": {
+        "callerIp": "203.0.113.255",
+        "callerSuppliedUserAgent": "<redacted>",
+        "requestAttributes": {
+          "time": "2024-02-22T04:55:11.117617705Z",
+          "auth": {}
+        },
+        "destinationAttributes": {}
+      },
+      "serviceName": "aiplatform.googleapis.com",
+      "methodName": "google.cloud.aiplatform.v1beta1.PredictionService.GenerateContent",
+      "authorizationInfo": [
+        {
+          "resource": "projects/my-project/locations/us-central1/publishers/google/models/gemini-1.0-pro-001",
+          "permission": "aiplatform.endpoints.predict",
+          "granted": true,
+          "resourceAttributes": {}
+        }
+      ],
+      "resourceName": "projects/my-project/locations/us-central1/publishers/google/models/gemini-1.0-pro-001",
+      "request": {
+        "@type": "type.googleapis.com/google.cloud.aiplatform.v1beta1.GenerateContentRequest",
+        "model": "projects/my-project/locations/us-central1/publishers/google/models/gemini-1.0-pro-001"
+      },
+      "response": {
+        "@type": "type.googleapis.com/google.cloud.aiplatform.v1beta1.GenerateContentResponse"
+      }
+    },
+    "insertId": "a9mqkae614f2",
+    "resource": {
+      "type": "audited_resource",
+      "labels": {
+        "service": "aiplatform.googleapis.com",
+        "method": "google.cloud.aiplatform.v1beta1.PredictionService.GenerateContent",
+        "project_id": "my-project"
+      }
+    },
+    "timestamp": "2024-02-22T04:55:11.116811865Z",
+    "severity": "INFO",
+    "logName": "projects/my-project/logs/cloudaudit.googleapis.com%2Fdata_access",
+    "receiveTimestamp": "2024-02-22T04:55:14.371010794Z"
+  }

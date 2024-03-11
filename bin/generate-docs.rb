@@ -62,7 +62,7 @@ class CSADocs
 
     query_paths = detection['query_rel_paths'] || {}
     
-    template = ERB.new File.read("#{CSA_LIB_DIR}/doc_template.md.erb"), nil, "-"
+    template = ERB.new(File.read("#{CSA_LIB_DIR}/doc_template.md.erb"), trim_mode:"-")
     generated_doc = template.result(binding)
 
     print " => #{output_doc_path} => "

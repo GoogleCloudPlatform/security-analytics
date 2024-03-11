@@ -1,0 +1,35 @@
+---
+id: '4.30'
+name: top_llm_users_by_model
+# Refer to corresponding queries: 4_30_top_llm_users_by_model.{sql|yaral|...}
+display_name: Which users most frequently used LLM models?
+category: Data Usage
+severity: Low
+attack_mapping:
+  - technique: T1496
+    title: Resource Hijacking
+    link: https://attack.mitre.org/techniques/T1496/
+  - technique: AML.T0051
+    title: LLM Prompt Injection
+    link: https://atlas.mitre.org/techniques/AML.T0051
+  - technique: AML.T0057
+    title: LLM Data Leakage
+    link: https://atlas.mitre.org/techniques/AML.T0057
+description: |
+  Top users who used LLMs to generated content (including embeddings). Break down results by specific LLM model used.
+
+sources:
+  - Audit Logs - Data Access
+
+use_cases:
+  - Audit
+  - Detect
+
+test:
+
+samples:
+  - google.cloud.aiplatform.v1.PredictionService.Predict
+  - google.cloud.aiplatform.v1beta1.PredictionService.GenerateContent
+
+references:
+  - https://cloud.google.com/vertex-ai/docs/general/audit-logging#audited_operations
