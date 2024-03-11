@@ -14,6 +14,15 @@
  * limitations under the License.
  */
 
+/*
+ * ||||||||||||||||||||||||||||||||||||||
+ *   Log Analytics chart configuration:
+ * ||||||||||||||||||||||||||||||||||||||
+ * - Chart type: Bar chart - Horizontal
+ * - Dimension (y-axis): principal_email
+ * - Measure (x-axis): counter
+ * - Breakdown: model_name 
+ */
 
 SELECT
   proto_payload.audit_log.authentication_info.principal_email,

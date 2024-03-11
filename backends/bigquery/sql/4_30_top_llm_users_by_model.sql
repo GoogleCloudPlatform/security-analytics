@@ -22,6 +22,7 @@ SELECT
 FROM
   `[MY_PROJECT_ID].[MY_DATASET_ID].cloudaudit_googleapis_com_data_access`
 WHERE
+  -- in the past week
   timestamp >= TIMESTAMP_SUB(CURRENT_TIMESTAMP(), INTERVAL 7 DAY) AND
   protopayload_auditlog.serviceName = "aiplatform.googleapis.com" AND
   SPLIT(protopayload_auditlog.methodName, '.')[SAFE_OFFSET(5)] IN ("Predict", "GenerateContent")
