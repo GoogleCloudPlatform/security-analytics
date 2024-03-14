@@ -1,0 +1,36 @@
+---
+id: '4.31'
+name: llm_usage_over_time
+# Refer to corresponding queries: 4_31_llm_usage_over_time.{sql|yaral|...}
+display_name: Usage of LLM models over time
+category: Data Usage
+severity: Low
+attack_mapping:
+  - technique: T1496
+    title: Resource Hijacking
+    link: https://attack.mitre.org/techniques/T1496/
+  - technique: AML.T0051
+    title: LLM Prompt Injection
+    link: https://atlas.mitre.org/techniques/AML.T0051
+  - technique: AML.T0057
+    title: LLM Data Leakage
+    link: https://atlas.mitre.org/techniques/AML.T0057
+description: |
+  Analyze LLM model usage over time, grouping by specific LLM model.
+  Use this to detect any usage spikes or anomalies.
+
+sources:
+  - Audit Logs - Data Access
+
+use_cases:
+  - Audit
+  - Detect
+
+test:
+
+samples:
+  - google.cloud.aiplatform.v1.PredictionService.Predict
+  - google.cloud.aiplatform.v1beta1.PredictionService.GenerateContent
+
+references:
+  - https://cloud.google.com/vertex-ai/docs/general/audit-logging#audited_operations
