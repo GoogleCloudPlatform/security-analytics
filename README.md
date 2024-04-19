@@ -8,7 +8,7 @@ As organizations go through the Autonomic Security modernization journey, this r
 CSA is a set of foundational security analytics designed to provide organizations with a rich baseline of pre-built queries and rules that they can readily use to start analyzing their Google Cloud logs including Cloud Audit logs, VPC Flow logs, DNS logs, and more using cloud-native or third-party analytics tools. The source code is provided as is, without warranty. See [Copyright & License](#copyright--license) below.
 
 Current release include:
-- YARA-L rules for [Chronicle](https://chronicle.security/)
+- YARA-L rules for [Google Security Operations](https://chronicle.security/)
 - SQL queries for [BigQuery](https://cloud.google.com/bigquery/)
 - SQL queries for [Log Analytics](https://cloud.google.com/logging/docs/log-analytics)
 
@@ -21,9 +21,9 @@ The security use cases below are grouped in 6 categories depending on underlying
 5. :droplet: [Data Usage](#data-usage)
 6. :zap: [Network Activity](#network-activity)
 
-To learn more about the variety of Google Cloud logs, how to enable and natively export these logs to destinations like Chronicle or BigQuery for in-depth analytics, refer to Google Cloud [Security and access analytics solution guide](https://cloud.google.com/architecture/exporting-stackdriver-logging-for-security-and-access-analytics).
+To learn more about the variety of Google Cloud logs, how to enable and natively export these logs to destinations like BigQuery or Google Security Operations for in-depth analytics, refer to Google Cloud [Security and access analytics solution guide](https://cloud.google.com/architecture/exporting-stackdriver-logging-for-security-and-access-analytics).
 
-**Caution:** CSA is not meant to be a comprehensive set of threat detections, but a collection of community-contributed samples to get you started with detective controls. Use CSA in your threat detection and response capabilities (e.g. [Security Command Center](https://cloud.google.com/security-command-center), Chronicle, BigQuery, Siemplify, or third-party SIEM) in conjunction with threat prevention capabilities (e.g. [Security Command Center](https://cloud.google.com/security-command-center), [Cloud Armor](https://cloud.google.com/armor), [BeyondCorp](https://cloud.google.com/beyondcorp)). To learn more about Google’s approach to modern Security Operations, check out the [Autonomic Security Operations whitepaper](https://services.google.com/fh/files/misc/googlecloud_autonomicsecurityoperations_soc10x.pdf).
+**Caution:** CSA is not meant to be a comprehensive set of threat detections, but a collection of community-contributed samples to get you started with detective controls. Use CSA in your threat detection and response capabilities (e.g. [Security Command Center](https://cloud.google.com/security-command-center), Google Security Operations, BigQuery, Siemplify, or third-party SIEM) in conjunction with threat prevention capabilities (e.g. [Security Command Center](https://cloud.google.com/security-command-center), [Cloud Armor](https://cloud.google.com/armor), [BeyondCorp](https://cloud.google.com/beyondcorp)). To learn more about Google’s approach to modern Security Operations, check out the [Autonomic Security Operations whitepaper](https://services.google.com/fh/files/misc/googlecloud_autonomicsecurityoperations_soc10x.pdf).
 
 ## Security Analytics Use Cases
 ![Security Monitoring](./assets/gcp_security_mon.png)
@@ -92,9 +92,9 @@ To learn more about the variety of Google Cloud logs, how to enable and natively
 
 The [`dataform` folder](./dataform/) contains the Dataform repo to automate deployment of CSA queries in BigQuery for optimized performance and cost. Use this Dataform repo to operationalize CSA use cases as reports and alerts powered by BigQuery. This Dataform project deploys and orchestrates pre-built ELT pipelines to filter, normalize and model log data leveraging incremental summary tables, lookup tables and views for fast, cost-effective and simpler querying. See underlying [README](./dataform/README.md) for more details.
 
-## CI/CD for CSA on Chronicle
+## CI/CD for CSA on Google Security Operations
 
-The [`cicd` folder](./cicd/) contains a set of scripts to help you with storing CSA YARA-L detection rules as code and testing/deploying updates you and your team make in an automated fashion. Whether you use GitHub Actions, Google Cloud Build or Azure DevOps, you can use the corresponding scripts to automatically test and deploy new or modified rules into your Chronicle instance. See underlying [README](./cicd/README.md) for more details.
+The [`cicd` folder](./cicd/) contains a set of scripts to help you with storing CSA YARA-L detection rules as code and testing/deploying updates you and your team make in an automated fashion. Whether you use GitHub Actions, Google Cloud Build or Azure DevOps, you can use the corresponding scripts to automatically test and deploy new or modified rules into your Google Security Operations instance. See underlying [README](./cicd/README.md) for more details.
 
 ## Support
 

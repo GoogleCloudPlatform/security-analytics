@@ -1,20 +1,20 @@
-# CI/CD for CSA on Chronicle
+# CI/CD for CSA on Google Security Operations
 
 ## Overview
 
 The [`python` folder](./python/) contains Python helper scripts to gather rules from a local folder and from the remote
-Chronicle instance, and to compare them, uploading changed or new files to the Chronicle instance.
+Google Security Operations instance, and to compare them, uploading changed or new files to the Google Security Operations instance.
 
 ## Pre-installation
 
 Pre-requisites can be installed by copying the files from the folder locally, and running `pip3 install -r requirements.txt`
 
-To run this script you will need a Chronicle API Service Account JSON file. This can be obtained from your Google Chronicle 
+To run this script you will need a Google SecOps API Service Account JSON file. This can be obtained from your Google Security Operations 
 account team.
 
 ## Usage
 
-First export the path to your Chronicle API key like this:
+First export the path to your Google SecOps API key like this:
 
 ```bash
 export PATH_TO_KEY=~/malachite-abc-7ba40dd4f123.json
@@ -46,7 +46,7 @@ optional arguments:
                         differences
   -s, --silent          supress error messages
   -r REGION, --region REGION
-                        Chronicle instance region (leave blank for US)
+                        Google Security Operations instance region (leave blank for US)
 ```
 
 NOTE: if you provide more than one of `CREDENTIALS_FILE`, `CREDENTIALS_INFO`, `CREDENTIALS_ENV`, then the 
@@ -77,34 +77,34 @@ Example output from making changes (including `-m` flag):
 
 The [`chronicle-rules-cicd.yml`](./github-actions/chronicle-rules-cicd.yml) file located in the 
 [`github-actions` folder](./github-actions/) in this repository contains an example of using this 
-Python script to push updates or new detection content to a Chronicle instance. There are two variables 
+Python script to push updates or new detection content to a Google Security Operations instance. There are two variables 
 to edit in this script:
 
 Variable Name | Description | Example Value
 ---|---|---
-`region` | The region for your Chronicle instance | us
+`region` | The region for your Google Security Operations instance | us
 `rules_path` | The relative path from the root of the repository containing the YARA-L rules to work with | rules/yaral
 
 These should be modified for your environment, and the file should be placed in a `.github/workflows` folder in the root of your repository.
 
 In addition to this, the pipeline file requires a secret to be created on your GitHub repository. Details for creating this
 can be found [here](https://docs.github.com/en/actions/security-guides/encrypted-secrets). The secret in this case should 
-be named `SA_CREDENTIAL`. The value is derived from the contents of your Chronicle API key, but line breaks should be 
+be named `SA_CREDENTIAL`. The value is derived from the contents of your Google SecOps API key, but line breaks should be 
 removed from the file, and the `"` character should also be replaced with `\"`. The resulting string can then be pasted into the Secrets UI in GitHub.
 
-Now whenever a change is written to the repository the contents of the passed rules folder will be checked and updated/uploaded on the Chronicle instance. To learn more GitHub Actions workflows, see [here](https://docs.github.com/en/actions/using-workflows/about-workflows).
+Now whenever a change is written to the repository the contents of the passed rules folder will be checked and updated/uploaded on the Google Security Operations instance. To learn more GitHub Actions workflows, see [here](https://docs.github.com/en/actions/using-workflows/about-workflows).
 
 ## Using in a Google Cloud Build pipeline
 
 The [`cloudbuild.yaml`](./cloudbuild/cloudbuild.yaml) file located in the 
 [`cloudbuild` folder](./cloudbuild/) in this repository contains an example of using this 
-Python script to push updates or new detection content to a Chronicle instance using Google
+Python script to push updates or new detection content to a Google Security Operations instance using Google
 Cloud Build.
 
 The pipeline file requires a secret to be created in Secrets Manager, and for this to be 
 made available to the service account running the build pipeline. Details for creating this
 can be found [here](https://cloud.google.com/build/docs/securing-builds/use-secrets). The 
-value can be copy/pasted from the contents of your Chronicle API key into the Secrets 
+value can be copy/pasted from the contents of your Google SecOps API key into the Secrets 
 Manager UI or API.
 
 Your repository should be added in Cloud Build, and a trigger created following [this document](https://cloud.google.com/build/docs/automating-builds/create-manage-triggers), 
@@ -114,7 +114,7 @@ There are four user-defined substitutions to create to support this script:
 
 Substitution Name | Description | Example Value
 ---|---|---
-`_REGION` | The region for your Chronicle instance | us
+`_REGION` | The region for your Google Security Operations instance | us
 `_RULES_PATH` | The relative path from the root of the repository containing the YARA-L rules to work with | rules/yaral
 `_PROJECT_ID` | The project ID containing the secret created earlier | my-project-id
 `_SECRET_NAME` | The name of the secret created earlier | bk_api_credential
@@ -127,7 +127,7 @@ The cloudbuild.yaml file should be placed in the root of your repository.
 
 The [`azure-pipelines.yml`](./azure-devops/azure-pipelines.yml) file located in the 
 [`azure-devops` folder](./azure-devops/) in this repository contains an example of using this 
-Python script to push updates or new detection content to a Chronicle instance using Azure DevOps
+Python script to push updates or new detection content to a Google Security Operations instance using Azure DevOps
 Pipelines.
 
 There are two variables 
@@ -135,7 +135,7 @@ to edit in this script:
 
 Variable Name | Description | Example Value
 ---|---|---
-`region` | The region for your Chronicle instance | us
+`region` | The region for your Google Security Operations instance | us
 `rules_path` | The relative path from the root of the repository containing the YARA-L rules to work with | rules/yaral
 
 These should be modified for your environment, and the file should be placed in the root of your repository.
@@ -143,8 +143,8 @@ These should be modified for your environment, and the file should be placed in 
 The pool name value should also be updated in the pipelines file, to match the agent pool you want to use to run the code.
 
 In addition to this, the pipeline file requires a secret to be created on your Azure DevOps project. Details for creating this
-can be found [here](https://learn.microsoft.com/en-us/azure/devops/pipelines/process/set-secret-variables?view=azure-devops&tabs=yaml%2Cbash). The secret in this case should be named `SA_CREDENTIAL`. The value is the contents of your Chronicle API key, which can just be
+can be found [here](https://learn.microsoft.com/en-us/azure/devops/pipelines/process/set-secret-variables?view=azure-devops&tabs=yaml%2Cbash). The secret in this case should be named `SA_CREDENTIAL`. The value is the contents of your Google SecOps API key, which can just be
 copy/pasted into the UI, shown in the linked document above, from the JSON file containing the key.
 
 Now whenever a change is written to the repository the contents of the passed rules folder will be checked and updated/uploaded
-on the Chronicle instance.
+on the Google Security Operations instance.

@@ -41,7 +41,7 @@ To implement a `SQL` query or `YARA-L` rule for an existing or new security ques
 
 1. To provide a BigQuery SQL, implement query in a new SQL file under `sql/` folder, named after corresponding CSA ID and name, which is in our example `5_40_sql_tables_most_frequently_accessed.sql`.
 
-2. To add a Chronicle YARA-L rule, implement rule in a new YARA-L file under `yaral/` folder, named after corresponding CSA ID and name, which is in our example
+2. To add a Google SecOps YARA-L rule, implement rule in a new YARA-L file under `yaral/` folder, named after corresponding CSA ID and name, which is in our example
 `5_40_sql_tables_most_frequently_accessed.yaral` .
 
 CSA design favors **convention over configuration** when it comes to file naming and docs generation. Therefore, special attention is required for queries/rules file naming where the new filename must match a specific format per above examples, where:
