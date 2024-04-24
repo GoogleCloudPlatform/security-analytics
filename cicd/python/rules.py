@@ -50,7 +50,7 @@ def initialize_command_line_args(
   parser.add_argument(
     "-s", "--silent", action='store_true',  help="supress error messages" )
   parser.add_argument(
-    "-r", "--region", required=False, default="us", choices=("asia-southeast1", "europe", "us"), help="Chronicle instance region (leave blank for US)" )
+    "-r", "--region", required=False, default="us", choices=("asia-southeast1", "europe", "us"), help="Google Security Operations instance region (leave blank for US)" )
     
   parser.set_defaults(make_changes=False)
   return parser.parse_args(args)

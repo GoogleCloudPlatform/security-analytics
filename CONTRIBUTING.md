@@ -39,12 +39,14 @@ To add a new threat detection or audit question, follow these steps:
 ### New Query Implementation
 To implement a `SQL` query or `YARA-L` rule for an existing or new security question, follow the steps in this section. We'll assume the CSA in question has ID `5.40` and name `sql_tables_most_frequently_accessed`.
 
-1. To provide a BigQuery SQL, implement query in a new SQL file under `sql/` folder, named after corresponding CSA ID and name, which is in our example `5_40_sql_tables_most_frequently_accessed.sql`.
+1. To provide a BigQuery SQL query, implement query in a new SQL file under `backends/bigquery/sql/` folder, named after corresponding CSA ID and name, which is in our example `5_40_sql_tables_most_frequently_accessed.sql`.
 
-2. To add a Chronicle YARA-L rule, implement rule in a new YARA-L file under `yaral/` folder, named after corresponding CSA ID and name, which is in our example
+1. To provide a Log Analytics SQL query, implement query in a new SQL file under `backends/log_analytics/sql/` folder, named after corresponding CSA ID and name, which is in our example `5_40_sql_tables_most_frequently_accessed.sql`.
+
+2. To add a Google SecOps YARA-L rule, implement rule in a new YARA-L file under `backends/chronicle/yaral/` folder, named after corresponding CSA ID and name, which is in our example
 `5_40_sql_tables_most_frequently_accessed.yaral` .
 
-CSA design favors **convention over configuration** when it comes to file naming and docs generation. Therefore, special attention is required for queries/rules file naming where the new filename must match a specific format per above examples, where:
+CSA design favors **convention over configuration** when it comes to file naming and docs generation. Therefore, special attention is required for query/rule file naming where the new filename must match a specific format per above examples, where:
 - CSA ID and name are concatenated, and
 - CSA ID `.` (dot) separator is replaced with `_` (underscore)
 
@@ -75,7 +77,7 @@ For example, [CSA `1.01`](./src/1.01/1.01.md), is the first security question fr
 The [CSA index](./README.md#security-analytics-use-cases) in README.md as well as individual CSA use case documentation (e.g. [CSA `1.01`](./src/1.01/1.01.md)) are automatically generated based on:
 - YAML spec files under `src/` , and,
 - Corresponding log samples under `test/fixtures/` folder, and,
-- Corresponding query implementations under `sql/` and `yaral/` folders.
+- Corresponding query implementations under `backends/*/sql/` and `backends/*/yaral/` folders.
 
 After adding or editing files under any of these directories, here are the steps to regenerate the docs to reflect the changes:
 
