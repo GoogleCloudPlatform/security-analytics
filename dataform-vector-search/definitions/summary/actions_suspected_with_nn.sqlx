@@ -1,0 +1,51 @@
+/*
+ * Copyright 2024 Google LLC
+ *
+ * Licensed under the Apache License, Version 2.0 (the "License");
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ *     http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ */
+
+config {
+  type: "incremental",
+  // tags: ["summary", "daily"],
+  uniqueKey: ["suspicious_action", "past_similar_action"],
+  bigquery: {
+    partitionBy: "day",
+    updatePartitionFilter:
+      "day >= time_window_checkpoint"
+  }
+}
+
+pre_operations {
+  DECLARE time_window_checkpoint DEFAULT (
+    ${when(incremental(),
+    `SELECT MAX(day) FROM ${self()}`,
+    `SELECT DATE("2000-01-01")`)}
+  );
+}
+
+SELECT
+  query.content as suspicious_action,
+  base.content as past_similar_action,
+  distance,
+  query.day as day,
+  base.day as past_day,
+  base.counter as past_counter,
+FROM VECTOR_SEARCH(
+  TABLE ${ref("actions_summary_embeddings")},
+  'text_embedding',
+  (SELECT * FROM ${ref("actions_suspected")} WHERE ${ when(incremental(), `day >= time_window_checkpoint AND`)} TRUE),
+  top_k => 5
+)
+WHERE
+  query.content != base.content -- remove potential dups
+  AND query.day >= base.day -- list only past actions

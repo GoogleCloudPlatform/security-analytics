@@ -1,0 +1,43 @@
+/*
+ * Copyright 2024 Google LLC
+ *
+ * Licensed under the Apache License, Version 2.0 (the "License");
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ *     http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ */
+
+config {
+  hasOutput: true
+}
+
+-- Deduce resource ID from a log entry resource field
+CREATE OR REPLACE FUNCTION ${self()}(
+  type STRING,
+  labels JSON
+)
+RETURNS STRING
+AS (
+ COALESCE(
+  JSON_VALUE(labels.email_id),        -- service_account
+  JSON_VALUE(labels.pod_id),          -- container
+  JSON_VALUE(labels.instance_id),     -- gce_instance, spanner_instance, redis_instance, ...
+  JSON_VALUE(labels.subnetwork_id),   -- gce_subnetwork,
+  JSON_VALUE(labels.network_id),      -- gce_network, gce_network_region, ...
+  JSON_VALUE(labels.topic_id),        -- pubsub_topic
+  JSON_VALUE(labels.subscription_id), -- pubsub_subscription
+  JSON_VALUE(labels.endpoint_id),     -- aiplatform.googleapis.com/Endpoint
+  JSON_VALUE(labels.job_id),          -- dataflow_step
+  JSON_VALUE(labels.dataset_id),      -- bigquery_dataset
+  JSON_VALUE(labels.project_id),
+  JSON_VALUE(labels.organization_id),
+  JSON_VALUE(labels.id),
+  "other")
+);

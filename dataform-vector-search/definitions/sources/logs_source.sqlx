@@ -1,0 +1,6 @@
+    config {
+      type: "declaration",
+      database: dataform.projectConfig.vars.logs_export_project,
+      schema: dataform.projectConfig.vars.logs_export_dataset,
+      name: "_AllLogs",
+    }
