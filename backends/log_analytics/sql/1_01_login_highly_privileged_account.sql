@@ -22,8 +22,7 @@ SELECT
   JSON_VALUE(proto_payload.audit_log.metadata.event[0].parameter[0].value) AS login_type
 FROM `[MY_PROJECT_ID].[MY_LOG_BUCKET_REGION].[MY_LOG_BUCKET_NAME]._AllLogs`
 WHERE
-  timestamp >= TIMESTAMP_SUB(CURRENT_TIMESTAMP(), INTERVAL 60 DAY)
-  AND proto_payload.audit_log IS NOT NULL
+  proto_payload.audit_log IS NOT NULL
   AND proto_payload.audit_log.authentication_info.principal_email LIKE "admin%"
   AND proto_payload.audit_log.service_name = "login.googleapis.com"
   AND proto_payload.audit_log.method_name LIKE "google.login.LoginService.%"

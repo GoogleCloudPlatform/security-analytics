@@ -25,8 +25,7 @@ SELECT
 FROM `[MY_PROJECT_ID].[MY_LOG_BUCKET_REGION].[MY_LOG_BUCKET_NAME]._AllLogs`
   LEFT JOIN UNNEST(proto_payload.audit_log.authentication_info.service_account_delegation_info) as service_account_delegation_info
 WHERE
-  timestamp >= TIMESTAMP_SUB(CURRENT_TIMESTAMP(), INTERVAL 30 DAY)
-  AND proto_payload.audit_log.authentication_info.principal_email IS NOT NULL
+  proto_payload.audit_log.authentication_info.principal_email IS NOT NULL
   -- Actor(s) to be investigated
   AND proto_payload.audit_log.authentication_info.principal_email IN (
     "[MY_COMPROMISED_SA]@[MY_PROJECT_ID].iam.gserviceaccount.com"
