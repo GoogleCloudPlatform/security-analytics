@@ -1,0 +1,16 @@
+{
+    "warehouse": "bigquery",
+    "defaultSchema": "log_summary",
+    "assertionSchema": "log_summary_assertions",
+    "defaultDatabase": "[PROJECT_ID]",
+    "useRunCache": false,
+    "defaultLocation": "US",
+    "vars": {
+        "logs_export_project": "[LOGS_PROJECT_ID]",
+        "logs_export_dataset": "[LOGS_DATASET_ID]",
+        "summary_lookback_days": "90",
+        "admin_activity_only": "true",
+        "vertexai_connection": "[CONNECTION_ID]",
+        "text_embedding_model": "textembedding-gecko@003"
+    }
+}

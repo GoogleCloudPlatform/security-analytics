@@ -1,0 +1,39 @@
+/*
+ * Copyright 2024 Google LLC
+ *
+ * Licensed under the Apache License, Version 2.0 (the "License");
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ *     http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ */
+
+config {
+  type: "table",
+  // tags: ["summary", "daily"],
+  uniqueKey: ["suspicious_action"]
+}
+
+SELECT
+  *,
+  -- Flag high risk if there's only one or zero prior similar occurance
+  IF(prior_total_occurances <= 1, 'HIGH', 'LOW') as risk_factor
+FROM (
+  SELECT
+    suspicious_action,
+    ANY_VALUE(day) as day,
+    COUNTIF(distance < 0.015) as prior_daily_occurances,
+    SUM(IF(distance < 0.015, past_counter, 0)) as prior_total_occurances,
+  FROM ${ref("actions_suspected_with_nn")}
+  GROUP BY
+    suspicious_action
+)
+ORDER BY
+  risk_factor ASC,
+  day DESC
