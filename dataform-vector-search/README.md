@@ -58,8 +58,9 @@ To use this Dataform project:
     2. Grant the Dataform service account the IAM role `BigQuery Connection User` (`roles/bigquery.connectionUser`) to use the Cloud resource connection, following these [instructions](https://cloud.google.com/bigquery/docs/create-cloud-resource-connection#share_connections).
 
 
-Now are you ready to execute the Dataform SQL workflow.
-You can either manually [trigger the execution](#execute-workflow-manually) of the SQL workflow (e.g. for development and testing purposes), or [schedule executions](#schedule-executions-with-workflow-configurations) to run periodically by Dataform service (e.g. for QA, staging or production environments). 
+Now are you ready to execute the Dataform SQL workflow. You can either:
+- [Manually trigger the execution](#execute-workflow-manually) of the SQL workflow (useful for development and testing purposes), or,
+- [Schedule recurrent executions](#schedule-executions-with-workflow-configurations) to run periodically by Dataform service (use this for QA, staging or production environments). This will keep your target dataset up-to-date with latest logs from your source dataset.
 
 ### Execute workflow manually
 Use this for development and testing.
@@ -81,7 +82,7 @@ Use this for development and testing.
 1. Manually run entire workflow, following these [instructions](https://cloud.google.com/dataform/docs/trigger-execution#manually_execute_all_actions_in_your_workflow). This will execute all actions including creating BigQuery tables, and dependancies including remote BigQuery model and persistent User-Defined Functions (UDF).
 
 
-### Schedule executions with workflow configurations:
+### Schedule executions with workflow configurations
 Use this for QA, staging or production environments.
 
 1. Navigate to [Dataform page](https://console.cloud.google.com/bigquery/dataform)
